@@ -6,25 +6,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
+
+    }
+
+    .login_part {
+        background-color: #fff;
+        width: 358px;
+        height: 588px;
+        border-radius: 15px;
+        padding: 0 50px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header1 {
+        height: 100px;
+        font-family: Microsoft YaHei;
+        color: #52B4E3;
+        line-height: 100px;
+        text-align-last: left;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .header2 {
+        font-size: 38px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    .input-item:placeholder {
+        text-transform: uppercase;
+    }
+
+    .button {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 40%;
+        background-color: rgb(197, 233, 255);
+        color: rgba(101, 112, 116, 0.779);
+        border-radius: 10px;
+        border: 0;
+    }
+
+    .turn_to_registration {
+        text-align: center;
+        line-height: 88px;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: #abc1ee;
+    }
+</style>
 
 <body>
-    <h3 id="header">登录</h3>
-    <form action="">
-        <table>
-            <tr>
-                <td>账号</td>
-                <td><input type="text" name="username" id="" placeholder="用户名/学号/邮箱"></td>
-            </tr>
-            <tr>
-                <td>密码</td>
-                <td><input type="password" name="password" id=""></td>
-            </tr>
-        </table>
-        <br>
-        <input type="submit" value="点击登录">
-    </form>
-    <div>还没有账号？
-        <a href="registration.html">点我注册</a>
+    <div class="container">
+        <div class="login_part">
+            <div class="header1">博远信息技术社</div>
+            <div class="header2">登录</div>
+            <form>
+                <input type="text" name="username" class="input-item" placeholder="用户名/学号/邮箱">
+                <input type="password" name="password" class="input-item" placeholder="请输入你的密码">
+                <input type="submit" value="点击登录" class="button">
+            </form>
+            <div class="turn_to_registration">还没有账号？
+                <a href="registration.html">点我注册</a>
+            </div>
+        </div>
     </div>
 </body>
 
