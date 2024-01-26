@@ -37,6 +37,7 @@ public class LoginController {
             ret.setCode(0);
             ret.setMessage("密码错误");
             ret.setResult(null);
+            return ret;
         }
 
         //请求转发，会话管理

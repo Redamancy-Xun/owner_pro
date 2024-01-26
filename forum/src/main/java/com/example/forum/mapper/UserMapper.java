@@ -52,6 +52,7 @@ public interface UserMapper {
                            @Param("birthday")String birthday, @Param("email")String email,
                            @Param("headportrait")String headportrait, @Param("id")Integer id);
 
+    //根据用户名获取密码
     @Select("SELECT password FROM user WHERE username = #{username}")
     String getPasswordByUsername(@Param("username") String username);
 }
