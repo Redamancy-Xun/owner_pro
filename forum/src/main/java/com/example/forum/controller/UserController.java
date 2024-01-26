@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.forum.common.*;
 
 
 
@@ -21,19 +22,31 @@ public class UserController {
     UserServiceImpl userService;
 
     @GetMapping("/deleteUserById/{id}")
-    public String deleteUserById(@PathVariable("id")Integer id,
+    public Return deleteUserById(@PathVariable("id")Integer id,
                                  HttpSession session){
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            return null;
+        Return ret = new Return();
+        if (session.getAttribute("user") == null) {
+            ret.setCode(0);
+            ret.setMessage("请先登录");
+            ret.setResult(null);
+            return ret;
+        }
+
 
         try {
             int count = userService.deleteUserById(id);
             log.info("count=" + count);
         } catch (RuntimeException e) {
-            return "Can't find this ID";
+            ret.setCode(1);
+            ret.setMessage("删除超时");
+            ret.setResult(null);
+            return ret;
         }
-        return "Delete successfully";
+        ret.setCode(0);
+        ret.setMessage("删除成功");
+        ret.setResult(null);
+        return ret;
     }
 
     @GetMapping("/getUserById/{id}")

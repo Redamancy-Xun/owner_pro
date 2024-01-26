@@ -1,4 +1,4 @@
-package undestiny.onwer_pre.controller;
+package com.example.forum.controller;
 
 import com.example.forum.service.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;

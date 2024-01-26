@@ -51,4 +51,7 @@ public interface UserMapper {
     int updateUsernameById(@Param("username")String username, @Param("password")String password,
                            @Param("birthday")String birthday, @Param("email")String email,
                            @Param("headportrait")String headportrait, @Param("id")Integer id);
+
+    @Select("SELECT password FROM user WHERE username = #{username}")
+    String getPasswordByUsername(@Param("username") String username);
 }

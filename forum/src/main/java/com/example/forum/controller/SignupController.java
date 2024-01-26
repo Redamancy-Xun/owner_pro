@@ -1,12 +1,12 @@
 package com.example.forum.controller;
 
+
+import com.example.forum.common.Return;
 import com.example.forum.entity.User;
 import com.example.forum.service.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -16,14 +16,14 @@ public class SignupController {
     UserServiceImpl userService;
 
     //注册插入一个用户
-    @GetMapping("/signup/{username}/{password}/{studentid}/{studentname}/{birthday}/{email}/{headportrait}")
-    public String signup(@PathVariable("username")String username,
-                              @PathVariable("password")String password,
-                              @PathVariable("studentid")String studentid,
-                              @PathVariable("studentname")String studentname,
-                              @PathVariable("birthday")String birthday,
-                              @PathVariable("email")String email,
-                              @PathVariable("headportrait")String headportrait){
+    @PostMapping("/signup")
+    public Return signup(@RequestParam("username")String username,
+                              @RequestParam("password")String password,
+                              @RequestParam("studentid")String studentid,
+                              @RequestParam("studentname")String studentname,
+                              @RequestParam("birthday")String birthday,
+                              @RequestParam("email")String email,
+                              @RequestParam("headportrait")String headportrait){
 
         User user = new User();
         user.setUsername(username);
@@ -38,6 +38,11 @@ public class SignupController {
         int count = userService.signupUser(user);
         log.info("count=" + count);
         log.info("id=" + user.getId());
-        return "Signup successfully";
+
+        Return ret = new Return();
+        ret.setCode(0);
+        ret.setMessage("注册成功");
+        ret.setResult(null);
+        return ret;
     }
 }

@@ -28,4 +28,6 @@ public interface UserService {
 
     //根据用户id删除用户
     int deleteUserById(Integer id);
+
+    String getPasswordByUsername(String username);
 }
