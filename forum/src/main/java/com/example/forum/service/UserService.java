@@ -29,5 +29,6 @@ public interface UserService {
     //根据用户id删除用户
     int deleteUserById(Integer id);
 
+    //根据用户名获取密码
     String getPasswordByUsername(String username);
 }

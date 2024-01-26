@@ -73,5 +73,14 @@ public class UserServiceImpl implements UserService {
         return userMapper.deleteUserById(id);
     }
 
+    //根据用户名获取密码
+    @Override
+    public String getPasswordByUsername(String username) {
+        String password = userMapper.getPasswordByUsername(username);
+        if (password == null )
+            throw new RuntimeException();
+        return userMapper.getPasswordByUsername(username);
+    }
+
 
 }
