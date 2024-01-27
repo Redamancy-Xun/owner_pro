@@ -25,7 +25,8 @@ public class LoginController {
 
         //参数校验
         if(username.length() < 2 || username.length() > 20
-                || password.length() < 2 || password.length() > 20){
+                || password.length() < 2 || password.length() > 20
+                || userService.checkLogin(username,password)){
             throw new MyException(EnumExceptionType.PARAMETER_FORMAT_INCORRECT);
         }
 

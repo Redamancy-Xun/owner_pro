@@ -1,5 +1,8 @@
 package com.example.forum.common;
 
+import lombok.Getter;
+
+@Getter
 public enum EnumExceptionType {
     SYSTEM_INTERNAL_ANOMALY(1000, "网络不给力，请稍后重试"),
     PASSWORD_INCORRECT(1001, "密码错误"),
@@ -20,11 +23,4 @@ public enum EnumExceptionType {
         this.codeMessage = codeMessage;
     }
 
-    public int getErrorCode() {
-        return errorCode;
-    }
-
-    public String getCodeMessage() {
-        return codeMessage;
-    }
 }
