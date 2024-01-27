@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import module.entity.User;
+import com.example.forum.entity.User;
 
 @Data
 @NoArgsConstructor
@@ -18,7 +18,7 @@ public class UserDTO {
 
     public UserDTO(User user){
         id = Integer.parseInt(user.getId()+"");
-        username = user.getUser_name();
+        username = user.getUsername();
         type = 0;
     }
 
