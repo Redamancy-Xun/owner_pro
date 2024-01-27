@@ -1,6 +1,6 @@
 package com.example.forum.controller;
 
-import com.example.forum.entity.User;
+import com.example.forum.exception.MyException;
 import com.example.forum.service.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -16,23 +16,15 @@ public class UserInfo {
     @Autowired
     UserServiceImpl userService;
 
+    //根据id获取个人信息
     @GetMapping("/UserInfo/{id}")
-    public Return getUserInfo(@PathVariable("id") int id, HttpSession session){
-
-        Return ret = new Return();
+    public Result getUserInfo(@PathVariable("id") int id, HttpSession session){
 
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null) {
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
-        ret.setCode(0);
-        ret.setMessage("个人信息成功显示");
-        ret.setResult(userService.getUserById(id));
-        return ret;
+        return Result.success("获取成功", userService.getUserById(id));
     }
 
 }

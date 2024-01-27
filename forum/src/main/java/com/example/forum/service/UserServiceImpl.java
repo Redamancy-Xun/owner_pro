@@ -1,6 +1,8 @@
 package com.example.forum.service;
 
+import com.example.forum.common.EnumExceptionType;
 import com.example.forum.entity.User;
+import com.example.forum.exception.MyException;
 import com.example.forum.mapper.UserMapper;
 import com.example.forum.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,20 +37,29 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsernameAndPassword(String username, String password) {
         User user = userMapper.getUserByUsernameAndPassword(username, password);
         if (user == null)
-            throw new RuntimeException();
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
         return user;
     }
 
+    //根据用户名获取用户
     @Override
-    public List<User> getUserListByUsername(String username) {
-        return userMapper.getUserListByUsername(username);
+    public User getUserByUsername(String username) {
+        User users = userMapper.getUserByUsername(username);
+        if (users == null)
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        return users;
     }
 
+    //根据用户id获取用户
     @Override
     public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
+        User user = userMapper.getUserById(id);
+        if (user == null)
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        return user;
     }
 
+    //根据指定排序条件获取用户列表
     @Override
     public List<User> getUserListOrderly(String order_by_sql) {
         return userMapper.getUserListOrderly(order_by_sql);
@@ -60,7 +71,7 @@ public class UserServiceImpl implements UserService {
                                   String email, String headportrait, Integer id) {
         User user = userMapper.getUserById(id);
         if (user == null)
-            throw new RuntimeException();
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
         return userMapper.updateUsernameById(username, password, birthday, email, headportrait, id);
     }
 
@@ -69,7 +80,7 @@ public class UserServiceImpl implements UserService {
     public int deleteUserById(Integer id) {
         User user = userMapper.getUserById(id);
         if (user == null)
-            throw new RuntimeException();
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
         return userMapper.deleteUserById(id);
     }
 
@@ -78,9 +89,18 @@ public class UserServiceImpl implements UserService {
     public String getPasswordByUsername(String username) {
         String password = userMapper.getPasswordByUsername(username);
         if (password == null )
-            throw new RuntimeException();
-        return userMapper.getPasswordByUsername(username);
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        return password;
     }
 
+    //检查用户名和密码是否正确
+    public Boolean checkLogin(String username, String password){
+        User user = getUserByUsername(username);
+        if (user == null)
+            throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        if (!user.getPassword().equals(password))
+            throw new MyException(EnumExceptionType.PASSWORD_INCORRECT);
+        return true;
+    }
 
 }

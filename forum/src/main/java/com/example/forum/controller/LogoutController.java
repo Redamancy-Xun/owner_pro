@@ -1,6 +1,8 @@
 package com.example.forum.controller;
 
-import com.example.forum.common.Return;
+import com.example.forum.common.EnumExceptionType;
+import com.example.forum.common.Result;
+import com.example.forum.exception.MyException;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,20 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogoutController {
 
     @GetMapping("/logout")
-    public Return logout(HttpSession session){
+    public Result logout(HttpSession session){
         //检查是否登录（session是否存在）
-        Return ret = new Return();
-        if (session.getAttribute("user") == null){
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+        Result ret = new Result();
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
+
         //注销session（在服务器里删除该session）
-        session.invalidate();
-        ret.setCode(0);
-        ret.setMessage("登出成功");
-        ret.setResult(null);
-        return ret;
+        return Result.success("登出成功", null);
     }
 }

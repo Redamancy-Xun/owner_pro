@@ -26,15 +26,10 @@ public interface UserMapper {
     User getUserByUsernameAndPassword(String username, String password);
 
 
-    //根据用户名获取用户列表
-    @Results(
-            id = "userList", value = {
-            @Result(property = "username", column = "username"),
-            @Result(property = "password", column = "password")
-    }
-    )
+    //根据用户名获取用户
+    @ResultType(User.class)
     @Select("SELECT * FROM user WHERE username = #{username};")
-    List<User> getUserListByUsername(@Param("username")String username);
+    User getUserByUsername(@Param("username")String username);
 
     //根据指定排序条件获取用户列表
     @ResultMap("userList")

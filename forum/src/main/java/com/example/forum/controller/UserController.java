@@ -1,6 +1,6 @@
 package com.example.forum.controller;
 
-import com.example.forum.entity.User;
+import com.example.forum.exception.MyException;
 import com.example.forum.service.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -10,95 +10,60 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.forum.common.*;
 
-
-
-import java.util.List;
-
 @RestController
 @Slf4j
 public class UserController {
 
     @Autowired
     UserServiceImpl userService;
-    Return ret = new Return();
 
+    //根据用户id删除用户
     @GetMapping("/deleteUserById/{id}")
-    public Return deleteUserById(@PathVariable("id")Integer id,
+    public Result deleteUserById(@PathVariable("id")Integer id,
                                  HttpSession session){
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null) {
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
+        int count = userService.deleteUserById(id);
+        log.info("count=" + count);
 
-        try {
-            int count = userService.deleteUserById(id);
-            log.info("count=" + count);
-        } catch (RuntimeException e) {
-            ret.setCode(1);
-            ret.setMessage("未找到该用户");
-            ret.setResult(null);
-            return ret;
-        }
-        ret.setCode(0);
-        ret.setMessage("删除成功");
-        ret.setResult(null);
-        return ret;
+        return Result.success("成功删除", id);
     }
 
+    //根据用户id查询用户
     @GetMapping("/getUserById/{id}")
-    public Return getUserById(@PathVariable("id")Integer id,
-                            HttpSession session){
+    public Result getUserById(@PathVariable("id")Integer id,
+                              HttpSession session){
 
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null) {
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
-        ret.setCode(0);
-        ret.setMessage("搜索成功");
-        ret.setResult(userService.getUserById(id));
-        return ret;
+        return Result.success("搜索成功", userService.getUserById(id));
     }
 
+    //根据用户名查询用户
     @GetMapping("/getUserByUsername/{username}")
-    public Return getUserByUsername(@PathVariable("username")String username,
-                                        HttpSession session){
+    public Result getUserByUsername(@PathVariable("username")String username,
+                                    HttpSession session){
 
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null) {
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
-        ret.setCode(0);
-        ret.setMessage("搜索成功");
-        ret.setResult(userService.getUserListByUsername(username));
-        return ret;
+        return Result.success("搜索成功", userService.getUserByUsername(username));
     }
 
+    //根据指定排序条件获取用户列表
     @GetMapping("/getUserListOrderly/{order_by_sql}")
-    public Return getUserListOrderly(@PathVariable("order_by_sql")String order_by_sql,
-                                         HttpSession session){
-        //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null) {
-            ret.setCode(0);
-            ret.setMessage("登录超时");
-            ret.setResult(null);
-            return ret;
-        }
+    public Result getUserListOrderly(@PathVariable("order_by_sql")String order_by_sql,
+                                     HttpSession session){
 
-        ret.setCode(0);
-        ret.setMessage("搜索成功");
-        ret.setResult(userService.getUserListOrderly(order_by_sql));
-        return ret;
+        //检查是否登录（session是否存在）
+        if (session.getAttribute("user") == null)
+            throw new MyException(EnumExceptionType.LOGIN_INVALID);
+
+        return Result.success("搜索成功", userService.getUserListOrderly(order_by_sql));
     }
 }
