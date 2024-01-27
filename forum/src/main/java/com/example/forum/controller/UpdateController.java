@@ -1,5 +1,6 @@
 package com.example.forum.controller;
 
+import com.example.forum.common.Return;
 import com.example.forum.service.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ public class UpdateController {
     UserServiceImpl userService;
 
     @GetMapping("/updateUsernameById/{username}/{password}/{birthday}/{email}/{headportrait}/{id}")
-    public String updateUsernameById(@PathVariable("username")String username,
+    public Return updateUsernameById(@PathVariable("username")String username,
                                    @PathVariable("password")String password,
                                    @PathVariable("birthday")String birthday,
                                    @PathVariable("email")String email,
@@ -26,16 +27,27 @@ public class UpdateController {
                                    @PathVariable("id")Integer id,
                                    HttpSession session){
 
+        Return ret = new Return();
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            return null;
+        if (session.getAttribute("user") == null) {
+            ret.setCode(1);
+            ret.setMessage("登录超时");
+            ret.setResult(null);
+            return ret;
+        }
 
         try {
             int count = userService.updateUsernameById(username, password, birthday, email, headportrait, id);
             log.info("count=" + count);
         } catch (RuntimeException e) {
-            return "Can't find this ID";
+            ret.setCode(0);
+            ret.setMessage("用户不存在");
+            ret.setResult(null);
+            return ret;
         }
-        return "Update successfully";
+        ret.setCode(0);
+        ret.setMessage("信息更新成功");
+        ret.setResult(null);
+        return ret;
     }
 }

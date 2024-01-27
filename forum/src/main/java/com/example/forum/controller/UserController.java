@@ -20,15 +20,15 @@ public class UserController {
 
     @Autowired
     UserServiceImpl userService;
+    Return ret = new Return();
 
     @GetMapping("/deleteUserById/{id}")
     public Return deleteUserById(@PathVariable("id")Integer id,
                                  HttpSession session){
         //检查是否登录（session是否存在）
-        Return ret = new Return();
         if (session.getAttribute("user") == null) {
             ret.setCode(0);
-            ret.setMessage("请先登录");
+            ret.setMessage("登录超时");
             ret.setResult(null);
             return ret;
         }
@@ -39,7 +39,7 @@ public class UserController {
             log.info("count=" + count);
         } catch (RuntimeException e) {
             ret.setCode(1);
-            ret.setMessage("删除超时");
+            ret.setMessage("未找到该用户");
             ret.setResult(null);
             return ret;
         }
@@ -50,32 +50,55 @@ public class UserController {
     }
 
     @GetMapping("/getUserById/{id}")
-    public User getUserById(@PathVariable("id")Integer id,
+    public Return getUserById(@PathVariable("id")Integer id,
                             HttpSession session){
-        //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            return null;
 
-        return userService.getUserById(id);
+        //检查是否登录（session是否存在）
+        if (session.getAttribute("user") == null) {
+            ret.setCode(0);
+            ret.setMessage("登录超时");
+            ret.setResult(null);
+            return ret;
+        }
+
+        ret.setCode(0);
+        ret.setMessage("搜索成功");
+        ret.setResult(userService.getUserById(id));
+        return ret;
     }
 
     @GetMapping("/getUserByUsername/{username}")
-    public List<User> getUserByUsername(@PathVariable("username")String username,
+    public Return getUserByUsername(@PathVariable("username")String username,
                                         HttpSession session){
-        //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            return null;
 
-        return userService.getUserListByUsername(username);
+        //检查是否登录（session是否存在）
+        if (session.getAttribute("user") == null) {
+            ret.setCode(0);
+            ret.setMessage("登录超时");
+            ret.setResult(null);
+            return ret;
+        }
+
+        ret.setCode(0);
+        ret.setMessage("搜索成功");
+        ret.setResult(userService.getUserListByUsername(username));
+        return ret;
     }
 
     @GetMapping("/getUserListOrderly/{order_by_sql}")
-    public List<User> getUserListOrderly(@PathVariable("order_by_sql")String order_by_sql,
+    public Return getUserListOrderly(@PathVariable("order_by_sql")String order_by_sql,
                                          HttpSession session){
         //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            return null;
+        if (session.getAttribute("user") == null) {
+            ret.setCode(0);
+            ret.setMessage("登录超时");
+            ret.setResult(null);
+            return ret;
+        }
 
-        return userService.getUserListOrderly(order_by_sql);
+        ret.setCode(0);
+        ret.setMessage("搜索成功");
+        ret.setResult(userService.getUserListOrderly(order_by_sql));
+        return ret;
     }
 }

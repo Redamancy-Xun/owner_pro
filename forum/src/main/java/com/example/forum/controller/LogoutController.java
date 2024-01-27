@@ -15,7 +15,7 @@ public class LogoutController {
         Return ret = new Return();
         if (session.getAttribute("user") == null){
             ret.setCode(0);
-            ret.setMessage("请先登录");
+            ret.setMessage("登录超时");
             ret.setResult(null);
             return ret;
         }

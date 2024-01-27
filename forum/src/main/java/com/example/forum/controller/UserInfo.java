@@ -17,15 +17,22 @@ public class UserInfo {
     UserServiceImpl userService;
 
     @GetMapping("/UserInfo/{id}")
-    public User getUserInfo(@PathVariable("id") int id, HttpSession session){
+    public Return getUserInfo(@PathVariable("id") int id, HttpSession session){
 
-        if (session.getAttribute("user") == null)
-            return null;
+        Return ret = new Return();
 
-        User user = new User();
-        user = userService.getUserById(id);
+        //检查是否登录（session是否存在）
+        if (session.getAttribute("user") == null) {
+            ret.setCode(0);
+            ret.setMessage("登录超时");
+            ret.setResult(null);
+            return ret;
+        }
 
-        return user;
+        ret.setCode(0);
+        ret.setMessage("个人信息成功显示");
+        ret.setResult(userService.getUserById(id));
+        return ret;
     }
 
 }
