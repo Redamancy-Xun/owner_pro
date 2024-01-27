@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Return {
     private int code;
     private String message;
-    private String[] result;
+    private Object result;
 
     public Return() {
         this.code=0;
