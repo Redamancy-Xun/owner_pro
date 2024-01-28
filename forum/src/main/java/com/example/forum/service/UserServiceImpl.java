@@ -5,6 +5,7 @@ import com.example.forum.entity.User;
 import com.example.forum.exception.MyException;
 import com.example.forum.mapper.UserMapper;
 import com.example.forum.service.UserService;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.regex.Pattern;
 
 @Service
 @Slf4j
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
     //注册插入一个用户
     @Override
     public int signupUser(User user) {
+        //查看用户是否已存在
+        if (userMapper.getUserByUsername(user.getUsername()) == null)
+            throw new MyException(EnumExceptionType.USER_ALREADY_EXIST_BUT_CAN_UPGRADE);
         return userMapper.insertUser(user);
     }
 
@@ -106,17 +111,19 @@ public class UserServiceImpl implements UserService {
 
     //检查用户名长度是否正确
     public Boolean checkUsernameLength(String username){
-        if (username.length()>20 || username.length()<2)
+        if (username.length() > 21 || username.length() < 7)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
         return true;
     }
 
+    //检查密码长度是否正确
     public Boolean checkPasswordLength(String password){
-        if (password.length()>20 || password.length()<2)
+        if (password.length() > 21 || password.length() < 7)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
         return true;
     }
 
+    //检查邮箱格式是否正确
     public Boolean checkEmailForm(String email){
         String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);

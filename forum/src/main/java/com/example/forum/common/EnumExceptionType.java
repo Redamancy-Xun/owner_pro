@@ -1,8 +1,10 @@
 package com.example.forum.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public enum EnumExceptionType {
     SYSTEM_INTERNAL_ANOMALY(1000, "网络不给力，请稍后重试"),
     PASSWORD_INCORRECT(1001, "密码错误"),
@@ -15,16 +17,8 @@ public enum EnumExceptionType {
     EMAIL_INVAILD(1006,"邮箱格式不正确" );
 
 
-
-
-
     private int errorCode;
 
     private String codeMessage;
-
-    EnumExceptionType(int errorCode, String codeMessage) {
-        this.errorCode = errorCode;
-        this.codeMessage = codeMessage;
-    }
 
 }

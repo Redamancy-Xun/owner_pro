@@ -1,4 +1,4 @@
-package com.example.forum.controller;
+package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
 import com.example.forum.service.UserServiceImpl;
