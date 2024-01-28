@@ -14,7 +14,6 @@ public class LogoutController {
     @GetMapping("/logout")
     public Result logout(HttpSession session){
         //检查是否登录（session是否存在）
-        Result ret = new Result();
         if (session.getAttribute("user") == null)
             throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
