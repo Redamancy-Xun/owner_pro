@@ -33,10 +33,18 @@ public class UpdateController {
         if (session.getAttribute("user") == null)
             throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
-        //记录信息
-        int count = userService.updateUsernameById(username, password, birthday, email, headportrait, id);
-        log.info("count=" + count);
+        //参数校验
+        if (userService.checkPasswordLength(password)
+                &&userService.checkUsernameLength(username)
+                &&userService.checkEmailForm(email)){
+            //记录信息
+            int count = userService.updateUsernameById(username, password, birthday, email, headportrait, id);
+            log.info("count=" + count);
 
-        return Result.success("更新成功", null);
+            return Result.success("更新成功", null);
+
+        }
+
+        return Result.fail("更新失败",null);
     }
 }

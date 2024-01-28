@@ -34,4 +34,10 @@ public interface UserService {
 
     //检查用户名和密码是否正确
     Boolean checkLogin(String username, String password);
+
+    Boolean checkUsernameLength(String username);
+
+    Boolean checkPasswordLength(String password);
+
+    Boolean checkEmailForm(String email);
 }

@@ -24,8 +24,8 @@ public class LoginController {
         log.info("thread: " + Thread.currentThread().getId());
 
         //参数校验
-        if(username.length() < 2 || username.length() > 20
-                || password.length() < 2 || password.length() > 20
+        if(userService.checkUsernameLength(username)
+                && userService.checkPasswordLength(password)
                 || !userService.checkLogin(username,password)){
             throw new MyException(EnumExceptionType.PARAMETER_FORMAT_INCORRECT);
         }

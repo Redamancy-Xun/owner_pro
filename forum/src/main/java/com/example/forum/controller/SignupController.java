@@ -26,12 +26,23 @@ public class SignupController {
                          @RequestParam("headportrait")String headportrait){
 
         User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+
+
+
+
+        if (userService.checkUsernameLength(username)){
+            user.setUsername(username);
+        }
+        if (userService.checkPasswordLength(password)){
+            user.setPassword(password);
+        }
+
         user.setStudentid(studentid);
         user.setStudentname(studentname);
         user.setBirthday(birthday);
-        user.setEmail(email);
+        if (userService.checkEmailForm(email)) {
+            user.setEmail(email);
+        }
         user.setHeadportrait(headportrait);
 
         //insertUser返回插入的条数

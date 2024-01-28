@@ -14,6 +14,7 @@ import com.example.forum.entity.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @Slf4j
@@ -100,6 +101,30 @@ public class UserServiceImpl implements UserService {
             throw new MyException(EnumExceptionType.USER_NOT_EXIST);
         if (!user.getPassword().equals(password))
             throw new MyException(EnumExceptionType.PASSWORD_INCORRECT);
+        return true;
+    }
+
+    //检查用户名长度是否正确
+    public Boolean checkUsernameLength(String username){
+        if (username.length()>20 || username.length()<2)
+            throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
+        return true;
+    }
+
+    public Boolean checkPasswordLength(String password){
+        if (password.length()>20 || password.length()<2)
+            throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
+        return true;
+    }
+
+    public Boolean checkEmailForm(String email){
+        String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
+
+        if (!EMAIL_PATTERN.matcher(email).matches()){
+            throw new MyException(EnumExceptionType.EMAIL_INVAILD);
+        }
+
         return true;
     }
 

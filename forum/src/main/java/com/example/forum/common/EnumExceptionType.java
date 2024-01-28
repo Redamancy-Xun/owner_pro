@@ -10,7 +10,11 @@ public enum EnumExceptionType {
     USER_ALREADY_EXIST_BUT_CAN_UPGRADE(1003,"账号已存在，请直接登录"),
     ADMIN_ALREADY_EXISTS(1004,"该管理员已存在"),
     LOGIN_INVALID(1,"登录状态失效，请重新登录"),
-    PARAMETER_FORMAT_INCORRECT(-2, "参数格式不正确");
+    PARAMETER_FORMAT_INCORRECT(-2, "参数格式不正确"),
+    LENGTH_INCORRECT(1005, "参数长度不正确"),
+    EMAIL_INVAILD(1006,"邮箱格式不正确" );
+
+
 
 
 
