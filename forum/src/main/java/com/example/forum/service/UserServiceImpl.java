@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService {
 
     //检查用户名长度是否正确
     public Boolean checkUsernameLength(String username){
-        if (username.length() > 21 || username.length() < 7)
+        if (username.length() > 21 || username.length() < 2)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
         return true;
     }

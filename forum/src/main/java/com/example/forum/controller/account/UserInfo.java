@@ -22,10 +22,10 @@ public class UserInfo {
     UserServiceImpl userService;
 
     //根据id获取个人信息
-    @GetMapping("/UserInfo")
+    @GetMapping("/UserInfo/{id}")
     @ApiOperation("个人信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer")
-    public Result getUserInfo(@Validated int id, HttpSession session){
+    public Result getUserInfo(@Validated @PathVariable("id") int id, HttpSession session){
 
         //检查是否登录（session是否存在）
         if (session.getAttribute("user") == null)

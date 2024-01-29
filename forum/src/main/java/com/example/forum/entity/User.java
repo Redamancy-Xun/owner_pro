@@ -27,7 +27,7 @@ public class User {
 
     @Column(name = "username", nullable = false)
     @NotBlank(message = "用户名不能为空")
-    @Size(min = 6, max = 20, message = "用户名长度为6-20")
+    @Size(min = 2, max = 20, message = "用户名长度为6-20")
     @ApiModelProperty("用户名")
     private String username;
 

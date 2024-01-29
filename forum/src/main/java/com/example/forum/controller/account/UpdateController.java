@@ -26,7 +26,7 @@ public class UpdateController {
     @PostMapping("/update")
     @ApiOperation("更改个人信息")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username", value = "用户名(长度6-20)", required = true, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "username", value = "用户名(长度2-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码(长度6-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentid", value = "学号", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentname", value = "姓名", required = true, paramType = "query", dataType = "String"),
@@ -35,9 +35,15 @@ public class UpdateController {
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result update(@Validated String username, @Validated String password, @Validated String studentid,
-                         @Validated String studentname, @Validated String birthday, @Validated String email,
-                         @Validated String headportrait, @Validated Integer id, HttpSession session){
+    public Result update(@Validated int id,
+                         @Validated String username,
+                         @Validated String password,
+                         @Validated String studentid,
+                         @Validated String studentname,
+                         @Validated String birthday,
+                         @Validated String email,
+                         @Validated String headportrait,
+                         HttpSession session){
 
         //检查是否登录（session是否存在）
         if (session.getAttribute("user") == null)
