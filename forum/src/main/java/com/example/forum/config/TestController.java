@@ -5,6 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.forum.dto.UserDTO;
 
+/**
+ * test测试类
+ */
 @RestController
 public class TestController {
 

@@ -8,7 +8,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-
+/**
+ * 用于配置跨域资源共享 (CORS) 的相关设置的Spring Boot的配置类
+ */
 @Configuration
 public class CorsConfig {
 

@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * 配置Swagger 2的Spring Boot配置类
+ */
 @Configuration
 @ConditionalOnExpression("${swagger.enable:true}")//当enable为true时才选择加载该配置类
 @EnableSwagger2
@@ -23,7 +26,7 @@ public class Swagger2Config {
                 .groupName("account")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("module.controller.account"))//设定扫描范围
+                .apis(RequestHandlerSelectors.basePackage("com.example.forum.controller.account"))//设定扫描范围
                 .paths(PathSelectors.any())
                 .build();
     }

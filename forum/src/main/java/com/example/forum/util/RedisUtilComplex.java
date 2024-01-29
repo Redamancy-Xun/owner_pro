@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-//复杂服务的redis工具类
+/**
+ * 复杂服务的redis工具类
+ */
 @Component
 public class RedisUtilComplex {
 

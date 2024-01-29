@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 
+/**
+ * 列出Spring应用上下文中的所有bean及其类型的Spring Boot控制器
+ */
 @RestController
 public class ContextController {
 

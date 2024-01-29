@@ -17,6 +17,9 @@ import com.example.forum.shiro.MyRealm;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * 配置Shiro安全框架的Spring Boot组件
+ */
 @Slf4j
 @Component
 public class ShiroConfig {

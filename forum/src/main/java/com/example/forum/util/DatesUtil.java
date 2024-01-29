@@ -15,10 +15,12 @@ import java.util.List;
  * (DateUtils.getDayBegin());System.out.println(todayBegin );//输出结果为2017-10-26
  * 00:00:00
  */
+
 /**
  * 日期工具类
  */
 public class DatesUtil {
+
     // 获取当天的开始时间
     public static Date getDayBegin() {
         Calendar cal = new GregorianCalendar();
