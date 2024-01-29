@@ -23,27 +23,22 @@ public interface UserMapper {
     //根据用户名和密码获取用户
     @ResultType(User.class)
     @Select("SELECT * FROM user WHERE username = #{username} AND password = #{password};")
-    User getUserByUsernameAndPassword(String username, String password);
+    User getUserByUsernameAndPassword(@Param("username")String username, @Param("password")String password);
 
 
-    //根据用户名获取用户列表
-    @Results(
-            id = "userList", value = {
-            @Result(property = "username", column = "username"),
-            @Result(property = "password", column = "password")
-    }
-    )
+    //根据用户名获取用户
+    @ResultType(User.class)
     @Select("SELECT * FROM user WHERE username = #{username};")
-    List<User> getUserListByUsername(@Param("username")String username);
+    User getUserByUsername(@Param("username")String username);
 
     //根据指定排序条件获取用户列表
     @ResultMap("userList")
     @Select("SELECT * FROM user ORDER BY ${order_by_sql};")
-    List<User> getUserListOrderly(@Param("order_by_sql") String order_by_sql);
+    List<User> getUserListOrderly(@Param("order_by_sql")String order_by_sql);
 
     //根据用户id删除用户
     @Delete("DELETE FROM user WHERE id = #{id};")
-    int deleteUserById(Integer id);
+    int deleteUserById(@Param("id")Integer id);
 
     //根据用户id找到用户，并更新用户信息
     @Update("UPDATE user SET username = #{username}, password = {password}, birthday = {birthday}, " +
@@ -54,5 +49,5 @@ public interface UserMapper {
 
     //根据用户名获取密码
     @Select("SELECT password FROM user WHERE username = #{username}")
-    String getPasswordByUsername(@Param("username") String username);
+    String getPasswordByUsername(@Param("username")String username);
 }

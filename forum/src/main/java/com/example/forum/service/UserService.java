@@ -14,12 +14,12 @@ public interface UserService {
     User getUserByUsernameAndPassword(String username, String password);
 
     //根据用户名获取用户列表
-    List<User> getUserListByUsername(String username);
+    User getUserByUsername(String username);
 
     //根据用户id获取用户
     User getUserById(@Param("id") Integer id);
 
-    //根据指定排序条件获取用户列表
+    //根据指定排序条件获取用户
     List<User> getUserListOrderly(@Param("order_by_sql") String order_by_sql);
 
     //根据用户id找到用户，并更新用户信息
@@ -31,4 +31,13 @@ public interface UserService {
 
     //根据用户名获取密码
     String getPasswordByUsername(String username);
+
+    //检查用户名和密码是否正确
+    Boolean checkLogin(String username, String password);
+
+    Boolean checkUsernameLength(String username);
+
+    Boolean checkPasswordLength(String password);
+
+    Boolean checkEmailForm(String email);
 }
