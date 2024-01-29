@@ -37,9 +37,9 @@ public class SignupController {
                          @Validated String password,
                          @Validated String studentid,
                          @Validated String studentname,
-                         @Validated String birthday,
-                         @Validated String email,
-                         @Validated String headportrait){
+                         @RequestParam(value = "birthday", required = false) @Validated String birthday,
+                         @RequestParam(value = "email", required = false) @Validated String email,
+                         @RequestParam(value = "headportrait", required = false) @Validated String headportrait){
 
         User user = new User();
 

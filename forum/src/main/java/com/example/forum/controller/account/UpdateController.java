@@ -26,23 +26,23 @@ public class UpdateController {
     @PostMapping("/update")
     @ApiOperation("更改个人信息")
     @ApiImplicitParams({
+            @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "username", value = "用户名(长度2-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码(长度6-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentid", value = "学号", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentname", value = "姓名", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "birthday", value = "生日(可选)", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer")
+            @ApiImplicitParam(name = "birthday", value = "生日(可选)", required = false, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = false, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String")
     })
     public Result update(@Validated int id,
                          @Validated String username,
                          @Validated String password,
                          @Validated String studentid,
                          @Validated String studentname,
-                         @Validated String birthday,
-                         @Validated String email,
-                         @Validated String headportrait,
+                         @RequestParam(value = "birthday", required = false) @Validated String birthday,
+                         @RequestParam(value = "email", required = false) @Validated String email,
+                         @RequestParam(value = "headportrait", required = false) @Validated String headportrait,
                          HttpSession session){
 
         //检查是否登录（session是否存在）
