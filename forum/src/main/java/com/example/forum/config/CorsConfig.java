@@ -1,4 +1,4 @@
-package module.config;
+package com.example.forum.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

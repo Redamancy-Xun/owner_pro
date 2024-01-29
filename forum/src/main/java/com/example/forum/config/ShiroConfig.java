@@ -1,4 +1,4 @@
-package module.config;
+package com.example.forum.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -12,7 +12,7 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-import module.shiro.MyRealm;
+import com.example.forum.shiro.MyRealm;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

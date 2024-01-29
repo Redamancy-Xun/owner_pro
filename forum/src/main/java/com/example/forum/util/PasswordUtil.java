@@ -1,4 +1,4 @@
-package module.util;
+package com.example.forum.util;
 
 import cn.hutool.crypto.SecureUtil;
 

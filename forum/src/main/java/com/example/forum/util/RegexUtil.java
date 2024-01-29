@@ -1,4 +1,4 @@
-package module.util;
+package com.example.forum.util;
 
 import java.util.regex.Pattern;
 

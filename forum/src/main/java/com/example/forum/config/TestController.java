@@ -1,9 +1,9 @@
-package module.config;
+package com.example.forum.config;
 
 import org.apache.shiro.SecurityUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import module.dto.UserDTO;
+import com.example.forum.dto.UserDTO;
 
 @RestController
 public class TestController {

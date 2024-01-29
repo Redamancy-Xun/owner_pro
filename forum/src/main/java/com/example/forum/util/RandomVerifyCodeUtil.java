@@ -1,4 +1,4 @@
-package module.util;
+package com.example.forum.util;
 
 
 public class RandomVerifyCodeUtil {

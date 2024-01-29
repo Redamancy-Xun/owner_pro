@@ -1,4 +1,4 @@
-package module.config;
+package com.example.forum.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

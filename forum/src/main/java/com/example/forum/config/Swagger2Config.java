@@ -1,4 +1,4 @@
-package module.config;
+package com.example.forum.config;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;

@@ -1,10 +1,10 @@
-package module.shiro;
+package com.example.forum.shiro;
 
-import module.dto.UserDTO;
-import module.entity.User;
-import module.entity.User_role;
-import module.mapper.UserMapper;
-import module.mapper.User_roleMapper;
+import com.example.forum.dto.UserDTO;
+import com.example.forum.entity.User;
+//import com.example.forum.entity.User_role;
+import com.example.forum.mapper.UserMapper;
+//import com.example.forum.mapper.User_roleMapper;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -20,7 +20,7 @@ public class MyRealm extends AuthorizingRealm {
     UserMapper userMapper;
 
     @Autowired
-    User_roleMapper user_roleMapper;
+//  User_roleMapper user_roleMapper;
 
     //授权
     @Override

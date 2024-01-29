@@ -1,4 +1,4 @@
-package module.util;
+package com.example.forum.util;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class DatesUtil {
     // 获取当天的开始时间
-    public static java.util.Date getDayBegin() {
+    public static Date getDayBegin() {
         Calendar cal = new GregorianCalendar();
         cal.set(Calendar.HOUR_OF_DAY, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -30,7 +30,7 @@ public class DatesUtil {
     }
  
     // 获取当天的结束时间
-    public static java.util.Date getDayEnd() {
+    public static Date getDayEnd() {
         Calendar cal = new GregorianCalendar();
         cal.set(Calendar.HOUR_OF_DAY, 23);
         cal.set(Calendar.MINUTE, 59);
@@ -164,7 +164,7 @@ public class DatesUtil {
     }
  
     // 获取本年的结束时间
-    public static java.util.Date getEndDayOfYear() {
+    public static Date getEndDayOfYear() {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, getNowYear());
         cal.set(Calendar.MONTH, Calendar.DECEMBER);
