@@ -1,5 +1,6 @@
 package com.example.forum.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,6 +11,7 @@ import com.example.forum.entity.User;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ApiModel("UserDTO")
 public class UserDTO {
 
     private int id;

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+* {
+     margin: 0;
+     padding: 0;
+ }
+
+ html {
+     height: 100%;
+ }
+
+ body {
+     height: 100%;
+ }
+
+ .container {
+     height: 100%;
+     background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
+ }
+
+ .signup-wrapper {
+     background-color: #fff;
+     width: 358px;
+     height: 850px;
+     border-radius: 15px;
+     padding: 0 50px;
+     position: relative;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%, -50%);
+ }
+
+ .header1{
+    height:80px;
+    font-family: Microsoft YaHei;
+    color: #52B4E3;
+    line-height: 100px;
+    text-align-last: left;
+    font-weight: 600;
+    font-size: 20px;
+ }
+
+ .header2 {
+     font-size: 38px;
+     font-weight: bold;
+     text-align: center;
+     line-height: 100px;
+ }
+
+ .input-item {
+     display: block;
+     width: 100%;
+     margin-bottom: 20px;
+     border: 0;
+     padding: 10px;
+     border-bottom: 1px solid rgb(128, 125, 125);
+     font-size: 15px;
+     outline: none;
+ }
+
+ .input-item:placeholder {
+     text-transform: uppercase;
+ }
+
+ .btn {
+     text-align: center;
+     padding: 10px;
+     width: 100%;
+     margin-top: 40px;
+     background-color: rgb(141, 206, 246);
+     color: rgba(0, 0, 0, 0.779);
+     font-size: 17px;
+     border: none;
+     outline: none;
+
+ }
+
+ .msg {
+     text-align: center;
+     line-height: 88px;
+ }
+
+ a {
+     text-decoration-line: none;
+     color: #6b96eb;
+ }
+
+</style>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">       
+    </script>    <!--引入axios库-->
+
+    <div class="container">
+        <div class="signup-wrapper">
+            <div class="header1">博远信息技术社</div>
+            <div class="header2">注册</div>
+            <div class="form-wrapper">
+                <input type="text" name="username" placeholder="用户名" class="input-item">
+                <input type="password" name="password" placeholder="密码" class="input-item">
+                <input type="password" name="password" placeholder="再次输入密码" class="input-item">
+                <input type="text" name="studentid" placeholder="学号" class="input-item">
+                <input type="text" name="studentname" placeholder="姓名" class="input-item">
+                <input type="text" name="email" placeholder="邮箱" class="input-item">
+                <td>头像</td>
+                <input type="file" name="headportrait" placeholder="     " class="input-item">
+                <td>生日</td>
+                <input type="date" name="birthday" placeholder="" class="input-item">
+
+                <button type="button" class="btn">注 册</button>
+            </div>
+            <div class="msg">
+                已有账号?
+                <a href="#登录页面url">登录</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.btn').addEventListener//注册按钮点击事件
+        ('click',() => {
+            //获取各参数信息
+            const username = document.querySelector('.username').value
+            const password = document.querySelector('.password').value
+            console.log(username,password)//控制台查看
+
+            //判断长度(暂定)
+            if (username.length < 2){
+                console.log('用户名长度需大于等于2位')
+                alert('用户名长度需大于等于2位')
+                return//阻止代码进行
+            }
+            if (password.length < 6){
+                console.log('密码长度需大于等于6位')
+                alert('密码长度需大于等于6位')
+                return//阻止代码进行
+            }
+
+
+            console.log('提交数据给服务器')
+            axios({//提交数据给服务器
+	            url:'128.0.0.0',
+                method:'post',
+            	data:{
+            		username:username,
+                    password,//变量同名，直接简写了，后面同理
+                    studentid,
+                    studentname,
+                    email,
+                    headportrait,
+                    birthday
+	                }
+                }).then((result)=>{
+            	//对服务器返回的数据做后续处理
+                console.log(result)
+                })
+        })
+    </script>
+</body>
+</html>
