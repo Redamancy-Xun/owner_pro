@@ -93,9 +93,9 @@
         <div class="login_part">
             <div class="header1">博远信息技术社</div>
             <div class="header2">登录</div>
-            <form id="form_login" action="#" method="post">
-                <input type="text" name="username" class="input-item" placeholder="用户名">
-                <input type="password" name="password" class="input-item" placeholder="请输入你的密码">
+            <form id="form_login" action="localhost:8080/login" method="post">
+                <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
+                <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
             </form>
             <button id="submit_button" onclick="beforeSubmit()">点我登录</button>
             <div class="turn_to_registration">还没有账号？
@@ -109,7 +109,7 @@
         function beforeSubmit() {
             let username = document.getElementById('username').value;
             let password = document.getElementById('password').value;
-            if (username.length < 6 || password.length < 6) {
+            if (username.length < 6 || password.length < 6 || password.length > 20) {
                 alert('格式不正确！');
             } else {
                 document.getElementById('submit_button').style.backgroundColor = 'rgba(101, 112, 116)';
