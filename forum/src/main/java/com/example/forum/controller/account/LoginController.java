@@ -27,8 +27,8 @@ public class LoginController {
             @ApiImplicitParam(name = "username", value = "用户名(长度2-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "password", value = "密码(长度6-20)", required = true, paramType = "query", dataType = "String")
     })
-    public Result login(@Validated  String username,
-                        @Validated  String password, HttpSession session){
+    public Result login(@Validated @RequestParam("username") String username,
+                        @Validated @RequestParam("password") String password, HttpSession session){
 
         //记录信息
         log.info("object: " + this);

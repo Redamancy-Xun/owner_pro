@@ -23,22 +23,25 @@ public class Recruit_article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    @NotNull(message = "用户id不能为空")
-    @ApiModelProperty("用户id")
+    @Column(name = "article_id")
+    @NotNull(message = "文章id不能为空")
+    @ApiModelProperty("文章id")
     private Integer article_id;
 
-    @Column(name = "username", nullable = false)
-    @NotBlank(message = "用户名不能为空")
-    @Size(min = 2, max = 20, message = "用户名长度为6-20")
-    @ApiModelProperty("用户名")
-    private String username;
+    @Column(name = "user_id", nullable = false)
+    @NotBlank(message = "发帖用户id不能为空")
+    @ApiModelProperty("发帖用户id")
+    private Integer user_id;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "update_date", nullable = false)
+    @ApiModelProperty("发布日期")
+    private Date update_date;
+
+    @Column(name = "type", nullable = false)
     @NotBlank(message = "密码不能为空")
     @Size(min = 6, max = 20, message = "用户名长度为6-20")
     @ApiModelProperty("密码")
-    private String password;
+    private Integer type;
 
     @Column(name = "studentid", nullable = false)
     @NotBlank(message = "学号不能为空")
@@ -50,10 +53,6 @@ public class Recruit_article {
     @ApiModelProperty("名字")
     private String studentname;
 
-    @Column(name = "birthday", nullable = true)
-    @ApiModelProperty("生日")
-    private Date birthday;
-
     @Column(name = "email", nullable = true)
     @Email(message = "邮箱格式错误")
     @ApiModelProperty("邮箱")
@@ -63,21 +62,6 @@ public class Recruit_article {
     @ApiModelProperty("头像")
     private String headportrait;
 
-    public Recruit_article(Integer id, String username, String password) {
-        this.article_id = id;
-        this.username = username;
-        this.password = password;
-    }
 
-    public Recruit_article(String username, String password, String studentid, String studentname,
-                           Date birthday, String email, String headportrait) {
-        this.username = username;
-        this.password = password;
-        this.studentid = studentid;
-        this.studentname = studentname;
-        this.birthday = birthday;
-        this.email = email;
-        this.headportrait = headportrait;
-    }
 
 }
