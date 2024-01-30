@@ -2,10 +2,11 @@ package com.example.forum.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,16 +17,16 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "user")
-@ApiModel("User 用户")
-public class User {
+@Entity(name = "recruit_article")
+@ApiModel("Recruit_article")
+public class Recruit_article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @NotNull(message = "用户id不能为空")
     @ApiModelProperty("用户id")
-    private Integer id;
+    private Integer article_id;
 
     @Column(name = "username", nullable = false)
     @NotBlank(message = "用户名不能为空")
@@ -62,14 +63,14 @@ public class User {
     @ApiModelProperty("头像")
     private String headportrait;
 
-    public User(Integer id, String username, String password) {
-        this.id = id;
+    public Recruit_article(Integer id, String username, String password) {
+        this.article_id = id;
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, String studentid, String studentname,
-                Date birthday, String email, String headportrait) {
+    public Recruit_article(String username, String password, String studentid, String studentname,
+                           Date birthday, String email, String headportrait) {
         this.username = username;
         this.password = password;
         this.studentid = studentid;

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @RestController
 @Slf4j
 @Api("注册Controller")
@@ -29,7 +31,7 @@ public class SignupController {
             @ApiImplicitParam(name = "password", value = "密码(长度6-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentid", value = "学号", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentname", value = "姓名", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "birthday", value = "生日(可选)", required = false, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "birthday", value = "生日(可选)", required = false, paramType = "query", dataType = "Date"),
             @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String"),
     })
@@ -37,7 +39,7 @@ public class SignupController {
                          @Validated String password,
                          @Validated String studentid,
                          @Validated String studentname,
-                         @RequestParam(value = "birthday", required = false) @Validated String birthday,
+                         @RequestParam(value = "birthday", required = false) @Validated Date birthday,
                          @RequestParam(value = "email", required = false) @Validated String email,
                          @RequestParam(value = "headportrait", required = false) @Validated String headportrait){
 

@@ -14,6 +14,7 @@ import com.example.forum.entity.*;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -73,7 +74,7 @@ public class UserServiceImpl implements UserService {
 
     //根据用户id找到用户，并更新用户信息
     @Override
-    public int updateUsernameById(String username, String password, String birthday,
+    public int updateUsernameById(String username, String password, Date birthday,
                                   String email, String headportrait, Integer id) {
         User user = userMapper.getUserById(id);
         if (user == null)

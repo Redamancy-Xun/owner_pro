@@ -3,6 +3,7 @@ package com.example.forum.service;
 import com.example.forum.entity.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -23,7 +24,7 @@ public interface UserService {
     List<User> getUserListOrderly(@Param("order_by_sql") String order_by_sql);
 
     //根据用户id找到用户，并更新用户信息
-    int updateUsernameById(String username, String password, String birthday,
+    int updateUsernameById(String username, String password, Date birthday,
                            String email, String headportrait, Integer id);
 
     //根据用户id删除用户
