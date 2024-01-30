@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
     * {
@@ -93,7 +94,7 @@
         <div class="login_part">
             <div class="header1">博远信息技术社</div>
             <div class="header2">登录</div>
-            <form id="form_login" action="localhost:8080/login" method="post">
+            <form id="form_login" action="http://localhost:8080/login" method="post">
                 <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
                 <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
             </form>
@@ -105,17 +106,54 @@
     </div>
 
     <script type="text/javascript">
-        let loginForm = document.getElementById('form_login');
-        function beforeSubmit() {
-            let username = document.getElementById('username').value;
-            let password = document.getElementById('password').value;
-            if (username.length < 6 || password.length < 6 || password.length > 20) {
-                alert('格式不正确！');
+        let usernameInput = document.getElementById('username');
+        let passwordInput = document.getElementById('password');
+        let submitButton = document.getElementById('submit_button');
+
+        function checkInputs() {
+            let username = usernameInput.value;
+            let password = passwordInput.value;
+            if (username.length >= 2 && password.length >= 6 && password.length <= 20) {
+                submitButton.style.backgroundColor = '#28a745'; // 设置登录按钮的背景颜色
+                submitButton.style.color = '#ffffff'; // 设置登录按钮的文字颜色
             } else {
-                document.getElementById('submit_button').style.backgroundColor = 'rgba(101, 112, 116)';
-                loginForm.submit();
+                submitButton.style.backgroundColor = 'rgb(197, 233, 255)'; // 恢复原始的登录按钮背景颜色
+                submitButton.style.color = 'rgba(101, 112, 116, 0.779)'; // 恢复原始的登录按钮文字颜色
+
             }
         }
+
+        usernameInput.addEventListener('input', checkInputs);
+        passwordInput.addEventListener('input', checkInputs);
+
+        submitButton.addEventListener('click', function (event) {
+            event.preventDefault(); // 阻止默认的表单提交行为
+            let username = usernameInput.value;
+            let password = passwordInput.value;
+
+            if (username.length >= 2 && password.length >= 6 && password.length <= 20) {
+                axios.post('http://localhost:8080/login', {
+                    username: username,
+                    password: password
+                })
+                    .then(function (response) {
+                        // 在这里处理登录成功后的逻辑
+                        console.log(response.status);
+                        console.log(response.data);
+                        window.location.href = 'homepage.html';
+                    })
+                    .catch(function (error) {
+                        // 在这里处理登录失败后的逻辑
+                        console.log(response.status);
+                        console.log(error.message);
+                    });
+            } else if (username.length <= 2) {
+                alert('用户名格式不正确，请重新输入！');
+            } else if (password.length < 6 || password.length > 20) {
+                alert('密码格式不正确，请重新输入！')
+            }
+
+        });
     </script>
 </body>
 
