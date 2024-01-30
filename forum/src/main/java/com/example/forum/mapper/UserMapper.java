@@ -4,6 +4,7 @@ import com.example.forum.entity.User;
 import org.apache.ibatis.annotations.*;
 
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -44,7 +45,7 @@ public interface UserMapper {
     @Update("UPDATE user SET username = #{username}, password = {password}, birthday = {birthday}, " +
             "email = {email}, headportrait = {headportrait} WHERE id = #{id};")
     int updateUsernameById(@Param("username")String username, @Param("password")String password,
-                           @Param("birthday")String birthday, @Param("email")String email,
+                           @Param("birthday")Date birthday, @Param("email")String email,
                            @Param("headportrait")String headportrait, @Param("id")Integer id);
 
     //根据用户名获取密码
