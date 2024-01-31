@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int signupUser(User user) {
         //查看用户是否已存在
-        if (userMapper.getUserByUsername(user.getUsername()) == null)
+        if (userMapper.getUserByUsername(user.getUsername()) != null)
             throw new MyException(EnumExceptionType.USER_ALREADY_EXIST_BUT_CAN_UPGRADE);
         return userMapper.insertUser(user);
     }

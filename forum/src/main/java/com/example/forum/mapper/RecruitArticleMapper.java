@@ -28,7 +28,7 @@ public interface RecruitArticleMapper {
 
 
     //根据指定排序条件获取帖子列表
-    @ResultMap("recruitArticleList")
+
     @Select("SELECT * FROM recruit_article ORDER BY ${order_by_sql};")
     List<RecruitArticle> getRecruitArticleListOrderly(@Param("order_by_sql")String order_by_sql);
 

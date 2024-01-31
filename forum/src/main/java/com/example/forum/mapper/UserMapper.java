@@ -33,7 +33,7 @@ public interface UserMapper {
     User getUserByUsername(@Param("username")String username);
 
     //根据指定排序条件获取用户列表
-    @ResultMap("userList")
+
     @Select("SELECT * FROM user ORDER BY ${order_by_sql};")
     List<User> getUserListOrderly(@Param("order_by_sql")String order_by_sql);
 

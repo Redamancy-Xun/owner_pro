@@ -18,8 +18,8 @@ public enum EnumExceptionType {
     ARTICLE_ID_NOT_EXIST(1007,"帖子不存在");
 
 
-    private int errorCode;
+    private final int errorCode;
 
-    private String codeMessage;
+    private final String codeMessage;
 
 }

@@ -38,10 +38,10 @@ public class UpdateController {
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String")
     })
     public Result update(@Validated int id,
-                         @Validated String username,
-                         @Validated String password,
-                         @Validated String studentid,
-                         @Validated String studentname,
+                         @Validated @RequestParam("username") String username,
+                         @Validated @RequestParam("password") String password,
+                         @Validated @RequestParam("studentid") String studentid,
+                         @Validated @RequestParam("studentname") String studentname,
                          @RequestParam(value = "birthday", required = false) @Validated Date birthday,
                          @RequestParam(value = "email", required = false) @Validated String email,
                          @RequestParam(value = "headportrait", required = false) @Validated String headportrait,
