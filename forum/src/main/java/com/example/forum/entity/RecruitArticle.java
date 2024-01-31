@@ -44,7 +44,7 @@ public class RecruitArticle {
     @ApiModelProperty("需求方向")
     private Integer direction;
 
-    @Column(name = "contest", nullable = false)
+    @Column(name = "content", nullable = false)
     @NotNull(message = "详情内容不能为空")
     @ApiModelProperty("详情内容")
     private String content;

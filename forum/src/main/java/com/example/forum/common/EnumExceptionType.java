@@ -14,7 +14,8 @@ public enum EnumExceptionType {
     LOGIN_INVALID(1,"登录状态失效，请重新登录"),
     PARAMETER_FORMAT_INCORRECT(-2, "参数格式不正确"),
     LENGTH_INCORRECT(1005, "参数长度不正确"),
-    EMAIL_INVAILD(1006,"邮箱格式不正确" );
+    EMAIL_INVAILD(1006,"邮箱格式不正确" ),
+    ARTICLE_ID_NOT_EXIST(1007,"帖子不存在");
 
 
     private int errorCode;
