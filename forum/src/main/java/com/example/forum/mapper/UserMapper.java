@@ -11,8 +11,8 @@ import java.util.List;
 public interface UserMapper {
 
     //插入一个用户
-    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait) " +
-            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait});")
+    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait, session_id) " +
+            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait}, #{session_id});")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insertUser(User user);
 
@@ -25,7 +25,6 @@ public interface UserMapper {
     @ResultType(User.class)
     @Select("SELECT * FROM user WHERE username = #{username} AND password = #{password};")
     User getUserByUsernameAndPassword(@Param("username")String username, @Param("password")String password);
-
 
     //根据用户名获取用户
     @ResultType(User.class)

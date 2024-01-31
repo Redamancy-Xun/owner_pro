@@ -6,9 +6,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Result {
+
     private int code;
     private String message;
     private Object result;
+    private Object addition;
 
     public static Result success(Object data) {
         return success("操作成功", data);

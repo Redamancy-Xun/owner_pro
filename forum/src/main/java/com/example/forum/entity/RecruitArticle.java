@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -44,6 +44,11 @@ public class RecruitArticle {
     @ApiModelProperty("需求方向")
     private Integer direction;
 
+    @Column(name = "tag", nullable = false)
+    @NotNull(message = "技术栈不能为空")
+    @ApiModelProperty("技术栈")
+    private String tag;
+
     @Column(name = "content", nullable = false)
     @NotNull(message = "详情内容不能为空")
     @ApiModelProperty("详情内容")
@@ -74,4 +79,19 @@ public class RecruitArticle {
     @ApiModelProperty("置顶状态")
     private Integer top;
 
+    public RecruitArticle(Integer user_id, Date update_date, Integer type, Integer direction,
+                          String tag, String content, String start_time, String end_time,
+                          String contact, Integer finish, Integer top) {
+        this.user_id = user_id;
+        this.update_date = update_date;
+        this.type = type;
+        this.direction = direction;
+        this.tag = tag;
+        this.content = content;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.contact = contact;
+        this.finish = finish;
+        this.top = top;
+    }
 }

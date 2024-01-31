@@ -1,4 +1,4 @@
-package com.example.forum.controller.account;
+package com.example.forum.controller;
 
 import com.example.forum.common.Result;
 import org.springframework.web.bind.annotation.GetMapping;

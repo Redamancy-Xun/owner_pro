@@ -1,6 +1,7 @@
 package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
+import com.example.forum.service.RecruitArticleServiceImpl;
 import com.example.forum.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -21,6 +22,9 @@ public class UserInfo {
     @Autowired
     UserServiceImpl userService;
 
+    @Autowired
+    RecruitArticleServiceImpl articleService;
+
     //根据id获取个人信息
     @GetMapping("/UserInfo/{id}")
     @ApiOperation("个人信息")
@@ -31,7 +35,6 @@ public class UserInfo {
         if (session.getAttribute("user") == null)
             throw new MyException(EnumExceptionType.LOGIN_INVALID);
 
-        return Result.success("获取成功", userService.getUserById(id));
+        return new Result(0, "获取成功", userService.getUserById(id), articleService.getRecruitArticleByUserId(id));
     }
-
 }

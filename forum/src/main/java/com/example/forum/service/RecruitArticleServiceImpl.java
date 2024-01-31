@@ -32,17 +32,18 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     @Override
     public RecruitArticle getRecruitArticleByArticleId(Integer article_id){
         RecruitArticle article = recruitArticleMapper.getRecruitArticleByArticleId(article_id);
-        if (article==null)
-            throw new  MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
+        if (article == null)
+            throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
         return article;
     }
 
+    //根据user_id获取articles
     @Override
-    public RecruitArticle getRecruitArticleByUserId(Integer user_id) {
-        RecruitArticle article = recruitArticleMapper.getRecruitArticleByUserId(user_id);
-        if (article==null)
+    public List<RecruitArticle> getRecruitArticleByUserId(Integer user_id) {
+        List<RecruitArticle> articles = recruitArticleMapper.getRecruitArticleByUserId(user_id);
+        if (articles == null)
             throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
-        return article;
+        return articles;
     }
 
     //根据指定顺序获取article列表
@@ -51,14 +52,21 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
         return recruitArticleMapper.getRecruitArticleListOrderly(orderly_by_sql);
     }
 
-    //根据id删除帖子
+    //根据article_id删除帖子
     public int deleteRecruitArticleByArticleId(Integer article_id){
+        if (recruitArticleMapper.getRecruitArticleByArticleId(article_id) == null)
+            throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
         return recruitArticleMapper.deleteRecruitArticleByArticleId(article_id);
     }
 
     //根据id更新帖子
-    public int updateRecruitArticleByArticleId(Integer article_id, Date update, Integer type, Integer direction, String content, String start_time, String end_time, String contact, Integer finish, Integer top){
-        return recruitArticleMapper.updateRecruitArticleByArticleId(article_id,update,type,direction,content,start_time,end_time,contact,finish,top);
+    public int updateRecruitArticleByArticleId(Integer article_id, Date update, Integer type, Integer direction,
+                                               String tag, String content, String start_time, String end_time,
+                                               String contact, Integer finish, Integer top){
+        if (recruitArticleMapper.getRecruitArticleByArticleId(article_id) == null)
+            throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
+        return recruitArticleMapper.updateRecruitArticleByArticleId(article_id, update, type, direction, tag, content,
+                start_time, end_time, contact, finish, top);
     }
 
 }

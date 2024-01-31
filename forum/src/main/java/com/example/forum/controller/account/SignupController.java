@@ -59,6 +59,7 @@ public class SignupController {
             user.setEmail(email);
         }
         user.setHeadportrait(headportrait);
+        user.setSession_id(0);
 
         //insertUser返回插入的条数
         int count = userService.signupUser(user);
