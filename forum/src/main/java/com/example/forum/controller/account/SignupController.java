@@ -61,6 +61,7 @@ public class SignupController {
         }
         if (headportrait!=null)
             user.setHeadportrait(headportrait);
+        user.setSession_id(0);
 
         //insertUser返回插入的条数
         int count = userService.signupUser(user);
