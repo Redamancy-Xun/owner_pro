@@ -39,7 +39,7 @@
  }
 
  .header1{
-    height:80px;
+    height:70px;
     font-family: Microsoft YaHei;
     color: #52B4E3;
     line-height: 100px;
@@ -52,7 +52,7 @@
      font-size: 38px;
      font-weight: bold;
      text-align: center;
-     line-height: 100px;
+     line-height: 80px;
  }
 
  .input-item {
@@ -66,7 +66,7 @@
      outline: none;
  }
 
- .input-item:placeholder {
+ .input-item::placeholder {
      text-transform: uppercase;
  }
 
@@ -85,7 +85,7 @@
 
  .msg {
      text-align: center;
-     line-height: 88px;
+     line-height: 85px;
  }
 
  a {
@@ -96,26 +96,27 @@
 </style>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">       
-    </script>    <!--引入axios库-->
+   
 
     <div class="container">
         <div class="signup-wrapper">
             <div class="header1">博远信息技术社</div>
             <div class="header2">注册</div>
             <div class="form-wrapper">
-                <input type="text" name="username" placeholder="用户名" class="input-item">
-                <input type="password" name="password" placeholder="密码" class="input-item">
-                <input type="password" name="password" placeholder="再次输入密码" class="input-item">
-                <input type="text" name="studentid" placeholder="学号" class="input-item">
-                <input type="text" name="studentname" placeholder="姓名" class="input-item">
-                <input type="text" name="email" placeholder="邮箱" class="input-item">
-                <td>头像</td>
-                <input type="file" name="headportrait" placeholder="     " class="input-item">
-                <td>生日</td>
-                <input type="date" name="birthday" placeholder="" class="input-item">
+                <form action="http://localhost:8080/login" method="post" name="注册表单">
+                    <input type="text" id="username" name="username" placeholder="用户名" class="input-item">
+                    <input type="password" id="password" name="password" placeholder="密码" class="input-item">
+                    <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
+                    <input type="text" id="studentid" name="studentid" placeholder="学号" class="input-item">
+                    <input type="text" id="studentname" name="studentname" placeholder="姓名" class="input-item">
+                    <input type="text" id="email" name="email" placeholder="邮箱" class="input-item">
+                    <td>头像</td>
+                    <input type="file" id="headportrait" name="headportrait" placeholder="     " class="input-item">
+                    <td>生日</td>
+                    <input type="date" id="birthday" name="birthday" placeholder="请选择您的生日" class="input-item">
 
-                <button type="button" class="btn">注 册</button>
+                    <button type="button" class="btn">注 册</button>
+                </form>
             </div>
             <div class="msg">
                 已有账号?
@@ -124,12 +125,21 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">       
+    </script>    <!--引入axios库-->
+    
     <script>
         document.querySelector('.btn').addEventListener//注册按钮点击事件
         ('click',() => {
             //获取各参数信息
-            const username = document.querySelector('.username').value
-            const password = document.querySelector('.password').value
+            let username = document.getElementById('username').value
+            let password = document.getElementById('password').value
+            let studentid = document.getElementById('studentid').value
+            let studentname = document.getElementById('studentname').value
+            let email = document.getElementById('email').value
+            let headportrait = document.getElementById('headportrait').value
+            let birthday = document.getElementById('birthday').value
+
             console.log(username,password)//控制台查看
 
             //判断长度(暂定)
