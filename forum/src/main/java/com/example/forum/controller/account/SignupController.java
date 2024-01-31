@@ -35,10 +35,10 @@ public class SignupController {
             @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String"),
     })
-    public Result signup(@Validated String username,
-                         @Validated String password,
-                         @Validated String studentid,
-                         @Validated String studentname,
+    public Result signup(@Validated @RequestParam("username") String username,
+                         @Validated @RequestParam("password") String password,
+                         @Validated @RequestParam("studentid") String studentid,
+                         @Validated @RequestParam("studentname") String studentname,
                          @RequestParam(value = "birthday", required = false) @Validated Date birthday,
                          @RequestParam(value = "email", required = false) @Validated String email,
                          @RequestParam(value = "headportrait", required = false) @Validated String headportrait){
@@ -54,11 +54,13 @@ public class SignupController {
 
         user.setStudentid(studentid);
         user.setStudentname(studentname);
-        user.setBirthday(birthday);
-        if (userService.checkEmailForm(email)) {
+        if (birthday!=null)
+            user.setBirthday(birthday);
+        if (email!=null && userService.checkEmailForm(email)) {
             user.setEmail(email);
         }
-        user.setHeadportrait(headportrait);
+        if (headportrait!=null)
+            user.setHeadportrait(headportrait);
 
         //insertUser返回插入的条数
         int count = userService.signupUser(user);

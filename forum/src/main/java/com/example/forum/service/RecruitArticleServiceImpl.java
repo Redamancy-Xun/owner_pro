@@ -20,7 +20,9 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     @Autowired
     private RecruitArticleMapper recruitArticleMapper;
 
-    private RecruitArticleServiceImpl(){log.info("call new RecruitArticleServiceImpl");}
+    public RecruitArticleServiceImpl(){
+        log.info("call new RecruitArticleServiceImpl");
+    }
 
     //创建招募帖子
     @Override

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TaskController {
 
-    @PostMapping("/task")
+    @GetMapping("/task")
     public Result task(@RequestParam("id") Integer id) {
         return Result.success("success", id);
     }
