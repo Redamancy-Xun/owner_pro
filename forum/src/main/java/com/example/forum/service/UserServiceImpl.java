@@ -4,16 +4,12 @@ import com.example.forum.common.EnumExceptionType;
 import com.example.forum.entity.User;
 import com.example.forum.exception.MyException;
 import com.example.forum.mapper.UserMapper;
-import com.example.forum.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.forum.entity.*;
 
 
-
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -119,7 +115,7 @@ public class UserServiceImpl implements UserService {
 
     //检查密码长度是否正确
     public Boolean checkPasswordLength(String password){
-        if (password.length() > 21 || password.length() < 7)
+        if (password.length() > 20 || password.length() <6)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
         return true;
     }
@@ -130,7 +126,7 @@ public class UserServiceImpl implements UserService {
         Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
         if (!EMAIL_PATTERN.matcher(email).matches()){
-            throw new MyException(EnumExceptionType.EMAIL_INVAILD);
+            throw new MyException(EnumExceptionType.EMAIL_INVALID);
         }
 
         return true;
