@@ -47,7 +47,6 @@ public class SignupController {
 
         User user = new User();
 
-        try {
             if (userService.checkUsernameLength(username)){
                 user.setUsername(username);
             }
@@ -69,12 +68,6 @@ public class SignupController {
             int count = userService.signupUser(user);
             log.info("count=" + count);
             log.info("id=" + user.getId());
-        } catch (Exception e) {
-            if (e instanceof MyException) {
-                return Result.result(((MyException) e).getEnumExceptionType());
-            }
-            return Result.fail(e.getMessage());
-        }
 
         return Result.success("注册成功", null);
     }

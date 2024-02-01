@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 //Spring Web的注解，用于处理Web请求和响应。
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 //自定义类和异常。
 import com.example.forum.dto.UserDTO;
@@ -30,6 +31,7 @@ import java.util.Map;
 @Slf4j
 //@RestControllerAdvice: 这是Spring框架提供的注解，用于定义一个全局的异常处理器，这个处理器可以处理所有的REST Controller中抛出的异常。
 @RestControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
     //使用 @Resource(name = "json") 注入一个 Gson 实例，这样我们就可以将其用于将Java对象转换为JSON格式。
@@ -100,6 +102,12 @@ public class GlobalExceptionHandler {
         }
 
         return Result.fail(e.getMessage(), null);
+    }
+
+    @ExceptionHandler(value = MyException.class)
+    @ResponseBody
+    public Result MyExceptionHandler(MyException e){
+        return Result.result(e.getEnumExceptionType(),null);
     }
 
 }

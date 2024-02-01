@@ -36,18 +36,12 @@ public class LoginController {
 
         //参数校验
         //请求转发，会话管理
-        try{
+
             if(userService.checkUsernameLength(username)
                     && userService.checkPasswordLength(password)
                     && userService.checkLogin(username,password)) {
                 session.setAttribute("user", userService.getUserByUsernameAndPassword(username, password));
             }
-        }catch (Exception e) {
-            if (e instanceof MyException) {
-                return Result.result(((MyException) e).getEnumExceptionType());
-            }
-            return Result.result(EnumExceptionType.SYSTEM_INTERNAL_ANOMALY);
-        }
         return Result.success("登录成功", null);
     }
 }
