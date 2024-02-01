@@ -35,17 +35,18 @@ public class LoginController {
         log.info("thread: " + Thread.currentThread().getId());
 
         //参数校验
-        if(!userService.checkUsernameLength(username)
-                || !userService.checkPasswordLength(password)
-                || !userService.checkLogin(username,password)){
-            throw new MyException(EnumExceptionType.PARAMETER_FORMAT_INCORRECT);
-        }
-
         //请求转发，会话管理
         try{
-            session.setAttribute("user",userService.getUserByUsernameAndPassword(username,password));
-        }catch (RuntimeException e){
-            throw new MyException(EnumExceptionType.SYSTEM_INTERNAL_ANOMALY);
+            if(userService.checkUsernameLength(username)
+                    && userService.checkPasswordLength(password)
+                    && userService.checkLogin(username,password)) {
+                session.setAttribute("user", userService.getUserByUsernameAndPassword(username, password));
+            }
+        }catch (Exception e) {
+            if (e instanceof MyException) {
+                return Result.result(((MyException) e).getEnumExceptionType());
+            }
+            return Result.result(EnumExceptionType.SYSTEM_INTERNAL_ANOMALY);
         }
         return Result.success("登录成功", null);
     }

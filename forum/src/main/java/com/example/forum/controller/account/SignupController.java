@@ -3,12 +3,14 @@ package com.example.forum.controller.account;
 
 import com.example.forum.common.Result;
 import com.example.forum.entity.User;
+import com.example.forum.exception.MyException;
 import com.example.forum.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.saxon.expr.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -45,28 +47,34 @@ public class SignupController {
 
         User user = new User();
 
-        if (userService.checkUsernameLength(username)){
-            user.setUsername(username);
-        }
-        if (userService.checkPasswordLength(password)){
-            user.setPassword(password);
-        }
+        try {
+            if (userService.checkUsernameLength(username)){
+                user.setUsername(username);
+            }
+            if (userService.checkPasswordLength(password)){
+                user.setPassword(password);
+            }
+            user.setStudentid(studentid);
+            user.setStudentname(studentname);
+            if (birthday!=null)
+                user.setBirthday(birthday);
+            if (email!=null && userService.checkEmailForm(email)) {
+                user.setEmail(email);
+            }
+            if (headportrait!=null)
+                user.setHeadportrait(headportrait);
+            user.setSession_id(0);
 
-        user.setStudentid(studentid);
-        user.setStudentname(studentname);
-        if (birthday!=null)
-            user.setBirthday(birthday);
-        if (email!=null && userService.checkEmailForm(email)) {
-            user.setEmail(email);
+            //insertUser返回插入的条数
+            int count = userService.signupUser(user);
+            log.info("count=" + count);
+            log.info("id=" + user.getId());
+        } catch (Exception e) {
+            if (e instanceof MyException) {
+                return Result.result(((MyException) e).getEnumExceptionType());
+            }
+            return Result.fail(e.getMessage());
         }
-        if (headportrait!=null)
-            user.setHeadportrait(headportrait);
-        user.setSession_id(0);
-
-        //insertUser返回插入的条数
-        int count = userService.signupUser(user);
-        log.info("count=" + count);
-        log.info("id=" + user.getId());
 
         return Result.success("注册成功", null);
     }
