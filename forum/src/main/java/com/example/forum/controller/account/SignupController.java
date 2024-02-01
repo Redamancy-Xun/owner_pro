@@ -3,17 +3,17 @@ package com.example.forum.controller.account;
 
 import com.example.forum.common.Result;
 import com.example.forum.entity.User;
-import com.example.forum.exception.MyException;
 import com.example.forum.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.saxon.expr.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
@@ -33,9 +33,9 @@ public class SignupController {
             @ApiImplicitParam(name = "password", value = "密码(长度6-20)", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentid", value = "学号", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "studentname", value = "姓名", required = true, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "birthday", value = "生日(可选)", required = false, paramType = "query", dataType = "Date"),
-            @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = false, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "birthday", value = "生日(可选)", paramType = "query", dataType = "Date"),
+            @ApiImplicitParam(name = "email", value = "邮箱(可选)", paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "headportrait", value = "头像(可选)", paramType = "query", dataType = "String"),
     })
     public Result signup(@Validated @RequestParam("username") String username,
                          @Validated @RequestParam("password") String password,

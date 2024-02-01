@@ -78,7 +78,7 @@ public class GlobalExceptionHandler {
         e.printStackTrace(pw);
         pw.flush();
         sw.flush();
-        log.error("异常：" + sw.toString());
+        log.error("异常：" + sw);
 
         /*上面代码是一个全局异常处理器，用于处理Web应用中的异常，并将相关信息（如用户信息、请求参数和异常堆栈跟踪）记录到日志中。
          *下面的代码是根据抛出的异常类型进行不同的处理：*/
@@ -94,11 +94,6 @@ public class GlobalExceptionHandler {
             Result result = Result.result(EnumExceptionType.LOGIN_INVALID);
             log.error("RRE异常：" + EnumExceptionType.LOGIN_INVALID.getCodeMessage());
             return result;
-        }
-
-        //如果异常是其他运行时异常，则记录该异常的信息并返回一个包含异常消息的失败的Result对象。
-        if(e instanceof RuntimeException) {
-            //...
         }
 
         return Result.fail(e.getMessage(), null);

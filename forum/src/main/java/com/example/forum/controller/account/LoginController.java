@@ -1,7 +1,6 @@
 package com.example.forum.controller.account;
 
-import com.example.forum.common.*;
-import com.example.forum.exception.MyException;
+import com.example.forum.common.Result;
 import com.example.forum.service.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,7 +10,9 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Api("登录Controller")
