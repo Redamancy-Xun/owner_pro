@@ -29,7 +29,7 @@
  .signup-wrapper {
      background-color: #fff;
      width: 358px;
-     height: 850px;
+     height: 700px;
      border-radius: 15px;
      padding: 0 50px;
      position: relative;
@@ -66,7 +66,7 @@
      outline: none;
  }
 
- .input-item::placeholder {
+ .input-item:placeholder {
      text-transform: uppercase;
  }
 
@@ -74,7 +74,7 @@
      text-align: center;
      padding: 10px;
      width: 100%;
-     margin-top: 40px;
+     margin-top: 30px;
      background-color: rgb(141, 206, 246);
      color: rgba(0, 0, 0, 0.779);
      font-size: 17px;
@@ -82,6 +82,9 @@
      outline: none;
 
  }
+    .btn:hover{
+        background-color:rgb(76, 182, 248) ;
+    }
 
  .msg {
      text-align: center;
@@ -109,18 +112,13 @@
                     <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
                     <input type="text" id="studentid" name="studentid" placeholder="学号" class="input-item">
                     <input type="text" id="studentname" name="studentname" placeholder="姓名" class="input-item">
-                    <input type="text" id="email" name="email" placeholder="邮箱" class="input-item">
-                    <td>头像</td>
-                    <input type="file" id="headportrait" name="headportrait" placeholder="     " class="input-item">
-                    <td>生日</td>
-                    <input type="date" id="birthday" name="birthday" placeholder="请选择您的生日" class="input-item">
 
                     <button type="button" class="btn">注 册</button>
                 </form>
             </div>
             <div class="msg">
                 已有账号?
-                <a href="Login.html">登录</a>
+                <a href="#登录页面url">登录</a>
             </div>
         </div>
     </div>
@@ -134,39 +132,39 @@
             //获取各参数信息
             let username = document.getElementById('username').value
             let password = document.getElementById('password').value
+            let password2 = document.getElementById('password2').value
             let studentid = document.getElementById('studentid').value
             let studentname = document.getElementById('studentname').value
-            let email = document.getElementById('email').value
-            let headportrait = document.getElementById('headportrait').value
-            let birthday = document.getElementById('birthday').value
 
             console.log(username,password)//控制台查看
 
             //判断长度(暂定)
-            if (username.length < 2){
-                console.log('用户名长度需大于等于2位')
-                alert('用户名长度需大于等于2位')
+            if (username.length < 2||username.length > 20){
+                console.log('用户名长度需为2~20位')
+                alert('用户名长度需为2~20位')
                 return//阻止代码进行
             }
-            if (password.length < 6){
-                console.log('密码长度需大于等于6位')
-                alert('密码长度需大于等于6位')
+            if (password.length < 6||password.length > 20){
+                console.log('密码长度需为6~20位')
+                alert('密码长度需为6~20位')
+                return//阻止代码进行
+            }
+            if (password != password2){
+                console.log('请确认两次密码输入一致')
+                alert('请确认两次密码输入一致')
                 return//阻止代码进行
             }
 
 
             console.log('提交数据给服务器')
             axios({//提交数据给服务器
-	            url:'128.0.0.0',
+	            url:'http://localhost:8080/signup',
                 method:'post',
             	data:{
-            		username:username,
+            		username,
                     password,//变量同名，直接简写了，后面同理
                     studentid,
                     studentname,
-                    email,
-                    headportrait,
-                    birthday
 	                }
                 }).then((result)=>{
             	//对服务器返回的数据做后续处理
