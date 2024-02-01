@@ -75,15 +75,15 @@
      padding: 10px;
      width: 100%;
      margin-top: 30px;
-     background-color: rgb(141, 206, 246);
-     color: rgba(0, 0, 0, 0.779);
-     font-size: 17px;
+     background-color: rgb(110, 195, 249);
+     color: rgb(255, 255, 255);
+     font-size: 18px;
      border: none;
      outline: none;
 
  }
     .btn:hover{
-        background-color:rgb(76, 182, 248) ;
+        background-color:rgb(42, 171, 251) ;
     }
 
  .msg {
@@ -106,7 +106,7 @@
             <div class="header1">博远信息技术社</div>
             <div class="header2">注册</div>
             <div class="form-wrapper">
-                <form action="http://localhost:8080/login" method="post" name="注册表单">
+                <form action="http://localhost:8080/signup" method="post" name="注册表单">
                     <input type="text" id="username" name="username" placeholder="用户名" class="input-item">
                     <input type="password" id="password" name="password" placeholder="密码" class="input-item">
                     <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
@@ -154,21 +154,28 @@
                 alert('请确认两次密码输入一致')
                 return//阻止代码进行
             }
+            if (studentid.length != 11){
+                console.log('请确认学号是否正确')
+                alert('请确认学号是否正确')
+                return//阻止代码进行
+            }
 
 
             console.log('提交数据给服务器')
             axios({//提交数据给服务器
 	            url:'http://localhost:8080/signup',
-                method:'post',
+                method:'post', ContentType: 'application/json',
             	data:{
             		username,
                     password,//变量同名，直接简写了，后面同理
                     studentid,
                     studentname,
+                    
 	                }
                 }).then((result)=>{
             	//对服务器返回的数据做后续处理
                 console.log(result)
+                console.log(message)
                 })
         })
     </script>
