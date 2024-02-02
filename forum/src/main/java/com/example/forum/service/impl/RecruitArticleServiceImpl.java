@@ -56,6 +56,7 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     }
 
     //根据article_id删除帖子
+    @Override
     public int deleteRecruitArticleByArticleId(Integer article_id){
         if (recruitArticleMapper.getRecruitArticleByArticleId(article_id) == null)
             throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
@@ -63,6 +64,7 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     }
 
     //根据id更新帖子
+    @Override
     public int updateRecruitArticleByArticleId(Integer article_id, Date update, Integer type, Integer direction,
                                                String tag, String content, String start_time, String end_time,
                                                String contact, Integer finish, Integer top){

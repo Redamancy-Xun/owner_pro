@@ -22,7 +22,7 @@ import java.util.Date;
 public class CreateArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //发布一个帖子
     @PostMapping("/createArticle")

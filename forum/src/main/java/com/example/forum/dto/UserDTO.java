@@ -21,7 +21,7 @@ public class UserDTO {
     public UserDTO(User user){
         id = Integer.parseInt(user.getId()+"");
         username = user.getUsername();
-        type = 0;
+        type = user.getType();
     }
 
 }

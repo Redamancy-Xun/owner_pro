@@ -25,7 +25,7 @@ import java.util.Date;
 public class UpdateArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //更新一个帖子
     @PostMapping("/updateArticle")

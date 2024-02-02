@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeleteArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //删除一个帖子
     @GetMapping("/deleteArticle")

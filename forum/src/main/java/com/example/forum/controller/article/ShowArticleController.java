@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ShowArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
     //根据指定排序条件获取帖子列表
     @GetMapping("/article")
     public Result defaultGetArticle(HttpSession session){

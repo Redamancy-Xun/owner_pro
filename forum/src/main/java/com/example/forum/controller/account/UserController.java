@@ -15,7 +15,7 @@ import com.example.forum.common.*;
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     //根据用户id删除用户
     @GetMapping("/deleteUserById/{id}")

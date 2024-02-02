@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 //Apache Shiro，一个Java安全框架。
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.subject.Subject;
 //Spring Web的注解，用于处理Web请求和响应。
@@ -38,6 +39,21 @@ public class GlobalExceptionHandler {
     @Autowired
     //Gson是一个常用的JSON处理库，可以将Java对象转换为JSON字符串，或者将JSON字符串转换为Java对象。
     Gson gson;
+
+    @ExceptionHandler(value = MyException.class)
+    public Result myExceptionHandler(MyException e){
+        return Result.result(e.getEnumExceptionType(),null);
+    }
+
+    @ExceptionHandler(value = UnauthenticatedException.class)
+    public Result unauthenticatedException(UnauthenticatedException e){
+        return Result.result(EnumExceptionType.PERMISSION_NOT_EXIST);
+    }
+
+    @ExceptionHandler(value = AuthorizationException.class)
+    public Result authorizationException(AuthorizationException e){
+        return Result.result(EnumExceptionType.AUTHORIZATION_EXCEPTION);
+    }
 
     //使用 @ExceptionHandler(value = Exception.class) 注解来声明一个方法，该方法处理所有的Exception类型的异常。
     @ExceptionHandler(value = Exception.class)
@@ -96,11 +112,6 @@ public class GlobalExceptionHandler {
         }
 
         return Result.fail(e.getMessage(), null);
-    }
-
-    @ExceptionHandler(value = MyException.class)
-    public Result MyExceptionHandler(MyException e){
-        return Result.result(e.getEnumExceptionType(),null);
     }
 
 }

@@ -11,8 +11,8 @@ import java.util.List;
 public interface UserMapper {
 
     //插入一个用户
-    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait, session_id) " +
-            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait}, #{session_id});")
+    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait, type) " +
+            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait}, #{type});")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insertUser(User user);
 
