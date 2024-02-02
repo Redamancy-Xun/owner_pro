@@ -1,7 +1,6 @@
 package com.example.forum.mapper;
 
 import com.example.forum.entity.RecruitArticle;
-import com.example.forum.entity.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.Date;
@@ -25,6 +24,10 @@ public interface RecruitArticleMapper {
     @ResultType(RecruitArticle.class)
     @Select("SELECT * FROM recruit_article WHERE article_id = #{user_id};")
     List<RecruitArticle> getRecruitArticleByUserId(@Param("user_id")Integer user_id);
+
+    //根据默认顺序获取帖子列表
+    @Select("SELECT * FROM recruit_article ORDER BY top DESC,update_date DESC ")
+    List<RecruitArticle> defaultGetRecruitArticle();
 
     //根据指定排序条件获取帖子列表
 

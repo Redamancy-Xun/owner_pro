@@ -72,4 +72,9 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
                 start_time, end_time, contact, finish, top);
     }
 
+    @Override
+    public List<RecruitArticle> defaultGetRecruitArticle() {
+        return recruitArticleMapper.defaultGetRecruitArticle();
+    }
+
 }

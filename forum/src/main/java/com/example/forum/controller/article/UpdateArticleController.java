@@ -43,7 +43,7 @@ public class UpdateArticleController {
             @ApiImplicitParam(name = "finish", value = "完成状态", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "top", value = "置顶状态", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result createArticle(@RequestParam(value = "article_id") Integer article_id,
+    public Result updateArticle(@RequestParam(value = "article_id") Integer article_id,
                                 @RequestParam(value = "update_date") @Validated Date update_date,
                                 @RequestParam(value = "type") @Validated Integer type,
                                 @RequestParam(value = "direction") @Validated Integer direction,

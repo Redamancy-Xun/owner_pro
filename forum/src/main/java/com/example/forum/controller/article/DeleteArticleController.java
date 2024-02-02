@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class DeleteArticleController {
     RecruitArticleServiceImpl articleService;
 
     //删除一个帖子
-    @PostMapping("/deleteArticle")
+    @GetMapping("/deleteArticle")
     @ApiOperation("删帖")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "query", dataType = "Integer")
     public Result deleteArticle(@RequestParam(value = "article_id") Integer article_id,
