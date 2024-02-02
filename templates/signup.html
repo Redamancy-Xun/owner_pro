@@ -164,13 +164,12 @@
             console.log('提交数据给服务器')
             axios({//提交数据给服务器
 	            url:'http://localhost:8080/signup',
-                method:'post', ContentType: 'application/json',
+                method:'post',
             	data:{
             		username,
                     password,//变量同名，直接简写了，后面同理
                     studentid,
                     studentname,
-                    
 	                }
                 }).then((result)=>{
             	//对服务器返回的数据做后续处理

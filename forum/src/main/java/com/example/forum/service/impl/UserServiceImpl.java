@@ -1,9 +1,10 @@
-package com.example.forum.service;
+package com.example.forum.service.impl;
 
 import com.example.forum.common.EnumExceptionType;
 import com.example.forum.entity.User;
 import com.example.forum.exception.MyException;
 import com.example.forum.mapper.UserMapper;
+import com.example.forum.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

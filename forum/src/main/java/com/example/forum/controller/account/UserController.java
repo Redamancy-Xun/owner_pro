@@ -1,7 +1,7 @@
 package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

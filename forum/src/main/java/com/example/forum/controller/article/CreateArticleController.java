@@ -2,8 +2,7 @@ package com.example.forum.controller.article;
 
 import com.example.forum.common.Result;
 import com.example.forum.entity.RecruitArticle;
-import com.example.forum.entity.User;
-import com.example.forum.service.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

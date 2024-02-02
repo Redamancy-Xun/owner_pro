@@ -1,8 +1,8 @@
 package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
-import com.example.forum.service.RecruitArticleServiceImpl;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
