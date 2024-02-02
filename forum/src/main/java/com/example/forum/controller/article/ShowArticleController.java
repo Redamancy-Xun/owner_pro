@@ -3,7 +3,7 @@ package com.example.forum.controller.article;
 import com.example.forum.common.EnumExceptionType;
 import com.example.forum.common.Result;
 import com.example.forum.exception.MyException;
-import com.example.forum.service.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
 import io.swagger.annotations.Api;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
