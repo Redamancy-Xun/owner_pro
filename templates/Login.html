@@ -128,6 +128,7 @@
         function beforeSubmit() {
             let username = usernameInput.value;
             let password = passwordInput.value;
+	const axios = require('axios');
 
             if (username.length >= 2 && password.length >= 6 && password.length <= 20) {
                 axios.post('http://localhost:8080/login', {
