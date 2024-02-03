@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @RequiresAuthentication
     @RequiresRoles("online")
     @PostMapping("/test")
     public Result task() {

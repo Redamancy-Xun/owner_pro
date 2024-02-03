@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -31,7 +32,7 @@ public class LoginController {
     private UserServiceImpl userService;
 
     @Autowired
-    private ShiroConfig shiroConfig;
+    private SecurityManager securityManager;
 
     @PostMapping("/login")
     @ApiOperation("登录")
@@ -43,7 +44,7 @@ public class LoginController {
                         @Validated @RequestParam("password") String password){
 
         //手动将SecurityManager绑定到当前线程
-        SecurityUtils.setSecurityManager(shiroConfig.securityManager());
+        SecurityUtils.setSecurityManager(securityManager);
         //获取subject对象
         Subject subject = SecurityUtils.getSubject();
         AuthenticationToken token = new UsernamePasswordToken(username, PasswordUtil.convert(password));

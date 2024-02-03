@@ -1,12 +1,13 @@
 package com.example.forum.shiro;
 
 import com.example.forum.dto.UserDTO;
+import com.example.forum.entity.Admin;
 import com.example.forum.entity.User;
+import com.example.forum.mapper.AdminMapper;
 import com.example.forum.mapper.UserMapper;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.realm.AuthenticatingRealm;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +17,23 @@ import org.springframework.stereotype.Component;
 public class MyRealm extends AuthorizingRealm {
 
     @Autowired
-    private UserMapper userMapper;
+    UserMapper userMapper;
 
-    //自定义授权方法
+    @Autowired
+    AdminMapper adminMapper;
+
+
+    //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
-        //获取主要的主体对，将主体对象强制转换为UserDTO类型
-        String principal = principals.getPrimaryPrincipal().toString();
-        UserDTO userDTO = new UserDTO(userMapper.getUserByUsername(principal));
+        Object principal = principals.getPrimaryPrincipal();
+        UserDTO userDTO = (UserDTO) principal;
 
         String username = userDTO.getUsername();
         int type = userDTO.getType();
 
         //注入角色与权限
-        //SimpleAuthorizationInfo对象用于存储用户的权限和角色信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 
         //管理员
@@ -45,29 +48,42 @@ public class MyRealm extends AuthorizingRealm {
             info.addRole("online");
         }
 
-        //返回填充了权限和角色的info对象
         return info;
     }
 
-    //自定义登录认证方法
+    /**
+     * 认证
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException{
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
-        //获取用户身份信息
-        String username = authenticationToken.getPrincipal().toString();
-        String password = new String((char[]) authenticationToken.getCredentials());
+        //数据库匹配，认证
+        String username = token.getUsername();
+        String password = new String(token.getPassword());
 
-        //调用数据库获取用户信息并进行验证与返回
+        //管理员
+        Admin admin = adminMapper.getAdminByUsername(username);
+        if(admin != null && (admin.getPassword()+"").equals(password)){
+            UserDTO userDTO = new UserDTO(admin);
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userDTO, token.getCredentials(), getName());
+
+            return info;
+        }
+
+        //普通用户
         User user = userMapper.getUserByUsername(username);
-        if (user != null && (user.getPassword()).equals(password)) {
-            AuthenticationInfo info = new SimpleAuthenticationInfo(
-                    authenticationToken.getPrincipal(),
-                    user.getPassword(),
-                    authenticationToken.getPrincipal().toString());
+        if(user != null && (user.getPassword()+"").equals(password)){
+            UserDTO userDTO = new UserDTO(user);
+
+            SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(userDTO, token.getCredentials(), getName());
             return info;
         }
 
         //认证失败
-        return null;
+        throw new AuthenticationException();
     }
 }

@@ -3,6 +3,7 @@ package com.example.forum.common;
 //Google的Gson库，用于JSON的序列化和反序列化。
 import com.google.gson.Gson;
 //Lombok提供的SLF4J日志注解。
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 //Apache Shiro，一个Java安全框架。
 import org.apache.shiro.SecurityUtils;
@@ -35,8 +36,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     //使用 @Resource(name = "json") 注入一个 Gson 实例，这样我们就可以将其用于将Java对象转换为JSON格式。
-    //@Resource(name = "json")
-    @Autowired
+    @Resource(name = "json")
     //Gson是一个常用的JSON处理库，可以将Java对象转换为JSON字符串，或者将JSON字符串转换为Java对象。
     Gson gson;
 

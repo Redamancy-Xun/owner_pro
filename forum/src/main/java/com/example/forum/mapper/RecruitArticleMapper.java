@@ -1,5 +1,6 @@
 package com.example.forum.mapper;
 
+import com.example.forum.MyMapper;
 import com.example.forum.entity.RecruitArticle;
 import org.apache.ibatis.annotations.*;
 
@@ -7,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Mapper
-public interface RecruitArticleMapper {
+public interface RecruitArticleMapper extends MyMapper<RecruitArticle> {
 
     //创建一个帖子
     @Insert("INSERT INTO recruit_article (user_id, update_date, type, direction, tag, content, start_time, end_time, contact, finish, top)" +
