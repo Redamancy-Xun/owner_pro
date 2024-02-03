@@ -27,7 +27,8 @@ public class UpdateController {
     @Autowired
     private UserServiceImpl userService;
 
-
+    @RequiresAuthentication
+    @RequiresRoles("user")
     @PostMapping("/update")
     @ApiOperation("更改个人信息")
     @ApiImplicitParams({

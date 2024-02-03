@@ -16,9 +16,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import com.example.forum.shiro.MyRealm;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Properties;
 
 @Slf4j
 @Configuration
@@ -108,6 +110,7 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
+
     /**
      * 开启aop注解支持
      * 即在controller中使用 @RequiresPermissions("user/userList")
@@ -134,7 +137,6 @@ public class ShiroConfig {
      * 处理未授权的异常，返回自定义的错误页面（403）
      * @return
      */
-     /*
      @Bean
      public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
          SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
@@ -144,7 +146,7 @@ public class ShiroConfig {
          resolver.setExceptionMappings(properties);
          return resolver;
      }
-     */
+
 
 
 

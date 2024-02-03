@@ -23,8 +23,8 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 
         //获取主要的主体对，将主体对象强制转换为UserDTO类型
-        Object principal = principals.getPrimaryPrincipal();
-        UserDTO userDTO = new UserDTO(userMapper.getUserByUsername((String) principal));
+        String principal = principals.getPrimaryPrincipal().toString();
+        UserDTO userDTO = new UserDTO(userMapper.getUserByUsername(principal));
 
         String username = userDTO.getUsername();
         int type = userDTO.getType();
