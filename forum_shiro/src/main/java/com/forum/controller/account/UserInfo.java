@@ -36,4 +36,6 @@ public class UserInfo {
 
         return new Result(0, "获取成功", userService.getUserById(id), articleService.getRecruitArticleByUserId(id));
     }
+
+    
 }
