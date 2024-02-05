@@ -1,5 +1,6 @@
 package com.example.forum.mapper;
 
+import com.example.forum.MyMapper;
 import com.example.forum.entity.User;
 import org.apache.ibatis.annotations.*;
 
@@ -8,11 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends MyMapper<User> {
 
     //插入一个用户
-    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait, session_id) " +
-            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait}, #{session_id});")
+    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait, type) " +
+            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait}, #{type});")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insertUser(User user);
 

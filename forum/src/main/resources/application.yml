@@ -2,12 +2,13 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/test00?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/owner_pro?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: fu040913
-
+    password: a13738780767
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+shiro:
+  loginUrl: /login

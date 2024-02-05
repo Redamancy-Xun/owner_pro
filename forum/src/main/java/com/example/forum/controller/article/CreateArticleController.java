@@ -2,8 +2,7 @@ package com.example.forum.controller.article;
 
 import com.example.forum.common.Result;
 import com.example.forum.entity.RecruitArticle;
-import com.example.forum.entity.User;
-import com.example.forum.service.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,13 +22,13 @@ import java.util.Date;
 public class CreateArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //发布一个帖子
     @PostMapping("/createArticle")
     @ApiOperation("发布")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "user_id", value = "用户id", required = true, paramType = "query", dataType = "Integer"),
+            @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "update_date", value = "发布日期", required = true, paramType = "query", dataType = "Date"),
             @ApiImplicitParam(name = "type", value = "招募任务类型", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "direction", value = "需求方向", required = true, paramType = "query", dataType = "Integer"),
@@ -41,7 +40,7 @@ public class CreateArticleController {
             @ApiImplicitParam(name = "finish", value = "完成状态", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "top", value = "置顶状态", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result createArticle(@RequestParam(value = "user_id") @Validated Integer user_id,
+    public Result createArticle(@RequestParam(value = "id") @Validated Integer user_id,
                                 @RequestParam(value = "update_date") @Validated Date update_date,
                                 @RequestParam(value = "type") @Validated Integer type,
                                 @RequestParam(value = "direction") @Validated Integer directon,

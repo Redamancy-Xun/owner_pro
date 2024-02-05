@@ -1,7 +1,7 @@
 package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import com.example.forum.common.*;
 public class UserController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     //根据用户id删除用户
     @GetMapping("/deleteUserById/{id}")

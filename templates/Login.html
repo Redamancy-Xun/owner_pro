@@ -24,7 +24,7 @@
     .container {
         height: 100%;
         background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
-
+        position: relative;
     }
 
     .login_part {
@@ -76,11 +76,20 @@
         color: rgba(101, 112, 116, 0.779);
         border-radius: 10px;
         border: 0;
+        font-size: large;
     }
 
     .turn_to_registration {
         text-align: center;
         line-height: 88px;
+    }
+
+    #feedbackMessage {
+        color: red;
+        font-size: 13px;
+        font-weight: 500;
+        position: absolute;
+        top: 71%;
     }
 
     a {
@@ -94,11 +103,11 @@
         <div class="login_part">
             <div class="header1">博远信息技术社</div>
             <div class="header2">登录</div>
-            <form id="form_login" action="http://116.62.103.210/" method="post">
-                <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
-                <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
-            </form>
-            <button id="submitButton" onclick="beforeSubmit()">点我登录</button>
+
+            <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
+            <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
+            <div id="feedbackMessage"></div>
+            <button id="submitButton" onclick="beforeSubmit()">登录</button>
             <div class="turn_to_registration">还没有账号？
                 <a href="signup.html">点我注册</a>
             </div>
@@ -130,22 +139,28 @@
                 formData.append('username', username);
                 formData.append('password', password);
 
-                fetch('http://116.62.103.210/', {
+                fetch('http://localhost:8080/login', {
                     method: 'POST',
                     body: formData
                 })
-                    .then(response => {
+                    .then(data => {
+                        console.log(data);
+                        alert(data.message);
+                        if (data.code == 0) {
+                            window.location.href = "homePage.html";//首页地址   
+                        } else {
+                            document.getElementById('feedbackMessage').innerText = data.message;
+                        }
+
                     })
-                    .catch(error => {
-                    });
             } else if (username.length < 2) {
                 document.getElementById('username').style.backgroundColor = 'pink';
                 document.getElementById('username').style.borderColor = 'red';
-                alert('用户名格式不正确，请重新输入！');
+                document.getElementById('feedbackMessage').innerText = '用户名格式不正确，请重新输入！';
             } else {
                 document.getElementById('password').style.backgroundColor = 'pink';
                 document.getElementById('password').style.borderColor = 'red';
-                alert('密码格式不正确，请重新输入！');
+                document.getElementById('feedbackMessage').innerText = '密码格式不正确，请重新输入！';
             }
         };
     </script>

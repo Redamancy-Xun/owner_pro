@@ -62,10 +62,10 @@ public class User {
     @ApiModelProperty("头像")
     private String headportrait;
 
-    @Column(name = "session_id", nullable = false)
-    @NotNull(message = "登录状态不能为空")
-    @ApiModelProperty("登录状态")
-    private Integer session_id;
+    @Column(name = "type", nullable = false)
+    @NotNull(message = "身份信息不能为空")
+    @ApiModelProperty("身份信息")
+    private Integer type;
 
     public User(Integer id, String username, String password) {
         this.id = id;
@@ -74,7 +74,7 @@ public class User {
     }
 
     public User(String username, String password, String studentid, String studentname,
-                Date birthday, String email, String headportrait, Integer session_id) {
+                Date birthday, String email, String headportrait, Integer type) {
         this.username = username;
         this.password = password;
         this.studentid = studentid;
@@ -82,7 +82,7 @@ public class User {
         this.birthday = birthday;
         this.email = email;
         this.headportrait = headportrait;
-        this.session_id = session_id;
+        this.type = type;
     }
 
 }

@@ -3,28 +3,32 @@ package com.example.forum.controller.account;
 import com.example.forum.common.EnumExceptionType;
 import com.example.forum.common.Result;
 import com.example.forum.exception.MyException;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-
+//@RequiresRoles("admin")
 @RestController
 @Slf4j
 @Api("更新Controller")
 public class UpdateController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
+    @RequiresAuthentication
+    @RequiresRoles("user")
     @PostMapping("/update")
     @ApiOperation("更改个人信息")
     @ApiImplicitParams({
@@ -37,19 +41,14 @@ public class UpdateController {
             @ApiImplicitParam(name = "email", value = "邮箱(可选)", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", required = false, paramType = "query", dataType = "String")
     })
-    public Result update(@Validated int id,
+    public Result update(@Validated @RequestParam("id") int id,
                          @Validated @RequestParam("username") String username,
                          @Validated @RequestParam("password") String password,
                          @Validated @RequestParam("studentid") String studentid,
                          @Validated @RequestParam("studentname") String studentname,
                          @RequestParam(value = "birthday", required = false) @Validated Date birthday,
                          @RequestParam(value = "email", required = false) @Validated String email,
-                         @RequestParam(value = "headportrait", required = false) @Validated String headportrait,
-                         HttpSession session){
-
-        //检查是否登录（session是否存在）
-        if (session.getAttribute("user") == null)
-            throw new MyException(EnumExceptionType.LOGIN_INVALID);
+                         @RequestParam(value = "headportrait", required = false) @Validated String headportrait){
 
         //参数校验
         if (userService.checkPasswordLength(password)

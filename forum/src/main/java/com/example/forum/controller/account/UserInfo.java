@@ -1,8 +1,8 @@
 package com.example.forum.controller.account;
 
 import com.example.forum.exception.MyException;
-import com.example.forum.service.RecruitArticleServiceImpl;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -20,14 +20,14 @@ import com.example.forum.common.*;
 public class UserInfo {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //根据id获取个人信息
     @GetMapping("/UserInfo/{id}")
-    @ApiOperation("个人信息")
+    @ApiOperation("用户个人信息")
     @ApiImplicitParam(name = "id", value = "用户id", required = true, paramType = "query", dataType = "Integer")
     public Result getUserInfo(@Validated @PathVariable("id") int id, HttpSession session){
 

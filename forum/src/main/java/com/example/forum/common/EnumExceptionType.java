@@ -2,6 +2,7 @@ package com.example.forum.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.apache.shiro.authz.UnauthenticatedException;
 
 @Getter
 @AllArgsConstructor
@@ -15,8 +16,9 @@ public enum EnumExceptionType {
     PARAMETER_FORMAT_INCORRECT(-2, "参数格式不正确"),
     LENGTH_INCORRECT(1005, "参数长度不正确"),
     EMAIL_INVALID(1006,"邮箱格式不正确" ),
-    ARTICLE_ID_NOT_EXIST(1007,"帖子不存在");
-
+    ARTICLE_ID_NOT_EXIST(1007,"帖子不存在"),
+    PERMISSION_NOT_EXIST(1008, "无相关权限"),
+    AUTHORIZATION_EXCEPTION(1009, "认证失败");
 
     private final int errorCode;
 

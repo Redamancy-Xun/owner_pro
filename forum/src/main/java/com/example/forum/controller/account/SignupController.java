@@ -3,7 +3,8 @@ package com.example.forum.controller.account;
 
 import com.example.forum.common.Result;
 import com.example.forum.entity.User;
-import com.example.forum.service.UserServiceImpl;
+import com.example.forum.service.impl.UserServiceImpl;
+import com.example.forum.util.PasswordUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -23,7 +24,7 @@ import java.util.Date;
 public class SignupController {
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     //注册插入一个用户
     @PostMapping("/signup")
@@ -51,7 +52,7 @@ public class SignupController {
                 user.setUsername(username);
             }
             if (userService.checkPasswordLength(password)){
-                user.setPassword(password);
+                user.setPassword(PasswordUtil.convert(password));
             }
             user.setStudentid(studentid);
             user.setStudentname(studentname);
@@ -62,7 +63,7 @@ public class SignupController {
             }
             if (headportrait!=null)
                 user.setHeadportrait(headportrait);
-            user.setSession_id(0);
+            user.setType(0);
 
             //insertUser返回插入的条数
             int count = userService.signupUser(user);

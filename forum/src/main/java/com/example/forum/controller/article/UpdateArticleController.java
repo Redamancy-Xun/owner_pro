@@ -4,7 +4,7 @@ import com.example.forum.common.EnumExceptionType;
 import com.example.forum.common.Result;
 import com.example.forum.entity.RecruitArticle;
 import com.example.forum.exception.MyException;
-import com.example.forum.service.RecruitArticleServiceImpl;
+import com.example.forum.service.impl.RecruitArticleServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -25,7 +25,7 @@ import java.util.Date;
 public class UpdateArticleController {
 
     @Autowired
-    RecruitArticleServiceImpl articleService;
+    private RecruitArticleServiceImpl articleService;
 
     //更新一个帖子
     @PostMapping("/updateArticle")
@@ -43,7 +43,7 @@ public class UpdateArticleController {
             @ApiImplicitParam(name = "finish", value = "完成状态", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "top", value = "置顶状态", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result createArticle(@RequestParam(value = "article_id") Integer article_id,
+    public Result updateArticle(@RequestParam(value = "article_id") Integer article_id,
                                 @RequestParam(value = "update_date") @Validated Date update_date,
                                 @RequestParam(value = "type") @Validated Integer type,
                                 @RequestParam(value = "direction") @Validated Integer direction,

@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/owner_pro?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: a13738780767
+
+  jackson:
+    time-zone: GMT+8
