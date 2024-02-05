@@ -11,12 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
-@RequiresRoles("online")
 @RestController
 @Api("登出Controller")
 public class LogoutController {
 
-    @RequiresAuthentication
+    @RequiresRoles("online")
     @GetMapping("/logout")
     @ApiOperation("登出")
     public Result logout() throws IOException {
