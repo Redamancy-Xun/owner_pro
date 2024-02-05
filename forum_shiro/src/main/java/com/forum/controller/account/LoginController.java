@@ -1,5 +1,7 @@
 package com.forum.controller.account;
 
+import com.forum.controller.response.GetAdminResponse;
+import com.forum.controller.response.GetUserResponse;
 import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
 import com.forum.common.EnumExceptionType;
@@ -65,7 +67,8 @@ public class LoginController {
         }
 
         UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
-
-        return Result.success("登录成功", principal);
+        if(principal.getType()==1)
+            return Result.success("登录成功",new GetAdminResponse(adminService.getAdminByUsername(username), principal.getType()));
+        return Result.success("登录成功", new GetUserResponse(userService.getUserByUsername(username), principal.getType()));
     }
 }
