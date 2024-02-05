@@ -51,17 +51,12 @@ public class GlobalExceptionHandler {
         }
         log.error("参数：" + gson.toJson(res));
 
-
-
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw, true);
         e.printStackTrace(pw);
         pw.flush();
         sw.flush();
         log.error("异常：" + sw.toString());
-
-
-
 
         if(e instanceof MyException) {
             log.error("自定义异常：" + ((MyException) e).getEnumExceptionType().getCodeMessage());
@@ -80,5 +75,4 @@ public class GlobalExceptionHandler {
 
         return Result.fail(e.getMessage(), null);
     }
-
 }

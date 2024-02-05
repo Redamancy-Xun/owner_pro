@@ -8,123 +8,133 @@
 
 </head>
 <style>
-* {
-     margin: 0;
-     padding: 0;
- }
-
- html {
-     height: 100%;
- }
-
- body {
-     height: 100%;
- }
-
- .container {
-     height: 100%;
-     background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
- }
-
- .signup-wrapper {
-     background-color: #fff;
-     width: 358px;
-     height: 700px;
-     border-radius: 15px;
-     padding: 0 50px;
-     position: relative;
-     left: 50%;
-     top: 50%;
-     transform: translate(-50%, -50%);
- }
-
- .header1{
-    height:70px;
-    font-family: Microsoft YaHei;
-    color: #52B4E3;
-    line-height: 100px;
-    text-align-last: left;
-    font-weight: 600;
-    font-size: 20px;
- }
-
- .header2 {
-     font-size: 38px;
-     font-weight: bold;
-     text-align: center;
-     line-height: 80px;
- }
-
- .input-item {
-     display: block;
-     width: 100%;
-     margin-bottom: 20px;
-     border: 0;
-     padding: 10px;
-     border-bottom: 1px solid rgb(128, 125, 125);
-     font-size: 15px;
-     outline: none;
- }
-
- .input-item:placeholder {
-     text-transform: uppercase;
- }
-
- .btn {
-     text-align: center;
-     padding: 10px;
-     width: 100%;
-     margin-top: 30px;
-     background-color: rgb(110, 195, 249);
-     color: rgb(255, 255, 255);
-     font-size: 18px;
-     border: none;
-     outline: none;
-
- }
-    .btn:hover{
-        background-color:rgb(42, 168, 253) ;
+    * {
+        margin: 0;
+        padding: 0;
     }
 
- .msg {
-     text-align: center;
-     line-height: 85px;
- }
+    html {
+        height: 100%;
+    }
 
- a {
-     text-decoration-line: none;
-     color: #6b96eb;
- }
+    body {
+        height: 100%;
+    }
 
+    .container {
+        height: 100%;
+        background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
+    }
+
+    .signup-wrapper {
+        background-color: #fff;
+        width: 358px;
+        height: 700px;
+        border-radius: 15px;
+        padding: 0 50px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header1 {
+        height: 70px;
+        font-family: Microsoft YaHei;
+        color: #52B4E3;
+        line-height: 100px;
+        text-align-last: left;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .header2 {
+        font-size: 38px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 80px;
+    }
+
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    .input-item:placeholder {
+        text-transform: uppercase;
+    }
+
+    .btn {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 30px;
+        background-color: rgb(110, 195, 249);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        background-color: rgb(42, 168, 253);
+    }
+
+    .msg {
+        text-align: center;
+        line-height: 85px;
+    }
+
+    #feedbackMessage {
+        color: red;
+        font-size: 13px;
+        font-weight: 500;
+        position: absolute;
+        top: 71%;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: #6b96eb;
+    }
 </style>
 
 <body>
-   
+
 
     <div class="container">
         <div class="signup-wrapper">
             <div class="header1">博远信息技术社</div>
             <div class="header2">注册</div>
             <div class="form-wrapper">
-                <form action="http://localhost:8080/signup" method="post" name="注册表单">
+                <form name="注册表单">
                     <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item">
                     <input type="password" id="password" name="password" placeholder="密码（6~20）位" class="input-item">
                     <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
                     <input type="text" id="studentid" name="studentid" placeholder="学号" class="input-item">
                     <input type="text" id="studentname" name="studentname" placeholder="姓名" class="input-item">
-                    <button class="btn">注 册</button> 
+
+                    <button class="btn">注 册</button>
                 </form>
             </div>
+            <div id="feedbackMessage"></div>
             <div class="msg">
                 已有账号?
                 <a href="login.html">登录</a>
             </div>
         </div>
     </div>
-    
+
     <script>
-        document.querySelector('.btn').addEventListener//注册按钮点击事件
-        ('click',() => {
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault()//阻止默认提交
             //获取各参数信息
             let username = document.getElementById('username').value
             let password = document.getElementById('password').value
@@ -132,67 +142,68 @@
             let studentid = document.getElementById('studentid').value
             let studentname = document.getElementById('studentname').value
 
-            console.log(username,password)//控制台查看
+            console.log(username, password)//控制台查看
 
             //判断长度(暂定)
-            if (username.length < 2||username.length > 20){
+            if (username.length < 2 || username.length > 20) {
                 console.log('用户名长度需为2~20位')
                 let usernameInput = document.getElementById('username')
                 usernameInput.style.borderColor = "red"
                 usernameInput.style.backgroundColor = "pink";
-                alert('用户名长度需为2~20位')
+                document.getElementById('feedbackMessage').innerText = '用户名长度需为2~20位';
                 return//阻止代码进行
             }
-            if (password.length < 6||password.length > 20){
+            if (password.length < 6 || password.length > 20) {
                 console.log('密码长度需为6~20位')
                 let passwordInput = document.getElementById('password')
                 passwordInput.style.borderColor = "red"
                 passwordInput.style.backgroundColor = "pink";
-                alert('密码长度需为6~20位')
+                document.getElementById('feedbackMessage').innerText = '密码长度需为6~20位';
                 return//阻止代码进行
             }
-            if (password != password2){
+            if (password != password2) {
                 console.log('请确认两次密码输入一致')
-                alert('请确认两次密码输入一致')
+                document.getElementById('feedbackMessage').innerText = '请确认两次密码输入一致';
                 return//阻止代码进行
             }
-            if (studentid.length != 11){
+            if (studentid.length != 11) {
                 console.log('请确认学号是否正确')
                 let studentid = document.getElementById('studentid')
                 studentid.style.borderColor = "red"
                 studentid.style.backgroundColor = "pink";
-                alert('请确认学号是否正确')
+                document.getElementById('feedbackMessage').innerText = '请确认学号是否正确';
                 return//阻止代码进行
             }
-            if (studentname.length < 1){
+            if (studentname.length < 1) {
                 console.log('姓名不可为空')
                 let studentname = document.getElementById('studentname')
                 studentname.style.borderColor = "red"
                 studentname.style.backgroundColor = "pink";
-                alert('姓名不可为空')
+                document.getElementById('feedbackMessage').innerText = '姓名不可为空';
                 return//阻止代码进行
             }
             let formData = new FormData();
-                formData.append('username', username);
-                formData.append('password', password);
-                formData.append('studentid', studentid);
-                formData.append('studentname', studentname);
+            formData.append('username', username);
+            formData.append('password', password);
+            formData.append('studentid', studentid);
+            formData.append('studentname', studentname);
 
-            fetch('http://localhost:8080/signup',{
+            fetch('http://localhost:8080/signup', {
                 method: 'POST',
                 body: formData
             }) // 后端接口地址
-            .then(response => response.json())//转换json数据
-            .then(data => {
-                console.log(data);// 打印 JSON 数据
-                alert(message)//打印message内容
-                if (code == 0){//如果登录成功就跳转到登录界面
-                    window.location.href = "login.html"
-                }
-                else window.location.href = "signup - 副本.html";
-            }) 
+                .then(response => response.json())//转换json数据
+                .then(data => {
+                    console.log(data);// 打印 JSON 数据
+                    alert(message)//打印message内容
+                    if (code == 0) {//如果登录成功就跳转到登录界面
+                        window.location.href = "login.html"
+                    }
+                    else window.location.href = "signup - 副本.html";
+                })
 
-                    })
+        })
     </script>
 </body>
+
 </html>
