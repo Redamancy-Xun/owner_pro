@@ -1,9 +1,9 @@
-package com.forum.controller.account;
+package com.forum.controller.admin;
 
+import com.forum.common.Result;
 import com.forum.dto.UserDTO;
 import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
-import com.forum.common.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

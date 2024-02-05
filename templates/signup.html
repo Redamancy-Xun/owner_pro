@@ -83,7 +83,7 @@
 
  }
     .btn:hover{
-        background-color:rgb(42, 171, 251) ;
+        background-color:rgb(42, 168, 253) ;
     }
 
  .msg {
@@ -106,29 +106,25 @@
             <div class="header1">博远信息技术社</div>
             <div class="header2">注册</div>
             <div class="form-wrapper">
-                <form action="http://localhost:8080/signup" method="post" name="注册表单">
-                    <input type="text" id="username" name="username" placeholder="用户名" class="input-item">
-                    <input type="password" id="password" name="password" placeholder="密码" class="input-item">
+                <form action="http://localhost:8080/signup" method="post" name="注册表单" id="signup-form">
+                    <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item">
+                    <input type="password" id="password" name="password" placeholder="密码（6~20）位" class="input-item">
                     <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
                     <input type="text" id="studentid" name="studentid" placeholder="学号" class="input-item">
                     <input type="text" id="studentname" name="studentname" placeholder="姓名" class="input-item">
-
-                    <button type="button" class="btn">注 册</button>
+                    <input type="submit" class="btn" value="注册"> 
                 </form>
             </div>
             <div class="msg">
                 已有账号?
-                <a href="#登录页面url">登录</a>
+                <a href="login.html">登录</a>
             </div>
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">       
-    </script>    <!--引入axios库-->
     
     <script>
-        document.querySelector('.btn').addEventListener//注册按钮点击事件
-        ('click',() => {
+        document.getElementById('signup-form').addEventListener('submit', function (event){
+            event.preventDefault()//阻止默认提交
             //获取各参数信息
             let username = document.getElementById('username').value
             let password = document.getElementById('password').value
@@ -141,11 +137,17 @@
             //判断长度(暂定)
             if (username.length < 2||username.length > 20){
                 console.log('用户名长度需为2~20位')
+                let usernameInput = document.getElementById('username')
+                usernameInput.style.borderColor = "red"
+                usernameInput.style.backgroundColor = "pink";
                 alert('用户名长度需为2~20位')
                 return//阻止代码进行
             }
             if (password.length < 6||password.length > 20){
                 console.log('密码长度需为6~20位')
+                let passwordInput = document.getElementById('password')
+                passwordInput.style.borderColor = "red"
+                passwordInput.style.backgroundColor = "pink";
                 alert('密码长度需为6~20位')
                 return//阻止代码进行
             }
@@ -156,26 +158,37 @@
             }
             if (studentid.length != 11){
                 console.log('请确认学号是否正确')
+                let studentid = document.getElementById('studentid')
+                studentid.style.borderColor = "red"
+                studentid.style.backgroundColor = "pink";
                 alert('请确认学号是否正确')
                 return//阻止代码进行
             }
+            if (studentname.length < 1){
+                console.log('姓名不可为空')
+                let studentname = document.getElementById('studentname')
+                studentname.style.borderColor = "red"
+                studentname.style.backgroundColor = "pink";
+                alert('姓名不可为空')
+                return//阻止代码进行
+            }
 
-
-            console.log('提交数据给服务器')
-            axios({//提交数据给服务器
-	            url:'http://localhost:8080/signup',
-                method:'post',
-            	data:{
-            		username,
-                    password,//变量同名，直接简写了，后面同理
-                    studentid,
-                    studentname,
-	                }
-                }).then((result)=>{
-            	//对服务器返回的数据做后续处理
-                console.log(result)
-                console.log(message)
-                })
+            fetch('http://localhost:8080/signup',{
+                method: 'POST',
+                body: new FormData(document.getElementById('signup-form'))
+            }) // 后端接口地址
+            .then(response => response.json())//转换json数据
+            .then(data => {
+                console.log(data)// 打印 JSON 数据
+                alert(data.message)//打印message内容
+                if (data.code == 0){//如果登录成功就跳转到登录界面
+                    window.location.href = "login.html"
+                }
+            }) 
+            .catch(error => {
+                console.error('Error:', error)
+                alert('出错啦！请稍后再试。')
+            })
         })
     </script>
 </body>

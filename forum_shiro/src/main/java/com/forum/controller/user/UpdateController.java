@@ -1,20 +1,17 @@
-package com.forum.controller.account;
+package com.forum.controller.user;
 
 import com.forum.common.EnumExceptionType;
+import com.forum.common.Result;
 import com.forum.controller.request.UpdateUserMessageRequest;
 import com.forum.dto.UserDTO;
-import com.forum.exception.MyException;
-import com.forum.mapper.AdminMapper;
 import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
-import com.forum.common.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
