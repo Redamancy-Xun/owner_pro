@@ -106,13 +106,8 @@
 
             <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
             <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
-<<<<<<< HEAD
             <div id="feedbackMessage"></div>
             <button id="submitButton" onclick="beforeSubmit()">登录</button>
-=======
-
-            <button id="submitButton" onclick="beforeSubmit()">点我登录</button>
->>>>>>> 5b45b0f21dd47afcb1e5b4cb9457b0e90b902216
             <div class="turn_to_registration">还没有账号？
                 <a href="signup.html">点我注册</a>
             </div>
@@ -148,44 +143,24 @@
                     method: 'POST',
                     body: formData
                 })
-<<<<<<< HEAD
-=======
-                    .then(response => response.json())
->>>>>>> 5b45b0f21dd47afcb1e5b4cb9457b0e90b902216
                     .then(data => {
                         console.log(data);
                         alert(data.message);
                         if (data.code == 0) {
-<<<<<<< HEAD
                             window.location.href = "homePage.html";//首页地址   
                         } else {
                             document.getElementById('feedbackMessage').innerText = data.message;
                         }
 
-=======
-                            window.location.href = "";//首页地址   
-                        }
-                        else {
-                            alert('登陆失败！');
-                        }
->>>>>>> 5b45b0f21dd47afcb1e5b4cb9457b0e90b902216
                     })
             } else if (username.length < 2) {
                 document.getElementById('username').style.backgroundColor = 'pink';
                 document.getElementById('username').style.borderColor = 'red';
-<<<<<<< HEAD
                 document.getElementById('feedbackMessage').innerText = '用户名格式不正确，请重新输入！';
             } else {
                 document.getElementById('password').style.backgroundColor = 'pink';
                 document.getElementById('password').style.borderColor = 'red';
                 document.getElementById('feedbackMessage').innerText = '密码格式不正确，请重新输入！';
-=======
-                alert('用户名格式不正确，请重新输入！');
-            } else {
-                document.getElementById('password').style.backgroundColor = 'pink';
-                document.getElementById('password').style.borderColor = 'red';
-                alert('密码格式不正确，请重新输入！');
->>>>>>> 5b45b0f21dd47afcb1e5b4cb9457b0e90b902216
             }
         };
     </script>
