@@ -1,5 +1,6 @@
 package com.forum.controller.article;
 
+import com.alibaba.fastjson.JSON;
 import com.forum.controller.request.UpdateArticleMessageRequest;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.service.impl.RecruitArticleServiceImpl;
@@ -16,6 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -32,9 +34,9 @@ public class UpdateArticleController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "query", dataType = "Integer"),
             @ApiImplicitParam(name = "update_date", value = "发布日期", required = true, paramType = "query", dataType = "Date"),
-            @ApiImplicitParam(name = "type", value = "招募任务类型", required = false, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "direction", value = "需求方向", required = false, paramType = "query", dataType = "String"),
-            @ApiImplicitParam(name = "tag", value = "技术栈", required = false, paramType = "query", dataType = "String"),
+            @ApiImplicitParam(name = "type", value = "招募任务类型", required = false, paramType = "query", dataType = "List<String>"),
+            @ApiImplicitParam(name = "direction", value = "需求方向", required = false, paramType = "query", dataType = "List<String>"),
+            @ApiImplicitParam(name = "tag", value = "技术栈", required = false, paramType = "query", dataType = "List<String>"),
             @ApiImplicitParam(name = "content", value = "详情内容", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "start_time", value = "任务开始时间", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "end_time", value = "任务结束时间", required = false, paramType = "query", dataType = "String"),
@@ -43,9 +45,9 @@ public class UpdateArticleController {
     })
     public Result updateArticle(@RequestParam(value = "article_id") Integer article_id,
                                 @RequestParam(value = "update_date") @Validated Date update_date,
-                                @RequestParam(value = "type", required = false) @Validated String type,
-                                @RequestParam(value = "direction", required = false) @Validated String direction,
-                                @RequestParam(value = "tag", required = false) @Validated String tag,
+                                @RequestParam(value = "type", required = false) @Validated List<String> type,
+                                @RequestParam(value = "direction", required = false) @Validated List<String> direction,
+                                @RequestParam(value = "tag", required = false) @Validated List<String> tag,
                                 @RequestParam(value = "content", required = false) @Validated String content,
                                 @RequestParam(value = "start_time", required = false) @Validated String start_time,
                                 @RequestParam(value = "end_time", required = false) @Validated String end_time,
@@ -55,9 +57,12 @@ public class UpdateArticleController {
         RecruitArticle article = articleService.getRecruitArticleByArticleId(article_id);
         Integer user_id = article.getUser_id();
         Integer top = article.getTop();
+        String typeJson = JSON.toJSONString(type);
+        String directionJson = JSON.toJSONString(direction);
+        String tagJson = JSON.toJSONString(tag);
 
-        UpdateArticleMessageRequest articleNew = new UpdateArticleMessageRequest(article_id, update_date, type,
-                direction, tag, content, start_time, end_time, contact, finish);
+        UpdateArticleMessageRequest articleNew = new UpdateArticleMessageRequest(article_id, update_date, typeJson,
+                directionJson, tagJson, content, start_time, end_time, contact, finish);
         articleService.updateRecruitArticleByArticleId(articleNew);
 
         return Result.success("更新成功", new ShowArticleResponse(articleNew, user_id, top));
