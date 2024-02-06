@@ -75,8 +75,10 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     }
 
     @Override
-    public List<RecruitArticle> defaultGetRecruitArticle() {
-        return recruitArticleMapper.defaultGetRecruitArticle();
+    public List<RecruitArticle> defaultGetRecruitArticle(Integer type,Integer direction,Integer fish) {
+        return recruitArticleMapper.defaultGetRecruitArticle(type,direction,fish);
     }
+
+
 
 }

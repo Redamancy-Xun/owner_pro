@@ -43,7 +43,7 @@ public class CreateArticleController {
     public Result createArticle(@RequestParam(value = "id") @Validated Integer user_id,
                                 @RequestParam(value = "update_date") @Validated Date update_date,
                                 @RequestParam(value = "type") @Validated Integer type,
-                                @RequestParam(value = "direction") @Validated Integer directon,
+                                @RequestParam(value = "direction") @Validated Integer direction,
                                 @RequestParam(value = "tag") @Validated String tag,
                                 @RequestParam(value = "content") @Validated String content,
                                 @RequestParam(value = "start_time") @Validated String start_time,
@@ -54,7 +54,7 @@ public class CreateArticleController {
 
         //参数校验
 
-        RecruitArticle article = new RecruitArticle(user_id, update_date, type, directon, tag, content, start_time,
+        RecruitArticle article = new RecruitArticle(user_id, update_date, type, direction, tag, content, start_time,
                 end_time, contact, finish, top);
 
         //createArticle返回插入的条数
