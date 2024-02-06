@@ -5,6 +5,7 @@ import com.forum.controller.response.GetAdminResponse;
 import com.forum.controller.response.GetUserResponse;
 import com.forum.dto.UserDTO;
 import com.forum.service.impl.AdminServiceImpl;
+import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,18 +25,23 @@ public class UserInfo {
     private UserServiceImpl userService;
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private RecruitArticleServiceImpl articleService;
 
     //根据id获取个人信息
     @RequiresRoles("user")
     @GetMapping("/userInfo")
-    @ApiOperation("用户个人信息")
+    @ApiOperation("用户个人信息以及帖子管理")
     public Result getUserInfo(){
 
         UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
         String username = principal.getUsername();
+        Integer id = principal.getId();
 
-        return Result.success("获取成功", new GetUserResponse(userService.getUserByUsername(username), principal.getType()));
+        Object[] result = new Object[2];
+        result[0] = new GetUserResponse(userService.getUserByUsername(username), principal.getType());
+        result[1] = articleService.getRecruitArticleByUserId(id);
+
+        return Result.success("获取成功", result);
     }
 
     

@@ -23,8 +23,8 @@ import java.util.Date;
 
 @RestController
 @Slf4j
-@Api("更新Controller")
-public class UpdateController {
+@Api("更新用户信息 Controller")
+public class UpdateUserController {
 
     @Autowired
     private UserServiceImpl userService;

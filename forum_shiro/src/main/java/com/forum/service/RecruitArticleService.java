@@ -23,7 +23,7 @@ public interface RecruitArticleService {
     int deleteRecruitArticleByArticleId(Integer article_id);
 
     //根据article_id更新帖子
-    int updateRecruitArticleByArticleId(Integer article_id, Date update_date, Integer type, Integer direction,
+    int updateRecruitArticleByArticleId(Integer article_id, Date update_date, String type, String direction,
                                         String tag, String content, String start_time, String end_time,
                                         String contact, Integer finish, Integer top);
 

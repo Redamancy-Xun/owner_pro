@@ -25,19 +25,6 @@ public class UserController {
     @Autowired
     private AdminServiceImpl adminService;
 
-    //根据id删除用户
-    @RequiresRoles("user")
-    @GetMapping("/deleteUserById")
-    @ApiOperation("注销用户")
-    public Result deleteUserById() {
-
-        UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
-        Integer id = principal.getId();
-        userService.deleteUserById(id);
-
-        return Result.success("成功删除", id);
-    }
-
     //根据用户id查询用户
     @GetMapping("/getUserById/{id}")
     public Result getUserById(@PathVariable("id")Integer id){

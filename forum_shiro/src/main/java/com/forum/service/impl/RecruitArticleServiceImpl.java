@@ -65,7 +65,7 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
 
     //根据id更新帖子
     @Override
-    public int updateRecruitArticleByArticleId(Integer article_id, Date update, Integer type, Integer direction,
+    public int updateRecruitArticleByArticleId(Integer article_id, Date update, String type, String direction,
                                                String tag, String content, String start_time, String end_time,
                                                String contact, Integer finish, Integer top){
         if (recruitArticleMapper.getRecruitArticleByArticleId(article_id) == null)

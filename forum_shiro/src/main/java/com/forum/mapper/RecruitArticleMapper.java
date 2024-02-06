@@ -44,7 +44,7 @@ public interface RecruitArticleMapper extends MyMapper<RecruitArticle> {
             "tag = #{tag}, content = #{content}, start_time = #{start_time}, end_time = #{end_time}, " +
             "contact = #{contact}, finish = #{finish}, top = #{top} WHERE article_id = #{article_id};")
     int updateRecruitArticleByArticleId(@Param("article_id") Integer article_id,@Param("update_date")Date update_date,
-                                        @Param("type")Integer type, @Param("direction")Integer direction,
+                                        @Param("type")String type, @Param("direction")String direction,
                                         @Param("tag") String tag, @Param("content")String content,
                                         @Param("start_time")String start_time, @Param("end_time")String end_time,
                                         @Param("contact")String contact, @Param("finish")Integer finish,

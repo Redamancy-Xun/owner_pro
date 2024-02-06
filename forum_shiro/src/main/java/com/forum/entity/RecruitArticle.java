@@ -1,5 +1,6 @@
 package com.forum.entity;
 
+import com.forum.enums.RecruitType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -9,14 +10,16 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "recruit_article")
 @ApiModel("Recruit_article")
-public class RecruitArticle {
+public class RecruitArticle implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,12 +41,12 @@ public class RecruitArticle {
     @Column(name = "type", nullable = false)
     @NotNull(message = "招募任务类型不能为空")
     @ApiModelProperty("招募任务类型")
-    private Integer type;
+    private String type;
 
     @Column(name = "direction", nullable = false)
     @NotNull(message = "需求方向不能为空")
     @ApiModelProperty("需求方向")
-    private Integer direction;
+    private String direction;
 
     @Column(name = "tag", nullable = false)
     @NotNull(message = "技术栈不能为空")
@@ -80,7 +83,7 @@ public class RecruitArticle {
     @ApiModelProperty("置顶状态")
     private Integer top;
 
-    public RecruitArticle(Integer user_id, Date update_date, Integer type, Integer direction,
+    public RecruitArticle(Integer user_id, Date update_date, String type, String direction,
                           String tag, String content, String start_time, String end_time,
                           String contact, Integer finish, Integer top) {
         this.user_id = user_id;

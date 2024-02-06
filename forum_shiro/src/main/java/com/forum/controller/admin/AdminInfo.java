@@ -5,6 +5,7 @@ import com.forum.controller.response.GetAdminResponse;
 import com.forum.controller.response.GetUserResponse;
 import com.forum.dto.UserDTO;
 import com.forum.service.impl.AdminServiceImpl;
+import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,21 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminInfo {
 
     @Autowired
-    private UserServiceImpl userService;
+    private AdminServiceImpl adminService;
 
     @Autowired
-    private AdminServiceImpl adminService;
+    private RecruitArticleServiceImpl articleService;
 
     //根据id获取个人信息
     @RequiresRoles("admin")
     @GetMapping("/adminInfo")
-    @ApiOperation("管理员个人信息")
+    @ApiOperation("管理员个人信息以及帖子管理")
     public Result getUserInfo(){
 
         UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
         String username = principal.getUsername();
+        Integer id = principal.getId();
 
-        return Result.success("获取成功", new GetAdminResponse(adminService.getAdminByUsername(username), principal.getType()));
+        Object[] result = new Object[2];
+        result[0] = new GetAdminResponse(adminService.getAdminByUsername(username), principal.getType());
+        result[1] = articleService.getRecruitArticleByUserId(id);
+
+        return Result.success("获取成功", result);
     }
 
     
