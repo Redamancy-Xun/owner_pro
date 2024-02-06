@@ -28,6 +28,6 @@ public interface RecruitArticleService {
                                         String contact, Integer finish, Integer top);
 
     //默认获取帖子
-    List<RecruitArticle> defaultGetRecruitArticle();
+    List<RecruitArticle> defaultGetRecruitArticle(Integer type,Integer direction,Integer finish);
 
 }

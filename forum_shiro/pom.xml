@@ -157,12 +157,6 @@
 			<version>1.9.2</version>
 		</dependency>
 
-		<!--支付宝-->
-		<dependency>
-			<groupId>com.alipay.sdk</groupId>
-			<artifactId>alipay-sdk-java</artifactId>
-			<version>3.7.110.ALL</version>
-		</dependency>
 
 		<!--微信-->
 		<dependency>
