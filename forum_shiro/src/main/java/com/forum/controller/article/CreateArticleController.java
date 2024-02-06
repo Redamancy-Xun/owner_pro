@@ -2,6 +2,7 @@
 package com.forum.controller.article;
 
 import com.alibaba.fastjson.JSON;
+import com.forum.controller.response.ShowArticleResponse;
 import com.forum.dto.UserDTO;
 import com.forum.entity.RecruitArticle;
 import com.forum.service.impl.RecruitArticleServiceImpl;
@@ -59,8 +60,6 @@ public class CreateArticleController {
         String directionJson = JSON.toJSONString(direction);
         String tagJson = JSON.toJSONString(tag);
 
-        //参数校验
-
         RecruitArticle article = new RecruitArticle(user_id, update_date, typeJson, directionJson, tagJson,
                 content, start_time, end_time, contact, 0, 0);
 
@@ -69,6 +68,6 @@ public class CreateArticleController {
         log.info("count=" + count);
         log.info("id=" + article.getArticle_id());
 
-        return Result.success("发布成功", article);
+        return Result.success("发布成功", new ShowArticleResponse(article));
     }
 }

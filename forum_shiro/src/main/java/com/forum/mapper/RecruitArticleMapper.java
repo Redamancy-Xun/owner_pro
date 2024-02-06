@@ -45,14 +45,34 @@ public interface RecruitArticleMapper extends MyMapper<RecruitArticle> {
     int deleteRecruitArticleByArticleId(@Param("article_id")Integer article_id);
 
     //根据帖子id找到帖子，并更新招募帖子信息
-    @Update("UPDATE recruit_article SET update_date = #{update_date}, type = #{type}, direction = #{direction}, " +
-            "tag = #{tag}, content = #{content}, start_time = #{start_time}, end_time = #{end_time}, " +
-            "contact = #{contact}, finish = #{finish}, top = #{top} WHERE article_id = #{article_id};")
-    int updateRecruitArticleByArticleId(@Param("article_id") Integer article_id,@Param("update_date")Date update_date,
-                                        @Param("type")String type, @Param("direction")String direction,
-                                        @Param("tag") String tag, @Param("content")String content,
-                                        @Param("start_time")String start_time, @Param("end_time")String end_time,
-                                        @Param("contact")String contact, @Param("finish")Integer finish,
-                                        @Param("top")Integer top);
+    @Update("UPDATE recruit_article SET update_date = #{update_date} WHERE article_id = #{article_id};")
+    void updateUpdateDate(@Param("update_date")Date update_date, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET type = #{type} WHERE article_id = #{article_id};")
+    void updateType(@Param("type")String type, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET direction = #{direction} WHERE article_id = #{article_id};")
+    void updateDirection(@Param("direction")String direction, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET tag = #{tag} WHERE article_id = #{article_id};")
+    void updateTag(@Param("tag")String tag, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET content = #{content} WHERE article_id = #{article_id};")
+    void updateContent(@Param("content")String content, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET start_time = #{start_time} WHERE article_id = #{article_id};")
+    void updateStartTime(@Param("start_time")String start_time, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET end_time = #{end_time} WHERE article_id = #{article_id};")
+    void updateEndTime(@Param("end_time")String end_time, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET contact = #{contact} WHERE article_id = #{article_id};")
+    void updateContact(@Param("contact")String contact, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET finish = #{finish} WHERE article_id = #{article_id};")
+    void updateFinish(@Param("finish")Integer finish, @Param("article_id")Integer article_id);
+
+    @Update("UPDATE recruit_article SET top = #{top} WHERE article_id = #{article_id};")
+    void updateTop(@Param("top")Integer top, @Param("article_id")Integer article_id);
 
 }

@@ -1,6 +1,8 @@
 package com.forum.controller.account;
 
 
+import com.forum.controller.response.GetAdminResponse;
+import com.forum.controller.response.GetUserResponse;
 import com.forum.entity.Admin;
 import com.forum.entity.User;
 import com.forum.service.impl.AdminServiceImpl;
@@ -74,7 +76,7 @@ public class SignupController {
             log.info("count=" + count);
             log.info("id=" + user.getId());
 
-        return Result.success("注册成功", user);
+        return Result.success("注册成功", new GetUserResponse(user, 0));
     }
 
     /**
@@ -107,6 +109,6 @@ public class SignupController {
         log.info("count=" + count);
         log.info("id=" + admin.getAdmin_id());
 
-        return Result.success("注册成功", admin);
+        return Result.success("注册成功", new GetAdminResponse(admin, 1));
     }
 }

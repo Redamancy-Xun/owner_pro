@@ -3,6 +3,7 @@ package com.forum.controller.user;
 import com.forum.common.EnumExceptionType;
 import com.forum.common.Result;
 import com.forum.controller.request.UpdateUserMessageRequest;
+import com.forum.controller.response.GetUserResponse;
 import com.forum.dto.UserDTO;
 import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
@@ -73,6 +74,6 @@ public class UpdateUserController {
         }
         userService.updateUsernameById(updateUserMessageRequest);
 
-        return Result.success("更新成功",userService.getUserById(user_id));
+        return Result.success("更新成功", new GetUserResponse(userService.getUserById(user_id), 0));
     }
 }

@@ -3,7 +3,9 @@ package com.forum.controller.admin;
 import com.forum.common.Result;
 import com.forum.controller.response.GetAdminResponse;
 import com.forum.controller.response.GetUserResponse;
+import com.forum.controller.response.ShowArticleResponse;
 import com.forum.dto.UserDTO;
+import com.forum.entity.RecruitArticle;
 import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
@@ -15,6 +17,9 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -37,9 +42,15 @@ public class AdminInfo {
         String username = principal.getUsername();
         Integer id = principal.getId();
 
+        List<RecruitArticle> articles = articleService.getRecruitArticleByUserId(id);
+        List<ShowArticleResponse> articleResponse = new ArrayList<>();
+        for (RecruitArticle article : articles) {
+            articleResponse.add(new ShowArticleResponse(article));
+        }
+
         Object[] result = new Object[2];
         result[0] = new GetAdminResponse(adminService.getAdminByUsername(username), principal.getType());
-        result[1] = articleService.getRecruitArticleByUserId(id);
+        result[1] = articleResponse;
 
         return Result.success("获取成功", result);
     }

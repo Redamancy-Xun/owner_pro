@@ -2,6 +2,7 @@ package com.forum.controller.response;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.forum.controller.request.UpdateArticleMessageRequest;
 import com.forum.entity.RecruitArticle;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -69,5 +70,22 @@ public class ShowArticleResponse {
         this.contact = article.getContact();
         this.finish = article.getFinish();
         this.top = article.getTop();
+    }
+
+    public ShowArticleResponse(UpdateArticleMessageRequest article, Integer user_id, Integer top) {
+        this.article_id = article.getArticle_id();
+        this.user_id = user_id;
+        this.update_date = article.getUpdate_date();
+
+        this.type = JSON.parseObject(article.getType(), new TypeReference<List<String>>(){});
+        this.direction = JSON.parseObject(article.getDirection(), new TypeReference<List<String>>(){});
+        this.tag = JSON.parseObject(article.getTag(), new TypeReference<List<String>>(){});
+
+        this.content = article.getContent();
+        this.start_time = article.getStart_time();
+        this.end_time = article.getEnd_time();
+        this.contact = article.getContact();
+        this.finish = article.getFinish();
+        this.top = top;
     }
 }

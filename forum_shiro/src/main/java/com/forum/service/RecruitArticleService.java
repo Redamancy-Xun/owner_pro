@@ -1,5 +1,6 @@
 package com.forum.service;
 
+import com.forum.controller.request.UpdateArticleMessageRequest;
 import com.forum.entity.RecruitArticle;
 
 import java.util.Date;
@@ -23,9 +24,20 @@ public interface RecruitArticleService {
     int deleteRecruitArticleByArticleId(Integer article_id);
 
     //根据article_id更新帖子
-    int updateRecruitArticleByArticleId(Integer article_id, Date update_date, String type, String direction,
-                                        String tag, String content, String start_time, String end_time,
-                                        String contact, Integer finish, Integer top);
+    void updateRecruitArticleByArticleId(UpdateArticleMessageRequest updateArticleMessageRequest);
+
+    //根据article_id置顶帖子
+    RecruitArticle topRecruitArticleByArticleId(Integer article_id);
+
+    //根据article_id取消置顶帖子
+    RecruitArticle untopRecruitArticleByArticleId(Integer article_id);
+
+    //根据article_id设置帖子完成状态
+    RecruitArticle finishRecruitArticleByArticleId(Integer article_id);
+
+    //根据article_id设置帖子未完成状态
+    RecruitArticle unfinishRecruitArticleByArticleId(Integer article_id);
+
 
     //默认获取帖子
     List<RecruitArticle> defaultGetRecruitArticle(Integer type,Integer direction,Integer finish);

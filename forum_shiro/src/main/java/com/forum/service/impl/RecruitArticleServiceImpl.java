@@ -1,10 +1,13 @@
 package com.forum.service.impl;
 
 import com.forum.common.EnumExceptionType;
+import com.forum.controller.request.UpdateArticleMessageRequest;
 import com.forum.entity.RecruitArticle;
 import com.forum.exception.MyException;
 import com.forum.mapper.RecruitArticleMapper;
 import com.forum.service.RecruitArticleService;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,13 +68,60 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
 
     //根据id更新帖子
     @Override
-    public int updateRecruitArticleByArticleId(Integer article_id, Date update, String type, String direction,
-                                               String tag, String content, String start_time, String end_time,
-                                               String contact, Integer finish, Integer top){
-        if (recruitArticleMapper.getRecruitArticleByArticleId(article_id) == null)
-            throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
-        return recruitArticleMapper.updateRecruitArticleByArticleId(article_id, update, type, direction, tag, content,
-                start_time, end_time, contact, finish, top);
+    public void updateRecruitArticleByArticleId(UpdateArticleMessageRequest updateArticleMessageRequest){
+        Integer article_id = updateArticleMessageRequest.getArticle_id();
+        Date update_date = updateArticleMessageRequest.getUpdate_date();
+        String type = updateArticleMessageRequest.getType();
+        String direction = updateArticleMessageRequest.getDirection();
+        String tag = updateArticleMessageRequest.getTag();
+        String content = updateArticleMessageRequest.getContent();
+        String start_time = updateArticleMessageRequest.getStart_time();
+        String end_time = updateArticleMessageRequest.getEnd_time();
+        String contact = updateArticleMessageRequest.getContact();
+        Integer finish = updateArticleMessageRequest.getFinish();
+
+        recruitArticleMapper.updateUpdateDate(update_date, article_id);
+        if (type != null)
+            recruitArticleMapper.updateType(type, article_id);
+        if (direction != null)
+            recruitArticleMapper.updateDirection(direction, article_id);
+        if (tag != null)
+            recruitArticleMapper.updateTag(tag, article_id);
+        if (content != null)
+            recruitArticleMapper.updateContent(content, article_id);
+        if (start_time != null)
+            recruitArticleMapper.updateStartTime(start_time, article_id);
+        if (end_time != null)
+            recruitArticleMapper.updateEndTime(end_time, article_id);
+        if (contact != null)
+            recruitArticleMapper.updateContact(contact, article_id);
+        if (finish != null)
+            recruitArticleMapper.updateFinish(finish, article_id);
+
+    }
+
+    @Override
+    public RecruitArticle topRecruitArticleByArticleId(Integer article_id) {
+        recruitArticleMapper.updateTop(1, article_id);
+        return recruitArticleMapper.getRecruitArticleByArticleId(article_id);
+    }
+
+    @Override
+    public RecruitArticle untopRecruitArticleByArticleId(Integer article_id) {
+        recruitArticleMapper.updateTop(0, article_id);
+        return recruitArticleMapper.getRecruitArticleByArticleId(article_id);
+    }
+
+    @Override
+    public RecruitArticle finishRecruitArticleByArticleId(Integer article_id) {
+        recruitArticleMapper.updateFinish(1, article_id);
+        return recruitArticleMapper.getRecruitArticleByArticleId(article_id);
+    }
+
+    @Override
+    public RecruitArticle unfinishRecruitArticleByArticleId(Integer article_id) {
+        recruitArticleMapper.updateFinish(0, article_id);
+        return recruitArticleMapper.getRecruitArticleByArticleId(article_id);
     }
 
     @Override
