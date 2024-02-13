@@ -55,12 +55,18 @@ public class CreateArticleController {
                                 @RequestParam(value = "contact") @Validated String contact){
 
         UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
-        Integer user_id = principal.getId();
+        Integer admin_id = 0;
+        Integer user_id = 0;
+        if (principal.getType() == 1)
+            admin_id = principal.getId();
+        else
+            user_id = principal.getId();
+
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);
         String tagJson = JSON.toJSONString(tag);
 
-        RecruitArticle article = new RecruitArticle(user_id, update_date, typeJson, directionJson, tagJson,
+        RecruitArticle article = new RecruitArticle(admin_id, user_id, update_date, typeJson, directionJson, tagJson,
                 content, start_time, end_time, contact, 0, 0);
 
         //createArticle返回插入的条数

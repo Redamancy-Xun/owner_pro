@@ -22,8 +22,8 @@ public class ShowArticleResponse {
     @ApiModelProperty("招募帖子id")
     private Integer article_id;
 
-    @ApiModelProperty("发帖用户id")
-    private Integer user_id;
+    @ApiModelProperty("发帖者id")
+    private Integer id;
 
     @ApiModelProperty("发布日期")
     private Date update_date;
@@ -57,7 +57,10 @@ public class ShowArticleResponse {
 
     public ShowArticleResponse(RecruitArticle article) {
         this.article_id = article.getArticle_id();
-        this.user_id = article.getUser_id();
+        if (article.getAdmin_id() != 0)
+            this.id = article.getAdmin_id();
+        else
+            this.id = article.getUser_id();
         this.update_date = article.getUpdate_date();
 
         this.type = JSON.parseObject(article.getType(), new TypeReference<List<String>>(){});
@@ -72,9 +75,9 @@ public class ShowArticleResponse {
         this.top = article.getTop();
     }
 
-    public ShowArticleResponse(UpdateArticleMessageRequest article, Integer user_id, Integer top) {
+    public ShowArticleResponse(UpdateArticleMessageRequest article, Integer id, Integer top) {
         this.article_id = article.getArticle_id();
-        this.user_id = user_id;
+        this.id = id;
         this.update_date = article.getUpdate_date();
 
         this.type = JSON.parseObject(article.getType(), new TypeReference<List<String>>(){});

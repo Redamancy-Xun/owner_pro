@@ -7,11 +7,14 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -20,19 +23,34 @@ public class ShowArticleController {
 
     @Autowired
     private RecruitArticleServiceImpl articleService;
+
     //根据指定排序条件获取帖子列表
+    @RequiresRoles("online")
     @GetMapping("/article")
     @ApiOperation("展示帖子")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "type",value = "类型",required = false,paramType = "query",dataType = "int"),
-            @ApiImplicitParam(name = "direction",value = "方向",required = false,paramType = "query",dataType = "int"),
-            @ApiImplicitParam(name = "finish",value = "是否完成",required = false,paramType = "query",dataType = "int")
+            @ApiImplicitParam(name = "type",value = "类型",required = false,paramType = "query",dataType = "List<String>"),
+            @ApiImplicitParam(name = "direction",value = "方向",required = false,paramType = "query",dataType = "List<String>"),
+            @ApiImplicitParam(name = "tag",value = "技术栈",required = false,paramType = "query",dataType = "List<String>"),
+            @ApiImplicitParam(name = "finish",value = "是否完成",required = false,paramType = "query",dataType = "Integer"),
+            @ApiImplicitParam(name = "pageSize",value = "每页显示数量(不小于0)",required = true,paramType = "query",dataType = "Integer"),
+            @ApiImplicitParam(name = "pageNum", value = "页数(不小于0)", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result defaultGetRecruitArticle(@RequestParam("type") Integer type,
-                                           @RequestParam("direction") Integer direction,
-                                           @RequestParam("finish")Integer finish) {
+    public Result defaultGetRecruitArticle(@RequestParam(value = "type", required = false)List<String> type,
+                                           @RequestParam(value = "direction", required = false)List<String> direction,
+                                           @RequestParam(value = "tag", required = false)List<String> tag,
+                                           @RequestParam(value = "finish", required = false)Integer finish,
+                                           @RequestParam("pageSize")Integer pageSize,
+                                           @RequestParam("pageNum")Integer pageNum){
+        //参数校验
+        if (pageNum == null || pageNum < 1){
+            pageNum = 1;
+        }
+        if(pageSize == null || pageSize < 1){
+            pageSize = 10;
+        }
 
-        return Result.success(articleService.defaultGetRecruitArticle(type,direction,finish));
+        return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
     }
 
 }

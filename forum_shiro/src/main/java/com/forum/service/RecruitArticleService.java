@@ -1,6 +1,8 @@
 package com.forum.service;
 
+import com.forum.common.Page;
 import com.forum.controller.request.UpdateArticleMessageRequest;
+import com.forum.controller.response.ShowArticleResponse;
 import com.forum.entity.RecruitArticle;
 
 import java.util.Date;
@@ -15,7 +17,10 @@ public interface RecruitArticleService {
     RecruitArticle getRecruitArticleByArticleId(Integer article_id);
 
     //根据user_id获取article
-    List<RecruitArticle> getRecruitArticleByUserId(Integer user_id);
+    Page<RecruitArticle> getRecruitArticleByUserId(Integer pageNum, Integer pageSize, Integer user_id);
+
+    //根据admin_id获取article
+    Page<RecruitArticle> getRecruitArticleByAdminId(Integer pageNum, Integer pageSize, Integer admin_id);
 
     //根据指定排序顺序获取帖子列表
     List<RecruitArticle> getRecruitArticleListOrderly(String orderly_by_sql);
@@ -38,8 +43,8 @@ public interface RecruitArticleService {
     //根据article_id设置帖子未完成状态
     RecruitArticle unfinishRecruitArticleByArticleId(Integer article_id);
 
-
     //默认获取帖子
-    List<RecruitArticle> defaultGetRecruitArticle(Integer type,Integer direction,Integer finish);
+    List<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
+                                                       List<String> direction, List<String> tag, Integer finish);
 
 }

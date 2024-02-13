@@ -33,6 +33,11 @@ public class RecruitArticle implements Serializable {
     @ApiModelProperty("发帖用户id")
     private Integer user_id;
 
+    @Column(name = "user_id", nullable = false)
+    @NotNull(message = "发帖管理员id不能为空")
+    @ApiModelProperty("发帖管理员id")
+    private Integer admin_id;
+
     @Column(name = "update_date", nullable = false)
     @NotNull(message = "发布日期不能为空")
     @ApiModelProperty("发布日期")
@@ -83,9 +88,10 @@ public class RecruitArticle implements Serializable {
     @ApiModelProperty("置顶状态")
     private Integer top;
 
-    public RecruitArticle(Integer user_id, Date update_date, String type, String direction,
+    public RecruitArticle(Integer admin_id, Integer user_id, Date update_date, String type, String direction,
                           String tag, String content, String start_time, String end_time,
                           String contact, Integer finish, Integer top) {
+        this.admin_id = admin_id;
         this.user_id = user_id;
         this.update_date = update_date;
         this.type = type;

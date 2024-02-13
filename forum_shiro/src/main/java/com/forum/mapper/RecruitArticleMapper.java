@@ -11,8 +11,8 @@ import java.util.List;
 public interface RecruitArticleMapper extends MyMapper<RecruitArticle> {
 
     //创建一个帖子
-    @Insert("INSERT INTO recruit_article (user_id, update_date, type, direction, tag, content, start_time, end_time, contact, finish, top)" +
-            "VALUES (#{user_id}, #{update_date}, #{type}, #{direction}, #{tag}, #{content}, #{start_time}, #{end_time}, #{contact}, #{finish}, #{top});")
+    @Insert("INSERT INTO recruit_article (admin_id, user_id, update_date, type, direction, tag, content, start_time, end_time, contact, finish, top)" +
+            "VALUES (#{admin_id}, #{user_id}, #{update_date}, #{type}, #{direction}, #{tag}, #{content}, #{start_time}, #{end_time}, #{contact}, #{finish}, #{top});")
     @Options(useGeneratedKeys = true, keyProperty = "article_id")
     int insertRecruitArticle(RecruitArticle article);
 
@@ -23,20 +23,19 @@ public interface RecruitArticleMapper extends MyMapper<RecruitArticle> {
 
     //根据用户id获取他的帖子
     @ResultType(RecruitArticle.class)
-    @Select("SELECT * FROM recruit_article WHERE article_id = #{user_id};")
+    @Select("SELECT * FROM recruit_article WHERE user_id = #{user_id} ORDER BY top DESC, update_date DESC")
     List<RecruitArticle> getRecruitArticleByUserId(@Param("user_id")Integer user_id);
 
+    //根据管理员id获取他的帖子
+    @ResultType(RecruitArticle.class)
+    @Select("SELECT * FROM recruit_article WHERE admin_id = #{admin_id} ORDER BY top DESC, update_date DESC")
+    List<RecruitArticle> getRecruitArticleByAdminId(@Param("admin_id")Integer admin_id);
+
     //根据默认顺序获取帖子列表
-    @Select("SELECT * FROM recruit_article WHERE (type = #{type} OR #{type} IS NULL )" +
-            "AND (direction = # {direction} OR #{direction} IS NULL )" +
-            "AND (finish = # {finish} OR #{finish} IS NULL)" +
-            "ORDER BY top DESC, update_date DESC;")
-    List<RecruitArticle> defaultGetRecruitArticle(@Param("type") Integer type,
-                                                  @Param("direction") Integer direction,
-                                                  @Param("finish") Integer finish);
+    @Select("SELECT * FROM recruit_article ORDER BY top DESC, update_date DESC")
+    List<RecruitArticle> defaultGetRecruitArticle();
 
     //根据指定排序条件获取帖子列表
-
     @Select("SELECT * FROM recruit_article ORDER BY ${order_by_sql};")
     List<RecruitArticle> getRecruitArticleListOrderly(@Param("order_by_sql")String order_by_sql);
 

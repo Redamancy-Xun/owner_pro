@@ -55,7 +55,13 @@ public class UpdateArticleController {
                                 @RequestParam(value = "finish", required = false) @Validated Integer finish){
 
         RecruitArticle article = articleService.getRecruitArticleByArticleId(article_id);
-        Integer user_id = article.getUser_id();
+
+        Integer id;
+        if (article.getAdmin_id() != 0)
+            id = article.getAdmin_id();
+        else
+            id = article.getUser_id();
+
         Integer top = article.getTop();
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);
@@ -65,7 +71,7 @@ public class UpdateArticleController {
                 directionJson, tagJson, content, start_time, end_time, contact, finish);
         articleService.updateRecruitArticleByArticleId(articleNew);
 
-        return Result.success("更新成功", new ShowArticleResponse(articleNew, user_id, top));
+        return Result.success("更新成功", new ShowArticleResponse(articleNew, id, top));
     }
 
     //设置一个帖子的完成状态
