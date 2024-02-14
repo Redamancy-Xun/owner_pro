@@ -59,15 +59,11 @@ public class AdminInfo {
         String username = principal.getUsername();
         Integer admin_id = principal.getId();
 
-        Page<RecruitArticle> articles = articleService.getRecruitArticleByAdminId(pageNum, pageSize, admin_id);
-        List<ShowArticleResponse> articleResponse = new ArrayList<>();
-        for (RecruitArticle article : articles.getItems()) {
-            articleResponse.add(new ShowArticleResponse(article));
-        }
+        Page<ShowArticleResponse> articles = articleService.getRecruitArticleByAdminId(pageNum, pageSize, admin_id);
 
         Object[] result = new Object[2];
         result[0] = new GetAdminResponse(adminService.getAdminByUsername(username), principal.getType());
-        result[1] = articleResponse;
+        result[1] = articles;
 
         return Result.success("获取成功", result);
     }

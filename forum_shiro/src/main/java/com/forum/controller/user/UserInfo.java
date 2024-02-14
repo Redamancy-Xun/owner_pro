@@ -59,15 +59,11 @@ public class UserInfo {
         String username = principal.getUsername();
         Integer user_id = principal.getId();
 
-        Page<RecruitArticle> articles = articleService.getRecruitArticleByUserId(pageNum, pageSize, user_id);
-        List<ShowArticleResponse> articleResponse = new ArrayList<>();
-        for (RecruitArticle article : articles.getItems()) {
-            articleResponse.add(new ShowArticleResponse(article));
-        }
+        Page<ShowArticleResponse> articles = articleService.getRecruitArticleByUserId(pageNum, pageSize, user_id);
 
         Object[] result = new Object[2];
         result[0] = new GetUserResponse(userService.getUserByUsername(username), principal.getType());
-        result[1] = articleResponse;
+        result[1] = articles;
 
         return Result.success("获取成功", result);
     }

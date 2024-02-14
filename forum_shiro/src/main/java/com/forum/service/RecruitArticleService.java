@@ -17,10 +17,10 @@ public interface RecruitArticleService {
     RecruitArticle getRecruitArticleByArticleId(Integer article_id);
 
     //根据user_id获取article
-    Page<RecruitArticle> getRecruitArticleByUserId(Integer pageNum, Integer pageSize, Integer user_id);
+    Page<ShowArticleResponse> getRecruitArticleByUserId(Integer pageNum, Integer pageSize, Integer user_id);
 
     //根据admin_id获取article
-    Page<RecruitArticle> getRecruitArticleByAdminId(Integer pageNum, Integer pageSize, Integer admin_id);
+    Page<ShowArticleResponse> getRecruitArticleByAdminId(Integer pageNum, Integer pageSize, Integer admin_id);
 
     //根据指定排序顺序获取帖子列表
     List<RecruitArticle> getRecruitArticleListOrderly(String orderly_by_sql);

@@ -1,6 +1,5 @@
 package com.forum.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.forum.common.Page;
 import com.forum.common.EnumExceptionType;
 import com.forum.controller.request.UpdateArticleMessageRequest;
@@ -11,8 +10,6 @@ import com.forum.mapper.RecruitArticleMapper;
 import com.forum.service.RecruitArticleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import io.swagger.annotations.ApiModelProperty;
-import io.swagger.models.auth.In;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,22 +46,32 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
 
     //根据user_id获取articles
     @Override
-    public Page<RecruitArticle> getRecruitArticleByUserId(Integer pageNum, Integer pageSize, Integer user_id) {
+    public Page<ShowArticleResponse> getRecruitArticleByUserId(Integer pageNum, Integer pageSize, Integer user_id) {
         PageHelper.startPage(pageNum, pageSize);
         List<RecruitArticle> articlesList = recruitArticleMapper.getRecruitArticleByUserId(user_id);
         if (articlesList == null)
             throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
-        return new Page<>(new PageInfo<>(articlesList));
+        List<ShowArticleResponse> articleResponse = new ArrayList<>();
+        for (RecruitArticle article : articlesList) {
+            articleResponse.add(new ShowArticleResponse(article));
+        }
+
+        return new Page<>(new PageInfo<>(articleResponse));
     }
 
     //根据admin_id获取articles
     @Override
-    public Page<RecruitArticle> getRecruitArticleByAdminId(Integer pageNum, Integer pageSize, Integer admin_id) {
+    public Page<ShowArticleResponse> getRecruitArticleByAdminId(Integer pageNum, Integer pageSize, Integer admin_id) {
         PageHelper.startPage(pageNum, pageSize);
         List<RecruitArticle> articlesList = recruitArticleMapper.getRecruitArticleByAdminId(admin_id);
         if (articlesList == null)
             throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
-        return new Page<>(new PageInfo<>(articlesList));
+        List<ShowArticleResponse> articleResponse = new ArrayList<>();
+        for (RecruitArticle article : articlesList) {
+            articleResponse.add(new ShowArticleResponse(article));
+        }
+
+        return new Page<>(new PageInfo<>(articleResponse));
     }
 
     //根据指定顺序获取article列表
