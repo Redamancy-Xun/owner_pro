@@ -1,5 +1,7 @@
 package com.forum.controller.article;
 
+import com.forum.controller.response.ShowArticleResponse;
+import com.forum.entity.RecruitArticle;
 import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.common.Result;
 import io.swagger.annotations.Api;
@@ -51,6 +53,18 @@ public class ShowArticleController {
         }
 
         return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
+    }
+
+    //展示帖子详情
+    @RequiresRoles("online")
+    @GetMapping("/articleDetail/{article_id}")
+    @ApiOperation("帖子详情")
+    @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")
+    public Result topArticle(@PathVariable(value = "article_id")Integer article_id) {
+
+        RecruitArticle article = articleService.getRecruitArticleByArticleId(article_id);
+
+        return Result.success("成功显示", new ShowArticleResponse(article));
     }
 
 }
