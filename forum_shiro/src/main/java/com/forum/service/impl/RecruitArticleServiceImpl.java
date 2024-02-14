@@ -140,11 +140,11 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
     }
 
     @Override
-    public List<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
+    public Page<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
                                                               List<String> direction, List<String> tag, Integer finish) {
         List<RecruitArticle> articleList = recruitArticleMapper.defaultGetRecruitArticle();
         List<ShowArticleResponse> articleResponseList = new ArrayList<>();
-        int count = 0;
+        long count = 0;
         for (RecruitArticle article : articleList) {
             ShowArticleResponse articleResponse = new ShowArticleResponse(article);
             if (new HashSet<>(articleResponse.getType()).containsAll(type)
@@ -153,12 +153,20 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
                     && (Objects.equals(articleResponse.getFinish(), finish) || finish == null)) {
 
                 count++;
-                if (count >= (pageNum - 1) * pageSize && count < pageNum * pageSize) {
+                if (count >= (long) (pageNum - 1) * pageSize && count < (long) pageNum * pageSize) {
                     articleResponseList.add(articleResponse);
                 }
             }
         }
-        return articleResponseList;
+
+        Page<ShowArticleResponse> responsePage = new Page<>();
+        responsePage.setPageNum(pageNum);
+        responsePage.setPageSize(pageSize);
+        responsePage.setTotal(count);
+        responsePage.setPages((int) ((count - 1) / pageSize) + 1);
+        responsePage.setItems(articleResponseList);
+
+        return responsePage;
     }
 
 

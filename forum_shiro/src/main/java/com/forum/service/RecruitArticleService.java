@@ -44,7 +44,7 @@ public interface RecruitArticleService {
     RecruitArticle unfinishRecruitArticleByArticleId(Integer article_id);
 
     //默认获取帖子
-    List<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
+    Page<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
                                                        List<String> direction, List<String> tag, Integer finish);
 
 }
