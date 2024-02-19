@@ -143,6 +143,7 @@
                     method: 'POST',
                     body: formData
                 })
+                    .then(response => response.json())  // 解析JSON
                     .then(data => {
                         console.log(data);
                         alert(data.message);
