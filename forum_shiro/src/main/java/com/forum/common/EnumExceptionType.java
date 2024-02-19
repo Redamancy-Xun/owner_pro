@@ -19,7 +19,9 @@ public enum EnumExceptionType {
     PERMISSION_NOT_EXIST(1008, "无相关权限"),
     AUTHORIZATION_EXCEPTION(1009, "认证失败"),
     ADMIN_NOT_EXIST(1010,"管理员不存在"),
-    STUDENTID_USED(1011,"学号已被使用");
+    STUDENTID_USED(1011,"学号已被使用"),
+    ARTICLE_EMPTY(1012,"没有帖子")
+    ;
 
     private final int errorCode;
 

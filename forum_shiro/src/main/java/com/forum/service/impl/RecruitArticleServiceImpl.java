@@ -154,9 +154,9 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
         long count = 0;
         for (RecruitArticle article : articleList) {
             ShowArticleResponse articleResponse = new ShowArticleResponse(article);
-            if (new HashSet<>(articleResponse.getType()).containsAll(type)
-                    && new HashSet<>(articleResponse.getDirection()).containsAll(direction)
-                    && new HashSet<>(articleResponse.getTag()).containsAll(tag)
+            if ((type == null || new HashSet<>(articleResponse.getType()).containsAll(type))
+                    && (direction == null || new HashSet<>(articleResponse.getDirection()).containsAll(direction))
+                    && (tag == null || new HashSet<>(articleResponse.getTag()).containsAll(tag))
                     && (Objects.equals(articleResponse.getFinish(), finish) || finish == null)) {
 
                 count++;

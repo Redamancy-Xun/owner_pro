@@ -2,6 +2,7 @@ package com.forum.controller.article;
 
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.entity.RecruitArticle;
+import com.forum.exception.MyException;
 import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.common.Result;
 import io.swagger.annotations.Api;
@@ -51,8 +52,11 @@ public class ShowArticleController {
         if(pageSize == null || pageSize < 1){
             pageSize = 10;
         }
-
-        return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
+        try{
+            return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
+        }catch (MyException e) {
+            return Result.result(e.getEnumExceptionType());
+        }
     }
 
     //展示帖子详情
