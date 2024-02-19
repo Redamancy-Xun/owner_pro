@@ -139,7 +139,7 @@
                 formData.append('username', username);
                 formData.append('password', password);
 
-                fetch('http://localhost:8080/login', {
+                fetch('http://116.62.103.210:8080/login', {
                     method: 'POST',
                     body: formData
                 })
@@ -147,7 +147,7 @@
                         console.log(data);
                         alert(data.message);
                         if (data.code == 0) {
-                            window.location.href = "homePage.html";//首页地址   
+                            window.location.href = "index.html";//首页地址   
                         } else {
                             document.getElementById('feedbackMessage').innerText = data.message;
                         }
