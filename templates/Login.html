@@ -147,6 +147,9 @@
                     .then(data => {
                         console.log(data);
                         if (data.code == 0) {
+                            var expiryDate = new Date();
+                            expiryDate.setDate(expiryDate.getDate() + 7); // 设置cookie为 7天后过期
+                            document.cookie = "login=true; expires=" + expiryDate.toUTCString() + "; path=/";
                             setTimeout(function () { window.location.href = "index.html"; }, 1000
                             );
                         } else {
