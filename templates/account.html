@@ -358,10 +358,7 @@
         let pageNum=1;
         
         fetch('http://116.62.103.210:8080/userInfo?pageSize=${pageSize}&pageNum=${pageNum}',{//获取个人信息，以及创作中心请求展示帖子
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },//请求头定义为json
+                method: 'GET'
             }) // 后端接口地址
             .then(response => response.json())//转换json数据
             .then(data => {
