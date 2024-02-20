@@ -20,7 +20,11 @@ public enum EnumExceptionType {
     AUTHORIZATION_EXCEPTION(1009, "认证失败"),
     ADMIN_NOT_EXIST(1010,"管理员不存在"),
     STUDENTID_USED(1011,"学号已被使用"),
-    ARTICLE_EMPTY(1012,"没有帖子")
+    ARTICLE_EMPTY(1012,"没有帖子"),
+    FILE_FORMAT_ERROE(1013,"文件格式错误"),
+    EMPTY_FILE(1014,"文件为空"),
+    PORTRAIT_UPDATE_FAILED(1015,"更新失败"),
+    NULL_PRINCIPLE(1016,"实体为空")
     ;
 
     private final int errorCode;

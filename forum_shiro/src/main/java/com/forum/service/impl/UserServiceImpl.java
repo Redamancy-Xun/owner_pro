@@ -12,7 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -147,6 +150,37 @@ public class UserServiceImpl implements UserService {
         }
 
         return true;
+    }
+
+    @Override
+    public String uploadPortrait(MultipartFile multipartFile, Integer id) {
+
+        String root = "/var/www/html/image/";
+        User user = userMapper.getUserById(id);
+
+        if (user == null) throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        if (multipartFile == null) throw new MyException(EnumExceptionType.EMPTY_FILE);
+        if (!("image/png".equals(multipartFile.getContentType()))
+                && !("image/jpeg".equals(multipartFile.getContentType())))
+            throw new MyException(EnumExceptionType.FILE_FORMAT_ERROE);
+
+        String oldPortrait = user.getHeadportrait();
+        String originalFilename = multipartFile.getOriginalFilename();
+        String path = root +originalFilename;
+        user.setHeadportrait(path);
+        userMapper.updateUserHeadportrait(user.getHeadportrait(),user.getId());
+        File destFile = new File(path);
+        try {
+            multipartFile.transferTo(destFile);
+        }catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String newPortrait = userMapper.getUserById(id).getHeadportrait();
+        if (newPortrait==null || oldPortrait.equals(newPortrait) )
+            throw new MyException(EnumExceptionType.PORTRAIT_UPDATE_FAILED);
+
+        return "http://116.62.103.210/image/"+originalFilename;
     }
 
 }

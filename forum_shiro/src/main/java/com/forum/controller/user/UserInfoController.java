@@ -2,12 +2,9 @@ package com.forum.controller.user;
 
 import com.forum.common.Page;
 import com.forum.common.Result;
-import com.forum.controller.response.GetAdminResponse;
 import com.forum.controller.response.GetUserResponse;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.dto.UserDTO;
-import com.forum.entity.RecruitArticle;
-import com.forum.service.impl.AdminServiceImpl;
 import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.service.impl.UserServiceImpl;
 import io.swagger.annotations.Api;
@@ -22,13 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 @Slf4j
 @Api("用户个人信息 Controller")
-public class UserInfo {
+public class UserInfoController {
 
     @Autowired
     private UserServiceImpl userService;
