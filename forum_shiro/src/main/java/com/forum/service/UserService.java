@@ -3,6 +3,7 @@ package com.forum.service;
 import com.forum.controller.request.UpdateUserMessageRequest;
 import com.forum.entity.User;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -47,4 +48,6 @@ public interface UserService {
 
     //检查邮箱格式是否正确
     Boolean checkEmailForm(String email);
+
+    String uploadPortrait(MultipartFile multipartFile,Integer id);
 }
