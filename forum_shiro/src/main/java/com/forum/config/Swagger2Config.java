@@ -75,8 +75,8 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("物流平台 API Documentation")
-                .description("物流平台接口文档")
+                .title("forum API Documentation")
+                .description("接口文档")
 //                .termsOfServiceUrl("http://localhost:8081/swagger-ui.html")//数据源
                 .version("1.0")
                 .build();
