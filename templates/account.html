@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博远-个人信息页</title>
+</head>
+
+<style>
+* {
+     margin: 0;
+     padding: 0;
+ }
+ 
+ html {
+     height: 100%;
+ }
+
+ body {
+     height: 100%;
+ }
+
+ .container {
+     height: 100%;
+     background-color: rgb(245, 246, 254);
+ }
+
+ li{
+    list-style: none;
+ }
+
+ .header{
+    height: 5.22%;
+    width: 100%;
+    margin: auto;
+    background-color: rgb(168, 220, 254);
+    border-bottom: #9b9b9b solid 1px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+ }
+ .logo{
+    height: 100%;
+    padding: 0 0.98%;
+    float: left;
+    margin-left: 19.6%;
+    background-color: rgb(168, 220, 254);
+ }
+ .logo img{
+    max-width: 100%;
+    max-height: 100%;
+ }
+.nav{
+    float: left;
+    height: 100%;
+    padding: 0 0.98%;
+    margin-left: 0.32%;
+    font-size: 20px;
+    text-align: center;
+}
+.nav ul li{
+    float: left;
+    padding: 2 2px;
+}
+.nav ul li a{
+    display: block;
+    height: 53px;
+    width: 100%;
+    padding: 0 15px;
+    margin-left: 2px;
+    margin-right: 2px;
+    line-height: 53px;
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+}
+.nav ul li a:hover{
+    padding: 0 13px;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 20px;
+    color: #0055ff;
+    border-bottom: 2px solid #0055ff;
+}
+
+.user{
+    float: left;
+    height: 100%;
+    width: 2.45%;
+    padding: 20 0px;
+    margin-left: 33.33%;
+    line-height: 100%;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+}
+.user img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.user-name{
+    float: left;
+    height: 100%;
+    padding-top: 0.98%;
+    margin-left: 1%;
+    line-height: 100%;
+    font-size: 16px;
+    color: #4e4e4e;
+}
+
+
+.smallhead{
+    height: 200px;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 5px;
+    background-image: linear-gradient(to bottom, rgb(195, 215, 250), rgb(249, 250, 252));
+    box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+ }
+ .headportrait{
+    float: left;
+    height: 80%;
+    width: 15.7%;
+    margin-top: 20px;
+    margin-left: 2%;
+    box-shadow: 0 0 15px rgb(255, 255, 255);
+ }
+    .headportrait img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+    .headportrait:hover{
+        cursor: pointer;
+    }
+ .username{
+    float: left;
+    width: 70%;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 60px;
+    margin-top: 30px;
+ }
+ .signature{
+    float: left;
+    width: 60%;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 2px;
+ }
+
+.account-wrapper {
+     float: left;
+     background-color: #fff;
+     width: 25%;
+     height: 700px;
+     border-radius: 10px;
+     padding: 0 50px;
+     margin-left: 25%;
+     margin-top: 10px;
+     box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+
+ }
+ .header2 {
+     float: left;
+     margin-left: 38%;
+     font-size: 28px;
+     font-weight: bold;
+     text-align: center;
+     line-height: 60px;
+ }
+ .change-btn{
+    float: left;
+    margin-top: 3%;
+    margin-left: 20%;
+    width: 20%;
+    padding: 5px;
+    font-size: 17px;
+    border-radius: 3px;
+    color: #0e7fff;
+    border-color: #0e7fff;
+    background-color: #fff;
+ }
+    .change-btn:hover{
+            cursor: pointer;
+            outline: none;
+        }
+.yhm{
+    margin-top: 12%;
+}
+ .input-item {
+     display: block;
+     width: 100%;
+     margin-bottom: 20px;
+     border: 0;
+     padding: 10px;
+     border-bottom: 1px solid rgb(128, 125, 125);
+     font-size: 15px;
+     outline: none;
+ }
+ .input-item:placeholder {
+     text-transform: uppercase;
+ }
+ input[disabled] {
+  background-color: #f4f4f4; /* 设置禁用状态下的背景颜色 */
+  border: none;
+}
+ .xuehaoxingmin{
+     display: block;
+     width: 100%;
+     margin-bottom: 10px;
+     border: 0;
+     padding: 10px;
+     font-weight: bold;
+     font-size: 15px;
+     outline: none;
+ }
+ .btn {
+     text-align: center;
+     padding: 10px;
+     width: 100%;
+     margin-top: 20px;
+     background-color: rgb(110, 195, 249);
+     color: rgb(255, 255, 255);
+     font-size: 18px;
+     border: none;
+     outline: none;
+ }
+    .btn:hover{
+        background-color:rgb(42, 168, 253) ;
+        cursor: pointer;
+    }
+
+ .create-wrapper{
+     float: left;
+     background-color: #fff;
+     width: 17.2%;
+     height: 700px;
+     border-radius: 10px;
+     padding: 0 10px;
+     margin-left: 1%;
+     margin-top: 10px;
+     box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+ }
+.create-btn{
+    background-color: #ffffffea;
+    margin-top: 10px;
+    margin-left:20%;
+    width: 60%;
+    height: 50px;
+    color: #0e7fff;
+    font-size: 17px;
+    border-radius: 3px;
+    border-color: #0e7fff;
+    outline: none;
+ }
+ .create-btn:hover{
+    cursor: pointer;
+ }
+ .article-wrapper{
+    width: 94%;
+    height: 500px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 3%;
+    background-color: rgb(255, 255, 255);
+    font-size: 14px;
+ }
+ .article{
+    width: 100%;
+    height: 28%;
+    border-radius: 5px;
+    margin-top: 5%;
+    background-image: linear-gradient(to bottom, rgb(210, 225, 252), rgb(239, 243, 250));
+ }
+ .lastp{
+    float: left;
+    margin-top: 10%;
+    margin-left: 5%;
+ }
+ .nextp{
+    float: left;
+    margin-top: 10%;
+    margin-left: 50%;
+ }
+ .page{
+    float:right;
+    margin-top: 10%;
+    margin-right: 5%;
+ }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header"><!--导航栏-->
+            <div class="logo">
+                <img src="logo.png" alt="">
+            </div>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="首页.html">首页</a></li>
+                    <li><a href="account.html">个人中心</a></li>
+                </ul>
+            </div>
+            <div class="user">
+                <img src="user.png" alt="">
+            </div>
+            <div class="user-name">用户名</div>
+        </div>
+
+        <div class="smallhead"><!--头像用户名签名-->
+            <div class="headportrait"><img src="user.png" alt=""></div>
+            <div class="username">向服务器查询用户名</div><br>
+            <div class="signature">这个人很懒，还没有个性签名~</div>
+        </div>
+
+        <div class="account-wrapper">
+            <div class="header2">个人信息</div><button type="button" onclick="toggleInput()" class="change-btn" id="change-btn">我要修改</button>
+            <div class="form-wrapper"><!--展示个人信息并可以修改-->
+                <form action="http://116.62.103.210:8080/update" method="post" name="更新个人信息表单" id="update-form">
+                    <div class="yhm">用户名：</div>
+                    <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item" value="向服务器查询用户名" disabled>
+                    密码：<input type="password" id="password" name="password" placeholder="密码（6~20）位" class="input-item" value="向服务器查询密码" disabled>
+                    确认密码（修改用）：<input type="password" id="password2" name="password2" placeholder="密码（6~20）位" class="input-item" value="向服务器查询密码" disabled>
+                    学号：<div class="xuehaoxingmin" id="studentid">向服务器查询学号</div>
+                    姓名：<div class="xuehaoxingmin" id="studentname">向服务器查询姓名</div>
+                    邮箱（选填）：<input type="text" id="email" name="email" placeholder="邮箱" class="input-item" value="向服务器查询邮箱" disabled>
+                    生日（选填）：<input type="date" id="birthday" name="birthday" placeholder="生日" class="input-item" value="向服务器查询生日" disabled>
+                    <input type="submit" class="btn" id="submit" value="提交修改" > 
+                </form>
+            </div>
+            <div id="feedbackMessage"></div>
+        </div>
+
+        <div class="create-wrapper"><!--创作中心板块-->
+            <div class="header2">创作中心</div>
+            <button class="create-btn">发布帖子</button>
+            <div class="article-wrapper">
+                <div class="article" id="article1">
+                    没有更多帖子了哦
+                </div>
+                <div class="article" id="article2">
+                    没有更多帖子了哦
+                </div>
+                <div class="article" id="article3">
+                    没有更多帖子了哦
+                </div>
+                <button class="lastp">上一页</button>
+                <button class="nextp">下一页</button>
+                <div class="page">页/码</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //准备提交创作中心的页数和一页显示数
+            
+        let pageSize=3;
+        let pageNum=1;
+        
+        fetch('http://116.62.103.210:8080/userInfo?pageSize=${pageSize}&pageNum=${pageNum}',{//获取个人信息，以及创作中心请求展示帖子
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },//请求头定义为json
+            }) // 后端接口地址
+            .then(response => response.json())//转换json数据
+            .then(data => {
+                console.log(data)// 打印 JSON 数据
+                //选取个人信息的各板块
+                let username = document.getElementById('username');
+                let password = document.getElementById('password');
+                let studentid = document.getElementById('studentid');
+                let studentname = document.getElementById('studentname');
+                let email = document.getElementById('email');
+                let birthday = document.getElementById('birthday');
+                //展示个人信息
+                username.value = data.result[1].username
+                password.value = data.result[1].password
+                studentid.value = data.result[1].studentid
+                studentname.value = data.result[1].studentname
+                email.value = data.result[1].email
+                birthday.value = data.result[1].birthday
+
+                //分别提取items中的四组帖子的数据
+                let firstData = data.result[1].items[0];
+                let secondData = data.result[1].items[1];
+                let thirdData = data.result[1].items[2];
+                //分别选取四个帖子的展示框
+                let firstDiv = document.getElementById('article1');
+                let secondDiv = document.getElementById('article2');
+                let thirdDiv = document.getElementById('article3');
+                //在各自展示框中显示帖子数据
+                firstDiv.innerHTML = `
+                    <p class="zhuti">${firstData.content}</p>
+                    <p>开始时间: ${firstData.start_time}  截止时间: ${firstData.end_time}</p>
+                    <p>任务类型：${firstData.type}  需求方向：${firstData.direction}  技术栈：${firstData.tag}</p>
+                    <p>联系方式：${firstData.contact}</p>
+                    <p>完成状态：${firstData.finish}</p>
+                    <p>上次更新时间：${firstData.update_date}</p>
+                    `;
+                secondDiv.innerHTML = `
+                    <p class="zhuti">${secondData.content}</p>
+                    <p>开始时间: ${secondData.start_time}  截止时间: ${secondData.end_time}</p>
+                    <p>任务类型：${secondData.type}  需求方向：${secondData.direction}  技术栈：${secondData.tag}</p>
+                    <p>联系方式：${secondData.contact}</p>
+                    <p>完成状态：${secondData.finish}</p>
+                    <p>上次更新时间：${secondData.update_date}</p>
+                    `;
+                thirdDiv.innerHTML = `
+                    <p class="zhuti">${thirdData.content}</p>
+                    <p>开始时间: ${thirdData.start_time}  截止时间: ${thirdData.end_time}</p>
+                    <p>任务类型：${thirdData.type}  需求方向：${thirdData.direction}  技术栈：${thirdData.tag}</p>
+                    <p>联系方式：${thirdData.contact}</p>
+                    <p>完成状态：${thirdData.finish}</p>
+                    <p>上次更新时间：${thirdData.update_date}</p>
+                    `;
+
+            }) 
+            .catch(error => {
+                console.error('Error:', error)
+                alert('出错啦！请稍后再试。')
+            })
+
+        function toggleInput() {//切换表单可否填写的按钮 “我要修改”/“保存修改”
+            let username = document.getElementById("username");
+            if (username.disabled) {
+                username.disabled = false;
+                document.getElementById("change-btn").innerHTML = "保存修改";
+            } else {
+                username.disabled = true;
+                document.getElementById("change-btn").innerHTML = "我要修改";
+            }
+            let password = document.getElementById("password");
+            if (password.disabled) {
+                password.disabled = false;
+            } else {
+                password.disabled = true;
+            }
+            let password2 = document.getElementById("password2");
+            if (password2.disabled) {
+                password2.disabled = false;
+            } else {
+                password2.disabled = true;
+            }
+            let email = document.getElementById("email");
+            if (email.disabled) {
+                email.disabled = false;
+            } else {
+                email.disabled = true;
+            }
+            let birthday = document.getElementById("birthday");
+            if (birthday.disabled) {
+                birthday.disabled = false;
+            } else {
+                birthday.disabled = true;
+            }
+            let submit = document.getElementById("submit");
+            if (submit.disabled) {
+                submit.disabled = false;
+            } else {
+                submit.disabled = true;
+            }
+            }
+
+        document.getElementById('update-form').addEventListener('submit', function (event){//“提交修改” 按钮
+            event.preventDefault()//阻止默认提交
+            //获取各参数信息
+            let username = document.getElementById('username').value
+            let password = document.getElementById('password').value
+            let password2 = document.getElementById('password2').value
+
+            console.log(username,password)//控制台查看
+
+            //判断长度(暂定)
+            let usernameInput = document.getElementById('username')
+            if (username.length < 2||username.length > 20){
+                console.log('用户名长度需为2~20位')               
+                usernameInput.style.borderColor = "red"
+                usernameInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·用户名长度需为2~20位'
+                return//阻止代码进行
+            }
+            else {
+                usernameInput.style.borderColor = "black"
+                usernameInput.style.backgroundColor = "white";
+            }
+
+            let passwordInput = document.getElementById('password')
+            if (password.length < 6||password.length > 20){
+                console.log('密码长度需为6~20位')
+                passwordInput.style.borderColor = "red"
+                passwordInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·密码长度需为6~20位'
+                return//阻止代码进行
+            }
+            else {
+                passwordInput.style.borderColor = "black"
+                passwordInput.style.backgroundColor = "white";
+            }
+
+            let passwordInput2 = document.getElementById('password2')
+            if (password != password2){
+                console.log('请确认两次密码输入一致')
+                passwordInput.style.borderColor = "red"
+                passwordInput.style.backgroundColor = "pink";
+                passwordInput2.style.borderColor = "red"
+                passwordInput2.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·请确认两次密码输入一致'
+                return//阻止代码进行
+            }
+            else {
+                passwordInput.style.borderColor = "black"
+                passwordInput.style.backgroundColor = "white";
+                passwordInput2.style.borderColor = "black"
+                passwordInput2.style.backgroundColor = "white";
+            }
+
+
+            fetch('http://116.62.103.210:8080/update',{
+                method: 'POST',
+                body: new FormData(document.getElementById('update-form'))
+            }) // 后端接口地址
+            .then(response => response.json())//转换json数据
+            .then(data => {
+                console.log(data)// 打印 JSON 数据
+                alert(data.message)//打印message内容
+            }) 
+            .catch(error => {
+                console.error('Error:', error)
+                alert('出错啦！请稍后再试。')
+            })
+        })
+    </script>
+</body>
+</html>

@@ -18,7 +18,7 @@ public class CorsConfig {
         corsConfiguration.addAllowedHeader("*"); // 2
         corsConfiguration.addAllowedMethod("*"); // 3
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("http://localhost:8080"); // 1
+        corsConfiguration.addAllowedOrigin("http://116.62.103.210:8080"); // 1
         return corsConfiguration;
     }
 

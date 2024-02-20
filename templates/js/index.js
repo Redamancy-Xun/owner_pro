@@ -28,6 +28,8 @@ $index = {
             data: {
                 pageSize: 10,
                 pageNum: that.data.page
+
+
             },
             ok: function (res) {
                 // 渲染数据
