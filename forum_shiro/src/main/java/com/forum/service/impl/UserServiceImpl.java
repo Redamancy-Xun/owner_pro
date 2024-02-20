@@ -164,10 +164,9 @@ public class UserServiceImpl implements UserService {
                 && !("image/jpeg".equals(multipartFile.getContentType())))
             throw new MyException(EnumExceptionType.FILE_FORMAT_ERROE);
 
-        String oldPortrait = user.getHeadportrait();
         String originalFilename = multipartFile.getOriginalFilename();
         String path = root +originalFilename;
-        user.setHeadportrait(path);
+        user.setHeadportrait(originalFilename);
         userMapper.updateUserHeadportrait(user.getHeadportrait(),user.getId());
         File destFile = new File(path);
         try {
