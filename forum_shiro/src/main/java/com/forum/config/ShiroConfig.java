@@ -63,6 +63,8 @@ public class ShiroConfig {
         hashMap.put("/signup", "anon");
         hashMap.put("/signup/admin", "anon");
         hashMap.put("/account/user/all", "roles[user]");
+        hashMap.put("/article","anon");
+        hashMap.put("/userInfo","anon");
 
         //adminOrder
         hashMap.put("/admin_order/deal", "roles[admin]");
@@ -128,7 +130,7 @@ public class ShiroConfig {
      * 配置shiro redisManager
      * 使用的是shiro-redis开源插件
      *
-     * @return
+     * @return 1
      */
     @Bean
     public RedisManager redisManager() {

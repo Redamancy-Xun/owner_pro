@@ -7,26 +7,28 @@ import org.springframework.http.HttpMethod;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.Collections;
 
 
 @Configuration
 public class CorsConfig {
 
-    private CorsConfiguration buildConfig() {
-        CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("*"); // 1
-        corsConfiguration.addAllowedHeader("*"); // 2
-        corsConfiguration.addAllowedMethod("*"); // 3
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.addAllowedOrigin("http://116.62.103.210:8080"); // 1
-        return corsConfiguration;
-    }
-
     @Bean
     public CorsFilter corsFilter() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        //1.允许任何来源
+        corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+        //2.允许任何请求头
+        corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        //3.允许任何方法
+        corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
+        //4.允许凭证
+        corsConfiguration.setAllowCredentials(true);
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", buildConfig()); // 4
+        source.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(source);
     }
-
 }
