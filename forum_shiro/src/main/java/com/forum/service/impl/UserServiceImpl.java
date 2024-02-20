@@ -177,7 +177,7 @@ public class UserServiceImpl implements UserService {
         }
 
         String newPortrait = userMapper.getUserById(id).getHeadportrait();
-        if (newPortrait==null || oldPortrait.equals(newPortrait) )
+        if (newPortrait==null)
             throw new MyException(EnumExceptionType.PORTRAIT_UPDATE_FAILED);
 
         return "http://116.62.103.210/image/"+originalFilename;
