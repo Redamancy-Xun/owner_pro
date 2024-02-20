@@ -5,20 +5,20 @@ $index = {
         list: $('#indexList'),
         more: $('.loadmore')
     },
-    init: function () {
+    init: function(){
         this.bind();
         this.loadList();
     },
-    bind: function () {
+    bind: function(){
         var that = this;
         // 点击加载更多
-        that.data.more.click(function () {
-            if (!that.data.over) {
+        that.data.more.click(function(){
+            if(!that.data.over){
                 that.loadList();
             }
         });
     },
-    loadList() {
+    loadList(){
         var that = this;
         that.data.page++;
         that.data.more.html('加载中...');
@@ -31,49 +31,47 @@ $index = {
 
 
             },
-            ok: function (res) {
+            ok: function(res){
                 // 渲染数据
-                that.listShow(res.data);
-                if (that.data.page >= res.pageCount) {
+                that.listShow(res.result.items);
+                if(that.data.page >= res.result.pages){
                     that.data.over = true;
                     that.data.more.html('已加载全部');
-                } else {
+                }else{
                     that.data.more.html('加载更多&gt;&gt;');
                 }
             }
         });
     },
-    listShow: function (list) {
+    listShow: function(list){
         var html = '';
         // 遍历数据
-        for (var i = 0; i < list.length; i++) {
+        for(var i=0;i<list.length;i++){
             html += this.listItem(list[i]);
         }
         this.data.list.append(html);
     },
-    listItem: function (info) {
+    listItem: function(info){
         // 显示数据页面
         var html = '';
         html += '<div class="comment">';
         html += '    <div class="peo_info">';
         html += '        <div class="peo_desc">';
-        html += '            <img src="' + info.usericon + '" class="comment_logo" />';
         html += '            <ul>';
-        html += '                <li class="base_comment"><a href="#">' + info.username + '</a> • ' + info.time + '</li>';
-        html += '                <li class="title_comment"><a href="./detail.html?id=' + info.id + '">' + info.title + '</a></li>';
+        html += '                <li class="base_comment"><em>'+info.type.join('</em><em>')+'</em><span>'+info.update_date+'</span></li>';
+        html += '                <li class="title_comment">'+(info.top ? '<em class="top">置顶</em>' : '')+'<em class="finishe">'+(info.finishe ? '已' : '未')+'完成</em>'+info.direction.join(' • ')+' • '+info.tag.join(' • ')+'</li>';
         html += '            </ul>';
         html += '        </div>';
         html += '    </div>';
         html += '    <div class="comment_content">';
-        html += '       <div>';
-        html += '            <img src="' + info.image + '" class="content_logo" />';
-        html += '       </div>';
         html += '        <div class="content_area">';
-        html += '            <p class="ellipsis3">' + info.miaoshu + '...</p>';
-        html += '            <p><a href="./detail.html?id=' + info.id + '" class="show_all">查看详情</a></p>';
+        html += '            <p class="ellipsis3">'+info.content+'...</p>';
+        html += '            <p>开始时间：'+info.start_time+'</p>';
+        html += '            <p>结束时间：'+info.end_time+'</p>';
+        html += '            <p>联系方式：'+info.contact+'</p>';
+        html += '            <p><a href="./detail.html?id='+info.article_id+'" class="show_all">查看详情</a></p>';
         html += '        </div>';
-        /*
-        html += '        <div class="content_bottom">';
+        /*html += '        <div class="content_bottom">';
         html += '            <ul>';
         html += '                <li class="content_item">';
         html += '                    <a href="#"> <i class="sprite sprite-love"></i>喜欢</a>';

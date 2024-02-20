@@ -3,45 +3,45 @@ $index = {
         id: 0,
         html: $('#content')
     },
-    init: function () {
+    init: function(){
         this.bind();
         this.loadList();
     },
-    bind: function () {
+    bind: function(){
         var that = this;
         that.data.id = $common.getQuery('id');
         console.log('id', that.data.id)
     },
-    loadList() {
+    loadList(){
         var that = this;
         // 获取详情数据
         $common.getHttp({
-            url: './json/detail.json',
-            data: {
-                id: that.data.id
-            },
-            ok: function (res) {
+            url: 'articleDetail/' + that.data.id,
+            ok: function(res){
                 // 渲染数据
-                that.infoShow(res.data);
+                that.infoShow(res.result);
             }
         });
     },
-    infoShow: function (info) {
+    infoShow: function(info){
         // 显示数据页面
-        document.title = info.title;
         var html = '';
         html += '<div class="comment">';
         html += '    <div class="peo_info">';
         html += '        <div class="peo_desc">';
-        html += '            <img src="' + info.usericon + '" class="comment_logo" />';
         html += '            <ul>';
-        html += '                <li class="base_comment"><a href="#">' + info.username + '</a> • ' + info.time + '</li>';
-        html += '                <li class="title_comment">' + info.title + '</li>';
+        html += '                <li class="base_comment"><em>'+info.type.join('</em><em>')+'</em><span>'+info.update_date+'</span></li>';
+        html += '                <li class="title_comment">'+(info.top ? '<em class="top">置顶</em>' : '')+'<em class="finishe">'+(info.finishe ? '已' : '未')+'完成</em>'+info.direction.join(' • ')+' • '+info.tag.join(' • ')+'</li>';
         html += '            </ul>';
         html += '        </div>';
         html += '    </div>';
         html += '    <div class="comment_content">';
-        html += '        <div class="content_detail">' + info.content + '</div>';
+        html += '        <div class="content_area">';
+        html += '            <p class="ellipsis3">'+info.content+'...</p>';
+        html += '            <p>开始时间：'+info.start_time+'</p>';
+        html += '            <p>结束时间：'+info.end_time+'</p>';
+        html += '            <p>联系方式：'+info.contact+'</p>';
+        html += '        </div>';
         /*html += '        <div class="content_bottom">';
         html += '            <ul>';
         html += '                <li class="content_item">';
