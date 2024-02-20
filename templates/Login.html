@@ -146,13 +146,13 @@
                     .then(response => response.json())  // 解析JSON
                     .then(data => {
                         console.log(data);
-                        alert(data.message);
                         if (data.code == 0) {
-                            window.location.href = "index.html";//首页地址   
+                            setTimeout(function () { window.location.href = "index.html"; }, 1000
+                            );
                         } else {
+                            alert(data.message);
                             document.getElementById('feedbackMessage').innerText = data.message;
                         }
-
                     })
             } else if (username.length < 2) {
                 document.getElementById('username').style.backgroundColor = 'pink';
