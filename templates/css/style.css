@@ -19,7 +19,7 @@
 
 .header .nav{
     float: left;
-    width: 460px;
+    width: 400px;
     position: relative;
 }
 .header .nav ul li {
@@ -105,12 +105,18 @@
     font-size: 15px;
 }
 
-
+.main_title{
+    font-size: 18px;
+    line-height: 40px;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
 
 .left_content {
     float: left;
     width: 850px;
-    margin: 45px 0 0 0;
+    margin: 75px 0 0 0;
     overflow: hidden;
 }
 
@@ -178,19 +184,40 @@
 
 .peo_desc {
     position: relative;
-    padding: 0 0 0 52px;
+    padding: 0;
 }
 
 .peo_desc .base_comment {
     font-size: 13px;
     color: #999999;
 }
+.peo_desc .base_comment em{
+    background: #52aee1;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin-right: 6px;
+    font-weight: normal;
+}
 
 .peo_desc .title_comment {
     font-weight: bold;
     font-size: 15px;
     color: #2255B2;
-    margin-top: 10px;
+    margin-top: 15px;
+}
+.peo_desc .title_comment em{
+    background: #52aee1;
+    color: #fff;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 1px 4px;
+    margin-right: 6px;
+    font-weight: normal;
+}
+.peo_desc .title_comment em.top{
+    background: #f60;
 }
 
 .peo_desc .name_comment {
@@ -243,7 +270,6 @@
 .comment_content .content_area .show_all {
     text-decoration: none;
     color: #698EBF;
-    font-size: 14px;
 }
 
 .comment_content .content_area .show_all:hover {
@@ -251,10 +277,9 @@
 }
 
 .content_area {
-    height: 112px;
     width: 100%;
     font-size: 15px;
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
     color: #333;
     line-height: 1.7;
 }
