@@ -147,9 +147,19 @@
                     .then(data => {
                         console.log(data);
                         if (data.code == 0) {
-                            var expiryDate = new Date();
-                            expiryDate.setDate(expiryDate.getDate() + 7); // 设置cookie为 7天后过期
-                            document.cookie = "login=true; expires=" + expiryDate.toUTCString() + "; path=/";
+                            $.ajax({
+                                url: 'http://http://116.62.103.210:8080/login', // 后端返回 LoginResponse 对象的路由
+                                type: 'GET',
+                                success: function (loginResponse) {
+                                    // 接收后端发送的 LoginResponse 对象
+                                    sessionStorage.setItem('sessionId', loginResponse.sessionId);
+                                    sessionStorage.setItem('sessionData', JSON.stringify(loginResponse.SessionData));
+                                    console.log('LoginResponse 对象已存储在 SessionStorage 中');
+                                },
+                                error: function (error) {
+                                    console.log('请求错误: ', error);
+                                }
+                            });
                             setTimeout(function () { window.location.href = "index.html"; }, 1000
                             );
                         } else {
