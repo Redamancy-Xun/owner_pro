@@ -9,11 +9,6 @@ import com.forum.util.SessionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-<<<<<<< HEAD
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authz.annotation.RequiresRoles;
-=======
->>>>>>> 6bdd5aa2ce44cea200a1369d7b577e5191c67ff6
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,16 +23,12 @@ public class PortraitController {
     @Autowired
     UserService userService;
 
-<<<<<<< HEAD
-    @RequiresRoles("online")
-    @PostMapping(value = "/portrait", produces = "application/json")
-    @ApiOperation("上传头像")
-=======
     @Autowired
     SessionUtil sessionUtil;
 
-    @PostMapping(value = "/portrait",produces = "application/json")
->>>>>>> 6bdd5aa2ce44cea200a1369d7b577e5191c67ff6
+//    @RequiresRoles("online")
+    @PostMapping(value = "/portrait", produces = "application/json")
+    @ApiOperation("上传头像")
     public Result uploadPortrait(MultipartFile multipartFile) {
 
         SessionData sessionData = sessionUtil.getSessionData();

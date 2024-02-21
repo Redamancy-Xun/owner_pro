@@ -121,14 +121,8 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查用户名和密码是否正确
-<<<<<<< HEAD
-    @Override
-    public Boolean checkLogin(String username, String password){
-        User user = getUserByUsername(username);
-=======
     public Integer checkLogin(String username, String password){
         User user = userMapper.getUserByUsername(username);
->>>>>>> 6bdd5aa2ce44cea200a1369d7b577e5191c67ff6
         Admin admin = adminMapper.getAdminByUsername(username);
         if (user == null && admin == null)
             throw new MyException(EnumExceptionType.USER_NOT_EXIST);
