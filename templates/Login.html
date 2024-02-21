@@ -148,12 +148,12 @@
                         console.log(data);
                         if (data.code == 0) {
                             $.ajax({
-                                url: 'http://http://116.62.103.210:8080/login', // 后端返回 LoginResponse 对象的路由
+                                url: 'http://116.62.103.210:8080/login', // 后端返回 LoginResponse 对象的路由
                                 type: 'GET',
                                 success: function (loginResponse) {
                                     // 接收后端发送的 LoginResponse 对象
-                                    sessionStorage.setItem('sessionId', loginResponse.sessionId);
-                                    sessionStorage.setItem('sessionData', JSON.stringify(loginResponse.SessionData));
+                                    localStorage.setItem('sessionId', loginResponse.sessionId);
+                                    localStorage.setItem('sessionData', JSON.stringify(loginResponse.SessionData));
                                     console.log('LoginResponse 对象已存储在 SessionStorage 中');
                                 },
                                 error: function (error) {
