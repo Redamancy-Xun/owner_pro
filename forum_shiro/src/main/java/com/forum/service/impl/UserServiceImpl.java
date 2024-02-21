@@ -2,12 +2,14 @@ package com.forum.service.impl;
 
 import com.forum.common.EnumExceptionType;
 import com.forum.controller.request.UpdateUserMessageRequest;
+import com.forum.dto.SessionData;
 import com.forum.entity.Admin;
 import com.forum.entity.User;
 import com.forum.exception.MyException;
 import com.forum.mapper.AdminMapper;
 import com.forum.mapper.UserMapper;
 import com.forum.service.UserService;
+import com.forum.util.SessionUtil;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Autowired
+    private SessionUtil sessionUtil;
+
     public UserServiceImpl() {
         log.info("call new UserServiceImpl()");
     }
@@ -43,6 +48,8 @@ public class UserServiceImpl implements UserService {
             throw new MyException(EnumExceptionType.USER_ALREADY_EXIST_BUT_CAN_UPGRADE);
         if (userMapper.getUserByStudentid(user.getStudentid()) != null)
             throw new MyException(EnumExceptionType.STUDENTID_USED);
+        user.setSessionId(sessionUtil.generateSessionId());
+        user.setStatus(0);
         return userMapper.insertUser(user);
     }
 
@@ -114,16 +121,24 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查用户名和密码是否正确
-    public Boolean checkLogin(String username, String password){
-        User user = getUserByUsername(username);
+    public Integer checkLogin(String username, String password){
+        User user = userMapper.getUserByUsername(username);
         Admin admin = adminMapper.getAdminByUsername(username);
         if (user == null && admin == null)
             throw new MyException(EnumExceptionType.USER_NOT_EXIST);
         if (user != null && !user.getPassword().equals(password))
+        {
             throw new MyException(EnumExceptionType.PASSWORD_INCORRECT);
-        if (admin != null && !admin.getPassword().equals(password))
+        }else if (user != null){
+            return 0;
+        }
+        if (!admin.getPassword().equals(password))
+        {
             throw new MyException(EnumExceptionType.PASSWORD_INCORRECT);
-        return true;
+        }else {
+            return 1;
+        }
+
     }
 
     //检查用户名长度是否正确
@@ -180,6 +195,37 @@ public class UserServiceImpl implements UserService {
             throw new MyException(EnumExceptionType.PORTRAIT_UPDATE_FAILED);
 
         return "http://116.62.103.210/image/"+originalFilename;
+    }
+
+    @Override
+    public SessionData login(String username, String password,Integer role) {
+        if (role==0){
+            User user = userMapper.getUserByUsername(username);
+            if (!userMapper.login(user.getId()))
+                throw new MyException(EnumExceptionType.LOGIN_ERROR);
+            user.setSessionId(userMapper.getSessionIdByUsername(username));
+            return new SessionData(user);
+        } else if (role==1) {
+            Admin admin = adminMapper.getAdminByUsername(username);
+            return new SessionData(admin);
+        }
+        return null;
+
+    }
+
+    @Override
+    public Boolean logout(Integer id) {
+        return userMapper.logout(id);
+    }
+
+    @Override
+    public User getUserBySessionId(String sessionId) {
+        return userMapper.getUserBySessionId(sessionId);
+    }
+
+    @Override
+    public Integer getStatus(Integer id) {
+        return userMapper.getStatus(id);
     }
 
 }

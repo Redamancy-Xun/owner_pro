@@ -2,12 +2,12 @@ package com.forum.controller.account;
 
 import com.forum.common.EnumExceptionType;
 import com.forum.common.Result;
-import com.forum.dto.UserDTO;
+import com.forum.dto.SessionData;
 import com.forum.exception.MyException;
 import com.forum.service.UserService;
+import com.forum.util.SessionUtil;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,16 +22,18 @@ public class PortraitController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SessionUtil sessionUtil;
+
     @PostMapping(value = "/portrait",produces = "application/json")
     public Result uploadPortrait(MultipartFile multipartFile) {
 
-        UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
-
-        if (principal==null) throw new MyException(EnumExceptionType.LOGIN_INVALID);
-        Integer id = principal.getId();
+        SessionData sessionData = sessionUtil.getSessionData();
+        String sessionId = sessionData.getSessionId();
+        if (userService.getStatus(sessionData.getId())==0) throw new MyException(EnumExceptionType.LOGIN_INVALID);
         if (multipartFile == null) throw new MyException(EnumExceptionType.EMPTY_FILE);
-        if (id == null) throw new  MyException(EnumExceptionType.USER_NOT_EXIST);
+        if (sessionData.getId() == null) throw new  MyException(EnumExceptionType.USER_NOT_EXIST);
 
-        return Result.success("更新成功", userService.uploadPortrait(multipartFile, id));
+        return Result.success("更新成功", userService.uploadPortrait(multipartFile, sessionData.getId()));
     }
 }
