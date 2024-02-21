@@ -1,11 +1,11 @@
 package com.forum.service;
 
 import com.forum.controller.request.UpdateUserMessageRequest;
+import com.forum.dto.SessionData;
 import com.forum.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
@@ -38,7 +38,7 @@ public interface UserService {
     String getPasswordByUsername(String username);
 
     //检查用户名和密码是否正确
-    Boolean checkLogin(String username, String password);
+    Integer checkLogin(String username, String password);
 
     //检查用户名长度是否正确
     Boolean checkUsernameLength(String username);
@@ -50,4 +50,12 @@ public interface UserService {
     Boolean checkEmailForm(String email);
 
     String uploadPortrait(MultipartFile multipartFile,Integer id);
+
+    SessionData login(String username,String password,Integer role);
+
+    Boolean logout(Integer id);
+
+    User getUserBySessionId(String sessionId);
+
+    Integer getStatus(Integer id);
 }

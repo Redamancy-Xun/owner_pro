@@ -7,6 +7,7 @@ import com.forum.exception.MyException;
 import com.forum.mapper.AdminMapper;
 import com.forum.mapper.UserMapper;
 import com.forum.service.AdminService;
+import com.forum.util.SessionUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +24,15 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
 
+    @Autowired
+    private SessionUtil sessionUtil;
+
     @Override
     public int signupAdmin(Admin admin) {
         //查看用户是否已存在
         if (userMapper.getUserByUsername(admin.getUsername()) != null || adminMapper.getAdminByUsername((admin.getUsername())) != null)
             throw new MyException(EnumExceptionType.USER_ALREADY_EXIST_BUT_CAN_UPGRADE);
+        admin.setSessionId(sessionUtil.generateSessionId());
         return adminMapper.insertAdmin(admin);
     }
 

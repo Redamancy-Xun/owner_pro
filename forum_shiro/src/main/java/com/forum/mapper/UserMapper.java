@@ -11,8 +11,8 @@ import java.util.List;
 public interface UserMapper extends MyMapper<User> {
 
     //插入一个用户
-    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait) " +
-            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait});")
+    @Insert("INSERT INTO user(username, password, studentid, studentname, birthday, email, headportrait,session_id,status) " +
+            "VALUES (#{username}, #{password}, #{studentid}, #{studentname}, #{birthday}, #{email}, #{headportrait},#{sessionId},#{status});")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     int insertUser(User user);
 
@@ -63,4 +63,19 @@ public interface UserMapper extends MyMapper<User> {
     //根据用户名获取密码
     @Select("SELECT password FROM user WHERE username = #{username}")
     String getPasswordByUsername(@Param("username")String username);
+
+    @Select("SELECT * FROM user WHERE session_id = #{sessionId}")
+    User getUserBySessionId(@Param("sessionId")String sessionId);
+
+    @Select("SELECT status FROM user WHERE id = #{id}")
+    Integer getStatus(@Param("id")Integer id);
+
+    @Update("UPDATE user SET status = 0 WHERE id = #{id}")
+    Boolean logout(@Param("id")Integer id);
+
+    @Update("UPDATE user SET status = 1 WHERE id =#{id}")
+    Boolean login(@Param("id")Integer id);
+
+    @Select("SELECT session_id FROM user WHERE username = #{username}")
+    String getSessionIdByUsername(@Param("username")String username);
 }

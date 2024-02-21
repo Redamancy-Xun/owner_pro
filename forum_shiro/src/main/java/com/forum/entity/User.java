@@ -64,6 +64,14 @@ public class User implements Serializable {
     @ApiModelProperty("头像")
     private String headportrait;
 
+    @Column(name = "session_id")
+    @ApiModelProperty("会话id")
+    private String sessionId;
+
+    @Column(name = "status")
+    @ApiModelProperty("登录状态 0为未登录 1为已登录")
+    private Integer status;
+
     public User(Integer id, String username, String password) {
         this.id = id;
         this.username = username;
@@ -71,7 +79,7 @@ public class User implements Serializable {
     }
 
     public User(String username, String password, String studentid, String studentname,
-                Date birthday, String email, String headportrait) {
+                Date birthday, String email, String headportrait,String sessionId) {
         this.username = username;
         this.password = password;
         this.studentid = studentid;
@@ -79,6 +87,7 @@ public class User implements Serializable {
         this.birthday = birthday;
         this.email = email;
         this.headportrait = headportrait;
+        this.sessionId=sessionId;
     }
 
 }

@@ -2,17 +2,17 @@
 package com.forum.controller.article;
 
 import com.alibaba.fastjson.JSON;
+import com.forum.common.Result;
 import com.forum.controller.response.ShowArticleResponse;
-import com.forum.dto.UserDTO;
+import com.forum.dto.SessionData;
 import com.forum.entity.RecruitArticle;
 import com.forum.service.impl.RecruitArticleServiceImpl;
-import com.forum.common.Result;
+import com.forum.util.SessionUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -30,6 +30,9 @@ public class CreateArticleController {
 
     @Autowired
     private RecruitArticleServiceImpl articleService;
+
+    @Autowired
+    private SessionUtil sessionUtil;
 
     //发布一个帖子
     @RequiresRoles("online")
@@ -54,13 +57,13 @@ public class CreateArticleController {
                                 @RequestParam(value = "end_time") @Validated String end_time,
                                 @RequestParam(value = "contact") @Validated String contact){
 
-        UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();
+        SessionData sessionData = sessionUtil.getSessionData();
         Integer admin_id = 0;
         Integer user_id = 0;
-        if (principal.getType() == 1)
-            admin_id = principal.getId();
+        if (sessionData.getRole() == 1)
+            admin_id = sessionData.getId();
         else
-            user_id = principal.getId();
+            user_id = sessionData.getId();
 
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);

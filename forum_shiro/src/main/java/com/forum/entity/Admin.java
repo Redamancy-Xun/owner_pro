@@ -35,4 +35,10 @@ public class Admin implements Serializable {
     @NotNull(message = "管理员密码不能为空")
     @ApiModelProperty("密码")
     private String password;
+
+    @Column(name = "sessionId",nullable = true)
+    @ApiModelProperty("会话id")
+    private String sessionId;
+
+
 }
