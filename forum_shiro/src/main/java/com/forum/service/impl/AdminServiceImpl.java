@@ -1,6 +1,7 @@
 package com.forum.service.impl;
 
 import com.forum.common.EnumExceptionType;
+import com.forum.dto.SessionData;
 import com.forum.entity.Admin;
 import com.forum.entity.User;
 import com.forum.exception.MyException;
@@ -70,5 +71,10 @@ public class AdminServiceImpl implements AdminService {
         if (password.length() > 20 || password.length() <6)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
         return true;
+    }
+
+    @Override
+    public SessionData login(String username, String password, Integer role) {
+        return null;
     }
 }

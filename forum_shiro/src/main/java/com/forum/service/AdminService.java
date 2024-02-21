@@ -1,5 +1,6 @@
 package com.forum.service;
 
+import com.forum.dto.SessionData;
 import com.forum.entity.Admin;
 import com.forum.entity.User;
 
@@ -19,4 +20,6 @@ public interface AdminService {
 
     //检查密码长度是否正确
     Boolean checkPasswordLength(String password);
+
+    SessionData login(String username,String password,Integer role);
 }

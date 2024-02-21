@@ -3,6 +3,7 @@ package com.forum.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,9 +37,13 @@ public class Admin implements Serializable {
     @ApiModelProperty("密码")
     private String password;
 
-    @Column(name = "sessionId",nullable = true)
+    @Column(name = "sessionId")
     @ApiModelProperty("会话id")
     private String sessionId;
+
+    @Column(name = "headportrait")
+    @ApiModelProperty("头像")
+    private String headportrait;
 
 
 }

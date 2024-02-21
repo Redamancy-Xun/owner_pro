@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 public interface AdminMapper extends MyMapper<User> {
 
     //插入一个管理员
-    @Insert("INSERT INTO admin(username, password) VALUES (#{username}, #{password});")
+    @Insert("INSERT INTO admin(username, password,session_id,headportrait) VALUES (#{username}, #{password},#{sessionId},#{headportrait});")
     @Options(useGeneratedKeys = true, keyProperty = "admin_id")
     int insertAdmin(Admin admin);
 
