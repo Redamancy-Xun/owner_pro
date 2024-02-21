@@ -34,7 +34,6 @@ public class AdminInfo {
     private SessionUtil sessionUtil;
 
     //根据id获取个人信息
-    @RequiresRoles("admin")
     @GetMapping("/adminInfo")
     @ApiOperation("管理员个人信息以及帖子管理")
     @ApiImplicitParams({

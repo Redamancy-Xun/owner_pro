@@ -30,7 +30,7 @@ public class SessionUtil {
 
     public SessionData getSessionData(){
         String sessionId = request.getHeader("Sessionid");
-        if (sessionId==null) return null;
+        if (sessionId==null) throw new MyException(EnumExceptionType.NO_SESSION);
 
         return getSessionDataFromDB(sessionId);
     }

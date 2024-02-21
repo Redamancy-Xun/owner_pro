@@ -26,7 +26,6 @@ public class PortraitController {
     @Autowired
     SessionUtil sessionUtil;
 
-//    @RequiresRoles("online")
     @PostMapping(value = "/portrait", produces = "application/json")
     @ApiOperation("上传头像")
     public Result uploadPortrait(MultipartFile multipartFile) {

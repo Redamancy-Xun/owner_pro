@@ -25,7 +25,8 @@ public enum EnumExceptionType {
     EMPTY_FILE(1014,"文件为空"),
     PORTRAIT_UPDATE_FAILED(1015,"更新失败"),
     NULL_PRINCIPLE(1016,"实体为空"),
-    LOGIN_ERROR(1017,"登录失败")
+    LOGIN_ERROR(1017,"登录失败"),
+    NO_SESSION(1018,"未获取到session")
     ;
 
     private final int errorCode;

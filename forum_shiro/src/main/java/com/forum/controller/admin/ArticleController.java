@@ -27,7 +27,6 @@ public class ArticleController {
     private SessionUtil sessionUtil;
 
     //置顶一个帖子
-    @RequiresRoles("admin")
     @GetMapping("/topArticle/{article_id}")
     @ApiOperation("置顶帖子")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")
@@ -41,7 +40,6 @@ public class ArticleController {
     }
 
     //取消一个帖子的置顶状态
-    @RequiresRoles("admin")
     @GetMapping("/untopArticle/{article_id}")
     @ApiOperation("取消置顶帖子")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")

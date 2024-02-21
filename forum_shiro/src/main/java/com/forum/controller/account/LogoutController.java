@@ -24,7 +24,6 @@ public class LogoutController {
 
     @Autowired
     SessionUtil sessionUtil;
-    @RequiresRoles("online")
     @GetMapping("/logout")
     @ApiOperation("登出")
     public Result logout() throws IOException {
