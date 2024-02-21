@@ -28,7 +28,6 @@ public class UpdateArticleController {
     private RecruitArticleServiceImpl articleService;
 
     //更新一个帖子
-    @RequiresRoles("online")
     @PostMapping("/updateArticle")
     @ApiOperation("更新帖子")
     @ApiImplicitParams({
@@ -75,7 +74,7 @@ public class UpdateArticleController {
     }
 
     //设置一个帖子的完成状态
-    @RequiresRoles("online")
+
     @GetMapping("/finishArticle/{article_id}")
     @ApiOperation("帖子设置完成状态")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")
@@ -87,7 +86,7 @@ public class UpdateArticleController {
     }
 
     //设置一个帖子的未完成状态
-    @RequiresRoles("online")
+
     @GetMapping("/unfinishArticle/{article_id}")
     @ApiOperation("帖子设置未完成状态")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")

@@ -28,7 +28,6 @@ public class ShowArticleController {
     private RecruitArticleServiceImpl articleService;
 
     //根据指定排序条件获取帖子列表
-    @RequiresRoles("online")
     @GetMapping("/article")
     @ApiOperation("展示帖子")
     @ApiImplicitParams({
@@ -58,7 +57,6 @@ public class ShowArticleController {
     }
 
     //展示帖子详情
-    @RequiresRoles("online")
     @GetMapping("/articleDetail/{article_id}")
     @ApiOperation("帖子详情")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")

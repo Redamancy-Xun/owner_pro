@@ -211,6 +211,7 @@ public class UserServiceImpl implements UserService {
             return new SessionData(user);
         } else if (role==1) {
             Admin admin = adminMapper.getAdminByUsername(username);
+            admin.setSessionId(adminMapper.getSessionIdByUsername(username));
             return new SessionData(admin);
         }
         return null;

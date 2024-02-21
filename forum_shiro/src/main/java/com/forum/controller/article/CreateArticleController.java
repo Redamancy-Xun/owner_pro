@@ -35,7 +35,6 @@ public class CreateArticleController {
     private SessionUtil sessionUtil;
 
     //发布一个帖子
-    @RequiresRoles("online")
     @PostMapping("/createArticle")
     @ApiOperation("发布帖子")
     @ApiImplicitParams({

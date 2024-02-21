@@ -37,7 +37,7 @@ public class Admin implements Serializable {
     @ApiModelProperty("密码")
     private String password;
 
-    @Column(name = "sessionId")
+    @Column(name = "session_id")
     @ApiModelProperty("会话id")
     private String sessionId;
 

@@ -2,8 +2,10 @@ package com.forum.util;
 
 import com.forum.common.EnumExceptionType;
 import com.forum.dto.SessionData;
+import com.forum.entity.Admin;
 import com.forum.entity.User;
 import com.forum.exception.MyException;
+import com.forum.mapper.AdminMapper;
 import com.forum.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,9 @@ public class SessionUtil {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private AdminMapper adminMapper;
+
     public SessionData getSessionData(){
         String sessionId = request.getHeader("Sessionid");
         if (sessionId==null) return null;
@@ -37,8 +42,10 @@ public class SessionUtil {
     private SessionData getSessionDataFromDB(String sessionId){
         SessionData sessionData;
         User user = userMapper.getUserBySessionId(sessionId);
-        if (user==null) throw new MyException(EnumExceptionType.USER_NOT_EXIST);
-        sessionData = new SessionData(user);
+        Admin admin = adminMapper.getAdminBySessionId(sessionId);
+        if (user==null && admin==null) throw new MyException(EnumExceptionType.USER_NOT_EXIST);
+        if (user!=null) sessionData = new SessionData(user);
+        else sessionData = new SessionData(admin);
         return sessionData;
     }
 

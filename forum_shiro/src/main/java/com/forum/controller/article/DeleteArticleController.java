@@ -22,7 +22,6 @@ public class DeleteArticleController {
     private RecruitArticleServiceImpl articleService;
 
     //删除一个帖子
-    @RequiresRoles("online")
     @GetMapping("/deleteArticle/{article_id}")
     @ApiOperation("删帖")
     @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "path", dataType = "Integer")

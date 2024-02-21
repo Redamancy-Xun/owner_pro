@@ -57,7 +57,7 @@ public class SessionData  implements Serializable {
         headportrait="admin.jpg";
         username=admin.getUsername();
         studentname="admin";
-        studentid=admin.getSessionId();
+        studentid="00000000000";
         sessionId=admin.getSessionId();
         role=1;
     }

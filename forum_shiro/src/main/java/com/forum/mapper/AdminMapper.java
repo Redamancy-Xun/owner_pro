@@ -20,7 +20,12 @@ public interface AdminMapper extends MyMapper<User> {
 
     //根据管理员用户名获取管理员
     @ResultType(Admin.class)
-    @Select("SELECT * FROM admin WHERE userName=#{userName}")
+    @Select("SELECT * FROM admin WHERE userName=#{username}")
     Admin getAdminByUsername(String username);
 
+    @ResultType(Admin.class)
+    @Select("SELECT * FROM admin WHERE session_id=#{sessionId}")
+    Admin getAdminBySessionId(String sessionId);
+    @Select("SELECT session_id FROM admin WHERE username = #{username}")
+    String getSessionIdByUsername(@Param("username")String username);
 }
