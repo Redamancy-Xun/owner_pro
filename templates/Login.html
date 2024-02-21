@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./js/jquery.min.js"></script>
 </head>
 <style>
     * {
@@ -147,20 +146,21 @@
                     .then(data => {
                         console.log(data);
                         if (data.code == 0) {
-                            $.ajax({
-                                url: 'http://116.62.103.210:8080/login', // 后端返回 LoginResponse 对象的路由
-                                type: 'GET',
-                                success: function (loginResponse) {
-                                    // 接收后端发送的 LoginResponse 对象
-                                    localStorage.setItem('sessionId', loginResponse.sessionId);
-                                    localStorage.setItem('sessionData', JSON.stringify(loginResponse.SessionData));
-                                    console.log('LoginResponse 对象已存储在 SessionStorage 中');
-                                },
-                                error: function (error) {
-                                    console.log('请求错误: ', error);
-                                }
-                            });
-                            setTimeout(function () { window.location.href = "index.html"; }, 1000
+                            localStorage.setItem('sessionId', data.sessionId);
+                            localStorage.setItem('sessionData', JSON.stringify(data.SessionData));
+                            console.log('LoginResponse 对象已存储在 SessionStorage 中');
+                            // 获取之前存储在 sessionStorage 中的 sessionId
+                            let sessionId = localStorage.getItem('sessionId');
+
+                            if (sessionId) {
+                                // 如果 sessionId 存在，可以在这里使用它进行操作
+                                console.log('成功获取到 sessionId:', sessionId);
+
+                                // 在这里可以根据需要执行其他操作，例如发送请求或更新页面内容
+                            } else {
+                                console.log('未找到 sessionId');
+                            }
+                            setTimeout(function () { window.location.href = "index.html"; }, 100000
                             );
                         } else {
                             alert(data.message);
