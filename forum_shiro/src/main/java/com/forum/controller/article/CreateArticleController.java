@@ -38,7 +38,6 @@ public class CreateArticleController {
     @PostMapping("/createArticle")
     @ApiOperation("发布帖子")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "update_date", value = "发布日期", required = true, paramType = "query", dataType = "Date"),
             @ApiImplicitParam(name = "type", value = "招募任务类型", required = true, paramType = "query", dataType = "List<String>"),
             @ApiImplicitParam(name = "direction", value = "需求方向", required = true, paramType = "query", dataType = "List<String>"),
             @ApiImplicitParam(name = "tag", value = "技术栈", required = true, paramType = "query", dataType = "List<String>"),
@@ -47,8 +46,7 @@ public class CreateArticleController {
             @ApiImplicitParam(name = "end_time", value = "任务结束时间", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "contact", value = "联系方式", required = true, paramType = "query", dataType = "String")
     })
-    public Result createArticle(@RequestParam(value = "update_date") @Validated Date update_date,
-                                @RequestParam(value = "type") @Validated List<String> type,
+    public Result createArticle(@RequestParam(value = "type") @Validated List<String> type,
                                 @RequestParam(value = "direction") @Validated List<String> direction,
                                 @RequestParam(value = "tag") @Validated List<String> tag,
                                 @RequestParam(value = "content") @Validated String content,
@@ -67,6 +65,8 @@ public class CreateArticleController {
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);
         String tagJson = JSON.toJSONString(tag);
+
+        Date update_date = new Date();
 
         RecruitArticle article = new RecruitArticle(admin_id, user_id, update_date, typeJson, directionJson, tagJson,
                 content, start_time, end_time, contact, 0, 0);

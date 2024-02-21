@@ -32,7 +32,6 @@ public class UpdateArticleController {
     @ApiOperation("更新帖子")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "article_id", value = "帖子id", required = true, paramType = "query", dataType = "Integer"),
-            @ApiImplicitParam(name = "update_date", value = "发布日期", required = true, paramType = "query", dataType = "Date"),
             @ApiImplicitParam(name = "type", value = "招募任务类型", required = false, paramType = "query", dataType = "List<String>"),
             @ApiImplicitParam(name = "direction", value = "需求方向", required = false, paramType = "query", dataType = "List<String>"),
             @ApiImplicitParam(name = "tag", value = "技术栈", required = false, paramType = "query", dataType = "List<String>"),
@@ -43,7 +42,6 @@ public class UpdateArticleController {
             @ApiImplicitParam(name = "finish", value = "完成状态", required = false, paramType = "query", dataType = "Integer"),
     })
     public Result updateArticle(@RequestParam(value = "article_id") Integer article_id,
-                                @RequestParam(value = "update_date") @Validated Date update_date,
                                 @RequestParam(value = "type", required = false) @Validated List<String> type,
                                 @RequestParam(value = "direction", required = false) @Validated List<String> direction,
                                 @RequestParam(value = "tag", required = false) @Validated List<String> tag,
@@ -65,6 +63,8 @@ public class UpdateArticleController {
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);
         String tagJson = JSON.toJSONString(tag);
+
+        Date update_date = new Date();
 
         UpdateArticleMessageRequest articleNew = new UpdateArticleMessageRequest(article_id, update_date, typeJson,
                 directionJson, tagJson, content, start_time, end_time, contact, finish);
