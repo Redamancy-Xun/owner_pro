@@ -29,7 +29,10 @@ public interface UserService {
     List<User> getUserListOrderly(@Param("order_by_sql") String order_by_sql);
 
     //根据用户id找到用户，并更新用户信息
-    void updateUsernameById(UpdateUserMessageRequest updateUserMessageRequest);
+    void updateUserInfoById(UpdateUserMessageRequest updateUserMessageRequest);
+
+    //根据用户id找到用户，并更新用户密码
+    void updatePasswordById(UpdateUserMessageRequest updateUserMessageRequest, String newPassword);
 
     //根据用户id删除用户
     int deleteUserById(Integer id);

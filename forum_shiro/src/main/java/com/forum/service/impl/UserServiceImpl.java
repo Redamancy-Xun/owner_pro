@@ -84,22 +84,35 @@ public class UserServiceImpl implements UserService {
 
     //根据用户id找到用户，并更新用户信息
     @Override
-    public void updateUsernameById(UpdateUserMessageRequest updateUserMessageRequest) {
+    public void updateUserInfoById(UpdateUserMessageRequest updateUserMessageRequest) {
         Integer id = updateUserMessageRequest.getId();
         String username = updateUserMessageRequest.getUsername();
-        String password = updateUserMessageRequest.getPassword();
         Date birthday = updateUserMessageRequest.getBirthday();
         String headportrait = updateUserMessageRequest.getHeadportrait();
 
         if (username != null)
             userMapper.updateUserUsername(username, id);
-        if (password != null)
-            userMapper.updateUserPassword(password, id);
         if (birthday != null)
             userMapper.updateUserBirthday(birthday, id);
         if (headportrait != null)
             userMapper.updateUserHeadportrait(headportrait, id);
 
+    }
+
+    //根据用户id找到用户，并更新用户密码
+    @Override
+    public void updatePasswordById(UpdateUserMessageRequest updateUserMessageRequest, String newPassword) {
+        Integer id = updateUserMessageRequest.getId();
+        String oldPassword = updateUserMessageRequest.getPassword();
+        User user = userMapper.getUserById(id);
+
+        if (!oldPassword.equals(user.getPassword())) {
+            throw new MyException(EnumExceptionType.PASSWORD_INCORRECT);
+        }
+        if (oldPassword.equals(newPassword)) {
+            throw new MyException(EnumExceptionType.DUPLICATE_OF_OLDPASSWORD);
+        }
+        userMapper.updateUserPassword(newPassword, id);
     }
 
     //根据用户id删除用户
