@@ -1,0 +1,4 @@
+[submodule "前端部分"]
+	url  = https://gitee.com/wjfsdbd/j2ee-front-end
+	path = 前端部分
+

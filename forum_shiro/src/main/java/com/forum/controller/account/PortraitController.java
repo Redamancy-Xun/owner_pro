@@ -6,8 +6,10 @@ import com.forum.dto.UserDTO;
 import com.forum.exception.MyException;
 import com.forum.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +24,9 @@ public class PortraitController {
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/portrait",produces = "application/json")
+    @RequiresRoles("online")
+    @PostMapping(value = "/portrait", produces = "application/json")
+    @ApiOperation("上传头像")
     public Result uploadPortrait(MultipartFile multipartFile) {
 
         UserDTO principal = (UserDTO) SecurityUtils.getSubject().getPrincipal();

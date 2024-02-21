@@ -52,11 +52,9 @@ public class ShowArticleController {
         if(pageSize == null || pageSize < 1){
             pageSize = 10;
         }
-        try{
-            return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
-        }catch (MyException e) {
-            return Result.result(e.getEnumExceptionType());
-        }
+
+        return Result.success(articleService.defaultGetRecruitArticle(pageSize, pageNum, type, direction, tag, finish));
+
     }
 
     //展示帖子详情

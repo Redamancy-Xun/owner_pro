@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
+        position: relative;
+    }
+
+    .login_part {
+        background-color: #fff;
+        width: 358px;
+        height: 588px;
+        border-radius: 15px;
+        padding: 0 50px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header1 {
+        height: 100px;
+        font-family: Microsoft YaHei;
+        color: #52B4E3;
+        line-height: 100px;
+        text-align-last: left;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .header2 {
+        font-size: 38px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 100px;
+    }
+
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    #submitButton {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 40%;
+        background-color: rgb(197, 233, 255);
+        color: rgba(101, 112, 116, 0.779);
+        border-radius: 10px;
+        border: 0;
+        font-size: large;
+    }
+
+    .turn_to_registration {
+        text-align: center;
+        line-height: 88px;
+    }
+
+    #feedbackMessage {
+        color: red;
+        font-size: 13px;
+        font-weight: 500;
+        position: absolute;
+        top: 71%;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: #abc1ee;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="login_part">
+            <div class="header1">博远信息技术社</div>
+            <div class="header2">登录</div>
+
+            <input type="text" name="username" class="input-item" placeholder="用户名" id="username">
+            <input type="password" name="password" class="input-item" placeholder="请输入你的密码 " id="password">
+            <div id="feedbackMessage"></div>
+            <button id="submitButton" onclick="beforeSubmit()">登录</button>
+            <div class="turn_to_registration">还没有账号？
+                <a href="signup.html">点我注册</a>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById('username').addEventListener('input', checkInputs);
+        document.getElementById('password').addEventListener('input', checkInputs);//用户输入时时刻检查用户名以及密码长度
+        let submitButton = document.getElementById('submitButton');
+
+
+        function checkInputs() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            if (username.length >= 2 && password.length >= 6 && password.length <= 20) {
+                document.getElementById('submitButton').style.backgroundColor = 'rgba(0,10,220,0.7)'; // 设置登录按钮的背景颜色
+                document.getElementById('submitButton').style.color = '#ffffff'; // 设置登录按钮的文字颜色
+            } else {
+                document.getElementById('submitButton').style.backgroundColor = 'rgb(197, 233, 255)'; // 恢复原始的登录按钮背景颜色
+                document.getElementById('submitButton').style.color = 'rgba(101, 112, 116, 0.779)'; // 恢复原始的登录按钮文字颜色
+            }
+        }
+        function beforeSubmit() {
+            let username = document.getElementById('username').value;
+            let password = document.getElementById('password').value;
+            if (username.length >= 2 && password.length >= 6 && password.length <= 20) {
+                let formData = new FormData();
+                formData.append('username', username);
+                formData.append('password', password);
+
+                fetch('http://localhost:8080/login', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(data => {
+                        console.log(data);
+                        alert(data.message);
+                        if (data.code == 0) {
+                            window.location.href = "homePage.html";//首页地址   
+                        } else {
+                            document.getElementById('feedbackMessage').innerText = data.message;
+                        }
+
+                    })
+            } else if (username.length < 2) {
+                document.getElementById('username').style.backgroundColor = 'pink';
+                document.getElementById('username').style.borderColor = 'red';
+                document.getElementById('feedbackMessage').innerText = '用户名格式不正确，请重新输入！';
+            } else {
+                document.getElementById('password').style.backgroundColor = 'pink';
+                document.getElementById('password').style.borderColor = 'red';
+                document.getElementById('feedbackMessage').innerText = '密码格式不正确，请重新输入！';
+            }
+        };
+    </script>
+</body>
+
+</html>

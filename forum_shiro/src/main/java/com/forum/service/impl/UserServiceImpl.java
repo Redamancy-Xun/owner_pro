@@ -114,6 +114,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查用户名和密码是否正确
+    @Override
     public Boolean checkLogin(String username, String password){
         User user = getUserByUsername(username);
         Admin admin = adminMapper.getAdminByUsername(username);
@@ -127,6 +128,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查用户名长度是否正确
+    @Override
     public Boolean checkUsernameLength(String username){
         if (username.length() > 21 || username.length() < 2)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
@@ -134,6 +136,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查密码长度是否正确
+    @Override
     public Boolean checkPasswordLength(String password){
         if (password.length() > 20 || password.length() <6)
             throw new MyException(EnumExceptionType.LENGTH_INCORRECT);
@@ -141,6 +144,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //检查邮箱格式是否正确
+    @Override
     public Boolean checkEmailForm(String email){
         String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
@@ -152,6 +156,7 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    //上传头像
     @Override
     public String uploadPortrait(MultipartFile multipartFile, Integer id) {
 
@@ -165,7 +170,7 @@ public class UserServiceImpl implements UserService {
             throw new MyException(EnumExceptionType.FILE_FORMAT_ERROE);
 
         String originalFilename = multipartFile.getOriginalFilename();
-        String path = root +originalFilename;
+        String path = root + originalFilename;
         user.setHeadportrait(originalFilename);
         userMapper.updateUserHeadportrait(user.getHeadportrait(),user.getId());
         File destFile = new File(path);
@@ -179,7 +184,7 @@ public class UserServiceImpl implements UserService {
         if (newPortrait==null)
             throw new MyException(EnumExceptionType.PORTRAIT_UPDATE_FAILED);
 
-        return "http://116.62.103.210/image/"+originalFilename;
+        return "http://116.62.103.210/image/" + originalFilename;
     }
 
 }

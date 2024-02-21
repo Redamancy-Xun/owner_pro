@@ -1,60 +1,56 @@
-package com.xiaowu.util;
+package com.forum.util;
 
-import com.xiaowu.common.CommonErrorCode;
-import com.xiaowu.common.exception.CommonException;
+import com.forum.common.EnumExceptionType;
+import com.forum.exception.MyException;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
 import java.util.Map;
 
-/**
- * @author yannis
- * @version 2020/7/23 0:51
- */
 public class AssertUtil {
 
     public AssertUtil() {
     }
 
-    public static void isTrue(boolean expValue, CommonErrorCode resultCode, Object obj) {
+    public static void isTrue(boolean expValue, EnumExceptionType resultCode, Object obj) {
         if (!expValue) {
-            throw new CommonException(resultCode,obj);
+            throw new MyException(resultCode, obj);
         }
     }
 
-    public static void isTrue(boolean expValue, CommonErrorCode resultCode) {
+    public static void isTrue(boolean expValue, EnumExceptionType resultCode) {
         if (!expValue) {
-            throw new CommonException(resultCode);
+            throw new MyException(resultCode);
         }
     }
 
-    public static void isFalse(boolean expValue, CommonErrorCode resultCode, Object obj) {
+    public static void isFalse(boolean expValue, EnumExceptionType resultCode, Object obj) {
         isTrue(!expValue, resultCode, obj);
     }
 
-    public static void isFalse(boolean expValue, CommonErrorCode resultCode) {
+    public static void isFalse(boolean expValue, EnumExceptionType resultCode) {
         isTrue(!expValue, resultCode);
     }
 
-    public static void equals(Object obj1, Object obj2, CommonErrorCode resultCode, Object obj) {
+    public static void equals(Object obj1, Object obj2, EnumExceptionType resultCode, Object obj) {
         isTrue(obj1 == null ? obj2 == null : obj1.equals(obj2), resultCode, obj);
     }
 
-    public static void notEquals(Object obj1, Object obj2, CommonErrorCode resultCode, Object obj) {
+    public static void notEquals(Object obj1, Object obj2, EnumExceptionType resultCode, Object obj) {
         isTrue(obj1 == null ? obj2 != null : !obj1.equals(obj2), resultCode, obj);
     }
 
-    public static void contains(Object base, Collection<?> collection, CommonErrorCode resultCode, Object obj) {
+    public static void contains(Object base, Collection<?> collection, EnumExceptionType resultCode, Object obj) {
         notEmpty(collection, resultCode, obj);
         isTrue(collection.contains(base), resultCode, obj);
     }
 
-    public static void contains(Object base, Collection<?> collection, CommonErrorCode resultCode) {
+    public static void contains(Object base, Collection<?> collection, EnumExceptionType resultCode) {
         notEmpty(collection, resultCode);
         isTrue(collection.contains(base), resultCode);
     }
 
-    public static void in(Object base, Object[] collection, CommonErrorCode resultCode, Object obj) {
+    public static void in(Object base, Object[] collection, EnumExceptionType resultCode, Object obj) {
         notNull(collection, resultCode, obj);
         boolean hasEqual = false;
         Object[] var5 = collection;
@@ -71,7 +67,7 @@ public class AssertUtil {
         isTrue(hasEqual, resultCode, obj);
     }
 
-    public static void notIn(Object base, Object[] collection, CommonErrorCode resultCode, Object obj) {
+    public static void notIn(Object base, Object[] collection, EnumExceptionType resultCode, Object obj) {
         if (null != collection) {
             Object[] var4 = collection;
             int var5 = collection.length;
@@ -84,47 +80,47 @@ public class AssertUtil {
         }
     }
 
-    public static void blank(String str, CommonErrorCode resultCode, Object obj) {
+    public static void blank(String str, EnumExceptionType resultCode, Object obj) {
         isTrue(isBlank(str), resultCode, obj);
     }
 
-    public static void notBlank(String str, CommonErrorCode resultCode, Object obj) {
+    public static void notBlank(String str, EnumExceptionType resultCode, Object obj) {
         isTrue(!isBlank(str), resultCode, obj);
     }
 
-    public static void isNull(Object object, CommonErrorCode resultCode, Object obj) {
+    public static void isNull(Object object, EnumExceptionType resultCode, Object obj) {
         isTrue(object == null, resultCode, obj);
     }
 
-    public static void notNull(Object object, CommonErrorCode resultCode, Object obj) {
+    public static void notNull(Object object, EnumExceptionType resultCode, Object obj) {
         isTrue(object != null, resultCode, obj);
     }
 
-    public static void notNull(Object object, CommonErrorCode resultCode) {
+    public static void notNull(Object object, EnumExceptionType resultCode) {
         isTrue(object != null, resultCode, null);
     }
 
-    public static void isNull(Object object, CommonErrorCode resultCode) {
+    public static void isNull(Object object, EnumExceptionType resultCode) {
         isTrue(object == null, resultCode, null);
     }
 
-    public static void notEmpty(Collection collection, CommonErrorCode resultCode, Object obj) {
+    public static void notEmpty(Collection collection, EnumExceptionType resultCode, Object obj) {
         isTrue(!CollectionUtils.isEmpty(collection), resultCode, obj);
     }
 
-    public static void notEmpty(Collection collection, CommonErrorCode resultCode) {
+    public static void notEmpty(Collection collection, EnumExceptionType resultCode) {
         isTrue(!CollectionUtils.isEmpty(collection), resultCode);
     }
 
-    public static void empty(Collection collection, CommonErrorCode resultCode, Object obj) {
+    public static void empty(Collection collection, EnumExceptionType resultCode, Object obj) {
         isTrue(CollectionUtils.isEmpty(collection), resultCode, obj);
     }
 
-    public static void notEmpty(Map map, CommonErrorCode resultCode, Object obj) {
+    public static void notEmpty(Map map, EnumExceptionType resultCode, Object obj) {
         isTrue(!CollectionUtils.isEmpty(map), resultCode, obj);
     }
 
-    public static void empty(Map map, CommonErrorCode resultCode, Object obj) {
+    public static void empty(Map map, Exception resultCode, Object obj) {
         isTrue(CollectionUtils.isEmpty(map), resultCode, obj);
     }
 
