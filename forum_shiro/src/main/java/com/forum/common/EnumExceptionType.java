@@ -26,7 +26,8 @@ public enum EnumExceptionType {
     PORTRAIT_UPDATE_FAILED(1015,"更新失败"),
     NULL_PRINCIPLE(1016,"实体为空"),
     LOGIN_ERROR(1017,"登录失败"),
-    NO_SESSION(1018,"未获取到session")
+    NO_SESSION(1018,"未获取到session"),
+    DUPLICATE_OF_OLDPASSWORD(1019,"新密码与旧密码重复")
     ;
 
     private final int errorCode;
