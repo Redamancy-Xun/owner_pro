@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @ApiModel("CreateArticleRequest 发布帖子")
 public class CreateArticleRequest {
+
     @ApiModelProperty("招募帖子id")
     private Integer article_id;
 

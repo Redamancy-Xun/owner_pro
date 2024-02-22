@@ -48,7 +48,7 @@ public class CreateArticleController {
             @ApiImplicitParam(name = "end_time", value = "任务结束时间", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "contact", value = "联系方式", required = true, paramType = "query", dataType = "String")
     })
-    public Result createArticle(@RequestBody @Validated CreateArticleRequest request){
+    public Result createArticle(@RequestBody @Validated CreateArticleRequest request) {
 
         SessionData sessionData = sessionUtil.getSessionData();
         Integer admin_id = 0;

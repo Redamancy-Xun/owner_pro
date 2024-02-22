@@ -41,17 +41,9 @@ public class UpdateArticleController {
             @ApiImplicitParam(name = "contact", value = "联系方式", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "finish", value = "完成状态", required = false, paramType = "query", dataType = "Integer"),
     })
-    public Result updateArticle(@RequestParam(value = "article_id") Integer article_id,
-                                @RequestParam(value = "type", required = false) @Validated List<String> type,
-                                @RequestParam(value = "direction", required = false) @Validated List<String> direction,
-                                @RequestParam(value = "tag", required = false) @Validated List<String> tag,
-                                @RequestParam(value = "content", required = false) @Validated String content,
-                                @RequestParam(value = "start_time", required = false) @Validated String start_time,
-                                @RequestParam(value = "end_time", required = false) @Validated String end_time,
-                                @RequestParam(value = "contact", required = false) @Validated String contact,
-                                @RequestParam(value = "finish", required = false) @Validated Integer finish){
+    public Result updateArticle(@RequestBody @Validated UpdateArticleMessageRequest request) {
 
-        RecruitArticle article = articleService.getRecruitArticleByArticleId(article_id);
+        RecruitArticle article = articleService.getRecruitArticleByArticleId(request.getArticle_id());
 
         Integer id;
         if (article.getAdmin_id() != 0)
@@ -59,10 +51,17 @@ public class UpdateArticleController {
         else
             id = article.getUser_id();
 
+        Integer article_id = request.getArticle_id();
         Integer top = article.getTop();
-        String typeJson = JSON.toJSONString(type);
-        String directionJson = JSON.toJSONString(direction);
-        String tagJson = JSON.toJSONString(tag);
+        String content = request.getContent();
+        String start_time = request.getStart_time();
+        String end_time = request.getEnd_time();
+        String contact = request.getContact();
+        Integer finish = request.getFinish();
+
+        String typeJson = JSON.toJSONString(request.getType());
+        String directionJson = JSON.toJSONString(request.getDirection());
+        String tagJson = JSON.toJSONString(request.getTag());
 
         Date update_date = new Date();
 

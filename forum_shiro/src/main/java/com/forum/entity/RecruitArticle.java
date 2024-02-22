@@ -33,7 +33,7 @@ public class RecruitArticle implements Serializable {
     @ApiModelProperty("发帖用户id")
     private Integer user_id;
 
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "admin_id", nullable = false)
     @NotNull(message = "发帖管理员id不能为空")
     @ApiModelProperty("发帖管理员id")
     private Integer admin_id;
