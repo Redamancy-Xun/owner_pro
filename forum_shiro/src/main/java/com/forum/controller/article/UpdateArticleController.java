@@ -2,6 +2,7 @@ package com.forum.controller.article;
 
 import com.alibaba.fastjson.JSON;
 import com.forum.controller.request.UpdateArticleMessageRequest;
+import com.forum.controller.request.UpdateArticleRequest;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.service.impl.RecruitArticleServiceImpl;
 import com.forum.common.Result;
@@ -41,7 +42,7 @@ public class UpdateArticleController {
             @ApiImplicitParam(name = "contact", value = "联系方式", required = false, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "finish", value = "完成状态", required = false, paramType = "query", dataType = "Integer"),
     })
-    public Result updateArticle(@RequestBody @Validated UpdateArticleMessageRequest request) {
+    public Result updateArticle(@RequestBody @Validated UpdateArticleRequest request) {
 
         RecruitArticle article = articleService.getRecruitArticleByArticleId(request.getArticle_id());
 
@@ -52,16 +53,19 @@ public class UpdateArticleController {
             id = article.getUser_id();
 
         Integer article_id = request.getArticle_id();
-        Integer top = article.getTop();
+        List<String> type = request.getType();
+        List<String> direction = request.getDirection();
+        List<String> tag = request.getTag();
         String content = request.getContent();
         String start_time = request.getStart_time();
         String end_time = request.getEnd_time();
         String contact = request.getContact();
         Integer finish = request.getFinish();
+        Integer top = article.getTop();
 
-        String typeJson = JSON.toJSONString(request.getType());
-        String directionJson = JSON.toJSONString(request.getDirection());
-        String tagJson = JSON.toJSONString(request.getTag());
+        String typeJson = JSON.toJSONString(type);
+        String directionJson = JSON.toJSONString(direction);
+        String tagJson = JSON.toJSONString(tag);
 
         Date update_date = new Date();
 
