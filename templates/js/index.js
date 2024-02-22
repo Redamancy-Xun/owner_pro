@@ -53,6 +53,7 @@ $index = {
     },
     listItem: function (info) {
         // 显示数据页面
+        let role = JSON.parse(localStorage.getItem("sessionData")).role;
         var html = '';
         html += '<div class="comment">';
         html += '    <div class="peo_info">';
@@ -71,8 +72,8 @@ $index = {
         html += '            <p><em>联系方式：</em>' + info.contact + '</p>';
         html += '            <p><a href="./detail.html?id=' + info.article_id + '" class="show_all">查看详情</a></p>';
         if (role) {
-            html += '<button class="delete-button" onclick="deletePost(this)"> < img src = "./images/delete.jpeg" alt = "删除" > </button >'
-            html += ' <button button class="sticky-button"><img src="./images/up.jpeg" alt="置顶"</button>'
+            html += '<button class="delete-button" onclick="deletePost(this)"> < img src="./image/delete.jpeg" alt = "删除" > </button >'
+            html += ' <button button class="sticky-button"><img src="./image/up.jpeg" alt="置顶"</button>'
         }
         function deletePost(button) {
             let post = button.closest('.comment')

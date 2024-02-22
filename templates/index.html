@@ -1,5 +1,123 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+<style>
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+    }
+
+    .custom-select select {
+        display: none;
+    }
+
+    .custom-select select:focus {
+        background-color: #409EFF;
+    }
+
+    .custom-select p {
+        padding: 10px;
+        background-color: #8dd3f9;
+        display: inline-block;
+        width: 240px;
+        height: 33px;
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        font-weight: bold;
+        color: #000000;
+        /* 设置文字颜色 */
+        /* 修改样式 */
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        box-sizing: border-box;
+        margin: 0;
+        border-radius: 5px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .custom-select ul {
+        display: none;
+        position: absolute;
+        background-color: #8dd3f9;
+        width: 240px;
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        color: #000000;
+        /* 设置文字颜色 */
+        /* 修改样式 */
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        z-index: 1;
+        border-radius: 2px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .custom-select ul li {
+        display: block;
+        padding: 10px 30px;
+        /* 添加右侧间距以留出位置放置打勾图标 */
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        /* 为打勾图标创建相对定位的参考容器 */
+    }
+
+    .custom-select ul li:hover {
+        color: #ffffff;
+        background-color: #579af2;
+    }
+
+    /* 添加打勾图标样式 */
+    .custom-select ul li.selected::after {
+        content: '✔';
+        /* 使用Unicode字符作为打勾图标 */
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translate(0, -50%);
+        color: #ffffff;
+    }
+
+    /*显示框代码*/
+    .selectcontainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .selectDisplay {
+        width: 1000px;
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 4px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+    }
+</style>
 
 <head>
     <meta charset="UTF-8">
@@ -32,10 +150,73 @@
     </header>
 
     </div>
+    
+    <!-- 选择组件 -->
 
+    <!-- <div id="shaixuan">
+        <form action="http://116.62.103.210:8080/article" method="GET" name="发帖表单" id="create-form">
+            <div class="selectcontainer">
+                <div class="m-4" id="selectType">
+                    <div class="custom-select">
+                        <p>请选择招募任务类型 ▼</p>
+                        <ul>
+                            <li>双创</li>
+                            <li>外包</li>
+                            <li>大作业</li>
+                            <li>校级项目</li>
+                            <li>社团项目</li>
+                            <li>其他类型</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
+            </div>
+            <div class="selectcontainer">
+                <div class="m-4" id="selectDirection">
+                    <div class="custom-select">
+                        <p>请选择需求方向 ▼</p>
+                        <ul>
+                            <li>前端</li>
+                            <li>后端</li>
+                            <li>项目经理</li>
+                            <li>UI设计师</li>
+                            <li>其他需求方向</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
+            </div>
+            <div class="selectcontainer">
+                <div class="m-4" id="selectTag">
+                    <div class="custom-select">
+                        <p>请选择技术栈 ▼</p>
+                        <ul>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>其他前端语言</li>
+                            <li>Java</li>
+                            <li>Python</li>
+                            <li>C/C++</li>
+                            <li>Go</li>
+                            <li>Ruby</li>
+                            <li>其他后端语言</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
+            </div>
+            <input type="submit" class="btn" id="submit" value="筛选">
+        </form>
+    </div> -->
+
+
+    <!-- 原先的内容 -->
     <div class="main">
 
+
         <div class="left_content">
+
 
             <div class="new">
                 <div class="update">
@@ -44,78 +225,23 @@
                     <div class="text_update">最新招募</div>
 
                     <div class="divder"></div>
-                    <!--<div class="selectcontainer">
-                         <div class="m-4" id="selectType">
-                            
-                            <div class="custom-select">
-                                <p>请选择招募任务类型</p>
-                                <ul>
-                                    <li>双创</li>
-                                    <li>外包</li>
-                                    <li>大作业</li>
-                                    <li>校级项目</li>
-                                    <li>社团项目</li>
-                                    <li>其他类型</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
-                    </div>
-                    <div class="selectcontainer">
-                        <div class="m-4" id="selectDirection">
-                            
-                            <div class="custom-select">
-                                <p>请选择需求方向</p>
-                                <ul>
-                                    <li>前端</li>
-                                    <li>后端</li>
-                                    <li>项目经理</li>
-                                    <li>UI设计师</li>
-                                    <li>其他需求方向</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
-                    </div>
-                    <div class="selectcontainer">
-                        <div class="m-4" id="selectTag">
-                            
-                            <div class="custom-select">
-                                <p>请选择技术栈</p>
-                                <ul>
-                                    <li>HTML</li>
-                                    <li>CSS</li>
-                                    <li>JavaScript</li>
-                                    <li>其他前端语言</li>
-                                    <li>Java</li>
-                                    <li>Python</li>
-                                    <li>C/C++</li>
-                                    <li>Go</li>
-                                    <li>Ruby</li>
-                                    <li>其他后端语言</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>-->
+
                 </div>
                 <div id="indexList"></div>
                 <div class="loadmore">加载中...</div>
             </div>
-            <!--
-                <div class="right_content">
-                <div class="about_me">
+            <div class="right_content">
+                <!-- <div class="about_me">
                     <ul>
                         <li><a href="#" target="_blank"><i class="sprite sprite-mark"></i>我的收藏</a></li>
                         <li><a href="#" target="_blank"><i class="sprite sprite-guanzhu"></i>我的组队</a></li>
                     </ul>
                     <div class="divder_another">
                     </div>
-                </div>
+                </div> -->
 
 
             </div>
-            -->
-
         </div>
         <script src="./js/jquery.min.js"></script>
         <script src="./js/common.js"></script>
@@ -129,138 +255,77 @@
             let role = localStorage.getItem('sessionData.role');
         </script>
         <script>
-            document.getElementById('create-form').addEventListener('submit', function (event) {
-                event.preventDefault(); // 阻止表单默认提交行为
 
-                let type = []; // 存储所选type的数组
-                let checkboxes1 = document.querySelectorAll('input[name="type"]:checked');
-                checkboxes1.forEach(function (checkbox) {
-                    type.push(checkbox.value);
-                });
-                let direction = []; // 存储所选direction的数组
-                let checkboxes2 = document.querySelectorAll('input[name="direction"]:checked');
-                checkboxes2.forEach(function (checkbox) {
-                    direction.push(checkbox.value);
-                });
-                let tag = []; // 存储所选type的数组
-                let checkboxes3 = document.querySelectorAll('input[name="tag"]:checked');
-                checkboxes3.forEach(function (checkbox) {
-                    tag.push(checkbox.value);
-                });
-                let start_time = document.getElementById('start_time').value;
-                let end_time = document.getElementById('end_time').value;
-                let contact = document.getElementById('contact').value;
-                let content = document.getElementById('content').value;
+            //组件对应逻辑
+            // let selectedDisplayType = document.getElementById('selectDisplayType');
+            // let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
+            // let selectedDisplayTag = document.getElementById('selectDisplayTag');
 
-                let now = new Date(); // 获取当前时间
-                let year = now.getFullYear(); // 获取年份
-                let month = now.getMonth() + 1; // 获取月份（注意：月份范围是 0 到 11，需要加1）
-                let day = now.getDate(); // 获取日期
-                // 格式化年月日
-                let update_date = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+            // function addSelectEventListener(customSelect, selectOptions, selectedOptions, selectedDisplay) {
+            //     customSelect.querySelector('p').addEventListener('click', function () {
+            //         this.nextElementSibling.style.display = 'block';
+            //     });
 
-                let data = {//数据大整合
-                    type: type,
-                    direction: direction,
-                    tag: tag,
-                    start_time: start_time,
-                    end_time: end_time,
-                    contact: contact,
-                    content: content,
-                    update_date: update_date
-                };
+            //     customSelect.addEventListener('mouseleave', function () {
+            //         this.querySelector('ul').style.display = 'none';
+            //     });
 
-                // 将数据转换为 JSON 格式
-                let jsonData = JSON.stringify(data);
-                console.log(jsonData); // 将数据传递给服务器
-                fetch('http://116.62.103.210:8080/creatArticle', {
-                    method: 'POST',
-                    body: jsonData
-                })
-                    .then(response => {
-                        if (response.ok) {
-                            alert(data.message)
-                            // 请求成功处理
-                        } else {
-                            throw new Error('Network response was not ok.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error)
-                        alert('出错啦！请稍后再试。')
-                    });
-                // 在这里可以继续其他操作，例如显示成功消息或重定向到其他页面
-            })
+            //     function updateSelectedOptionsDisplay() {
+            //         selectedDisplay.textContent = selectedOptions.join(", "); // 使用逗号分隔已选中的选项
+            //     }
 
-            let selectedDisplayType = document.getElementById('selectDisplayType');
-            let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
-            let selectedDisplayTag = document.getElementById('selectDisplayTag');
+            //     selectOptions.forEach(function (option) {
+            //         option.addEventListener('click', function () {
+            //             if (this.classList.contains('selected')) {
+            //                 this.classList.remove('selected');
+            //                 // 从已选中选项数组中移除取消选中的选项
+            //                 let index = selectedOptions.indexOf(this.textContent);
+            //                 if (index > -1) {
+            //                     selectedOptions.splice(index, 1);
+            //                 }
+            //             } else {
+            //                 this.classList.add('selected');
+            //                 // 将选中的选项加入选项数组
+            //                 selectedOptions.push(this.textContent);
+            //             }
 
-            function addSelectEventListener(customSelect, selectOptions, selectedOptions, selectedDisplay) {
-                customSelect.querySelector('p').addEventListener('click', function () {
-                    this.nextElementSibling.style.display = 'block';
-                });
+            //             updateSelectedOptionsDisplay(); // 更新显示框内容
 
-                customSelect.addEventListener('mouseleave', function () {
-                    this.querySelector('ul').style.display = 'none';
-                });
+            //         });
+            //     });
+            // }
 
-                function updateSelectedOptionsDisplay() {
-                    selectedDisplay.textContent = selectedOptions.join(", "); // 使用逗号分隔已选中的选项
-                }
+            // let customSelectType = document.getElementById("selectType");
+            // let selectOptionsType = customSelectType.querySelectorAll('li');
+            // let selectedOptionsType = [];
+            // addSelectEventListener(customSelectType, selectOptionsType, selectedOptionsType, selectedDisplayType);
 
-                selectOptions.forEach(function (option) {
-                    option.addEventListener('click', function () {
-                        if (this.classList.contains('selected')) {
-                            this.classList.remove('selected');
-                            // 从已选中选项数组中移除取消选中的选项
-                            let index = selectedOptions.indexOf(this.textContent);
-                            if (index > -1) {
-                                selectedOptions.splice(index, 1);
-                            }
-                        } else {
-                            this.classList.add('selected');
-                            // 将选中的选项加入选项数组
-                            selectedOptions.push(this.textContent);
-                        }
+            // let customSelectDirection = document.getElementById("selectDirection");
+            // let selectOptionsDirection = customSelectDirection.querySelectorAll('li');
+            // let selectedOptionsDirection = [];
+            // addSelectEventListener(customSelectDirection, selectOptionsDirection, selectedOptionsDirection, selectedDisplayDirection);
 
-                        updateSelectedOptionsDisplay(); // 更新显示框内容
-
-                    });
-                });
-            }
+            // let customSelectTag = document.getElementById("selectTag");
+            // let selectOptionsTag = customSelectTag.querySelectorAll('li');
+            // let selectedOptionsTag = [];
+            // addSelectEventListener(customSelectTag, selectOptionsTag, selectedOptionsTag, selectedDisplayTag);
 
 
-            let customSelectType = document.getElementById("selectType");
-            let selectOptionsType = customSelectType.querySelectorAll('li');
-            let selectedOptionsType = [];
-            addSelectEventListener(customSelectType, selectOptionsType, selectedOptionsType, selectedDisplayType);
+            // //显示框显示选项
+            // let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
 
-            let customSelectDirection = document.getElementById("selectDirection");
-            let selectOptionsDirection = customSelectDirection.querySelectorAll('li');
-            let selectedOptionsDirection = [];
-            addSelectEventListener(customSelectDirection, selectOptionsDirection, selectedOptionsDirection, selectedDisplayDirection);
+            // let type = selectedOptionsType;
+            // let direction = selectedOptionsDirection;
+            // let tag = selectedOptionsTag;
 
-            let customSelectTag = document.getElementById("selectTag");
-            let selectOptionsTag = customSelectTag.querySelectorAll('li');
-            let selectedOptionsTag = [];
-            addSelectEventListener(customSelectTag, selectOptionsTag, selectedOptionsTag, selectedDisplayTag);
+            //上面三个变量存储对应值，只有筛选未完成就算了
 
-            //显示框显示选项
-            let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
+            // 需要在这里面补充发送请求的逻辑，建议把这里的js都移动到index里面，避免混淆;
 
-            // 添加按钮点击事件，打印选项信息至控制台
-            const printButton = document.getElementById('printButton');
-            printButton.addEventListener('click', () => {
-                let selectedOptionsStr = selectedOptionsType.join(', ');
-                console.log(selectedOptionsStr);
-                selectedOptionsStr = selectedOptionsDirection.join(', ');
-                console.log(selectedOptionsStr);
-                selectedOptionsStr = selectedOptionsTag.join(', ');
-                console.log(selectedOptionsStr);
-
-            });
-
+            // document.getElementById('create-form').addEventListener('submit', function (event) {
+            //     event.preventDefault(); // 阻止表单默认提交行为
+                
+            // })
         </script>
 </body>
 
