@@ -45,13 +45,6 @@ public class ShiroConfig {
 
         Map<String, String> hashMap = new LinkedHashMap<>();
 
-        //swagger2
-        hashMap.put("/swagger-ui.html", "anon");
-        hashMap.put("/swagger/**", "anon");
-        hashMap.put("/swagger-resources/**", "anon");
-        hashMap.put("/v2/**", "anon");
-        hashMap.put("/webjars/**", "anon");
-        hashMap.put("/configuration/**", "anon");
 
         //account
         hashMap.put("/account/checkPassword", "anon");
@@ -65,34 +58,6 @@ public class ShiroConfig {
         hashMap.put("/account/user/all", "roles[user]");
         hashMap.put("/article","anon");
         hashMap.put("/userInfo","anon");
-
-        //adminOrder
-        hashMap.put("/admin_order/deal", "roles[admin]");
-        hashMap.put("/admin_order/detail", "roles[admin]");
-        hashMap.put("/admin_order/message", "roles[admin]");
-        hashMap.put("/admin_order/search", "roles[admin]");
-        hashMap.put("/admin_order/list", "roles[admin]");
-
-        //car
-        hashMap.put("/car/list", "roles[admin]");
-        hashMap.put("/car/add", "roles[admin]");
-        hashMap.put("/car/delete", "roles[admin]");
-        hashMap.put("/car/free", "roles[admin]");
-
-        //driver
-        hashMap.put("/driver/list", "roles[admin]");
-        hashMap.put("/driver/add", "roles[admin]");
-        hashMap.put("/driver/delete", "roles[admin]");
-        hashMap.put("/driver/free", "roles[admin]");
-
-        //userOrder
-        hashMap.put("/user_order/submit", "roles[user]");
-        hashMap.put("/user_order/detail", "roles[user]");
-        hashMap.put("/user_order/message", "roles[user]");
-        hashMap.put("/user_order/search", "roles[user]");
-        hashMap.put("/user_order/list", "roles[user]");
-        hashMap.put("/user_order/receive", "roles[user]");
-
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(hashMap);
 

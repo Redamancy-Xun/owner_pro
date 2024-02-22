@@ -18,23 +18,18 @@ public class SessionUtil {
 
     @Autowired
     private HttpServletRequest request;
-
     @Autowired
     private HttpServletRequest response;
-
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private AdminMapper adminMapper;
-
     public SessionData getSessionData(){
         String sessionId = request.getHeader("Sessionid");
         if (sessionId==null) throw new MyException(EnumExceptionType.NO_SESSION);
 
         return getSessionDataFromDB(sessionId);
     }
-
     public String getSessionId(){
         return  request.getHeader("Sessionid");
     }
@@ -48,7 +43,6 @@ public class SessionUtil {
         else sessionData = new SessionData(admin);
         return sessionData;
     }
-
     public String generateSessionId(){
         return UUID.randomUUID().toString();
     }
