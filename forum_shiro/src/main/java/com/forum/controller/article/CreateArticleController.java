@@ -3,6 +3,7 @@ package com.forum.controller.article;
 
 import com.alibaba.fastjson.JSON;
 import com.forum.common.Result;
+import com.forum.controller.request.CreateArticleRequest;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.dto.SessionData;
 import com.forum.entity.RecruitArticle;
@@ -17,6 +18,7 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,13 +48,7 @@ public class CreateArticleController {
             @ApiImplicitParam(name = "end_time", value = "任务结束时间", required = true, paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "contact", value = "联系方式", required = true, paramType = "query", dataType = "String")
     })
-    public Result createArticle(@RequestParam(value = "type") @Validated List<String> type,
-                                @RequestParam(value = "direction") @Validated List<String> direction,
-                                @RequestParam(value = "tag") @Validated List<String> tag,
-                                @RequestParam(value = "content") @Validated String content,
-                                @RequestParam(value = "start_time") @Validated String start_time,
-                                @RequestParam(value = "end_time") @Validated String end_time,
-                                @RequestParam(value = "contact") @Validated String contact){
+    public Result createArticle(@RequestBody @Validated CreateArticleRequest request){
 
         SessionData sessionData = sessionUtil.getSessionData();
         Integer admin_id = 0;
@@ -61,6 +57,13 @@ public class CreateArticleController {
             admin_id = sessionData.getId();
         else
             user_id = sessionData.getId();
+        List<String> type = request.getType();
+        List<String> direction = request.getDirection();
+        List<String> tag = request .getTag();
+        String content = request.getContent();
+        String start_time = request.getStart_time();
+        String end_time = request.getEnd_time();
+        String contact = request.getContact();
 
         String typeJson = JSON.toJSONString(type);
         String directionJson = JSON.toJSONString(direction);

@@ -311,7 +311,7 @@
     }
 
     .selectDisplay {
-        width: 1000px;
+        width: 576px;
         height: 33px;
         background-color: #ffffff;
         border: 1px solid #000;
@@ -330,58 +330,160 @@
     }
 
     /*时间获取部分*/
-    .timeInput {
-        color: white;
+    .timeSet {
+        display: flex;
+        margin-top: 7px;
+    }
+
+    .timeSet div {
         background-color: #8dd3f9;
-        border: none;
-        padding: 10px;
-        margin-top: 20px;
+        display: inline-block;
+        width: 240px;
+        height: 33px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
+        font-family: Arial, sans-serif; /* 设置字体 */  
+        font-size: 14px; /* 设置字体粗细 */ 
+        font-weight: bold; 
+        color: #000000; /* 设置文字颜色 */  
+        /* 修改样式 */
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        box-sizing: border-box;
+        border-radius: 5px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .timeInput {
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
+        border-radius: 5px;
+
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
+ 
     }
 
     input.timeInput {
-        width: 200px;
-        height: 30px;
+        width: 576px;
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
         border-radius: 5px;
-        padding: 5px;
-        font-size: 14px;
+
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
     }
+
     /*联系方式部分*/
-    .contactInput {
-        color: white;
+    .contactSet {
+        display: flex;
+        margin-top: 7px;
+    }
+
+    .contactSet div {
         background-color: #8dd3f9;
-        border: none;
-        padding: 10px;
-        margin-top: 20px;
+        display: inline-block;
+        width: 240px;
+        height: 33px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
+        font-family: Arial, sans-serif; /* 设置字体 */  
+        font-size: 14px; /* 设置字体粗细 */ 
+        font-weight: bold; 
+        color: #000000; /* 设置文字颜色 */  
+        /* 修改样式 */
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        box-sizing: border-box;
+        border-radius: 5px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .contactInput {
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
+        border-radius: 5px;
+
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */ 
+ 
     }
 
     input.contactInput {
-        width: 200px;
-        height: 30px;
+        width: 576px;
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
         border-radius: 5px;
-        padding: 5px;
-        font-size: 14px;
+
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
     }
 
     /*详细内容部分*/
     .contentInput {
-        color: white;
-        background-color: #8dd3f9;
-        border: #8dd3f9;
-        padding: 10px;
-        margin-top: 20px;
+        color: rgb(0, 0, 0);
+        background-color: #e5f8ff;
+        border: 2px solid #8dd3f9;
+        display: flex;
     }
 
     textarea.contentInput {
-        width: 300px;
+        width: 801px;
         height: 200px;
         border-radius: 5px;
         padding: 10px;
         font-size: 14px;
         margin-bottom: 10px;
         resize: none;
+        margin-top: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #333;
+
+        display: flex;
     }
 </style>
-
 <body>
     <div class="container">
         <div class="header"><!--导航栏-->
@@ -412,7 +514,7 @@
                         <div class="m-4" id="selectType">
                             <!-- HTML 代码 -->
                             <div class="custom-select">
-                                <p>请选择招募任务类型 V</p>
+                                <p>请选择招募任务类型 ▼</p>
                                 <ul>
                                     <li>双创</li>
                                     <li>外包</li>
@@ -429,7 +531,7 @@
                         <div class="m-4" id="selectDirection">
                             <!-- HTML 代码 -->
                             <div class="custom-select">
-                                <p>请选择需求方向 V</p>
+                                <p>请选择需求方向 ▼</p>
                                 <ul>
                                     <li>前端</li>
                                     <li>后端</li>
@@ -445,7 +547,7 @@
                         <div class="m-4" id="selectTag">
                             <!-- HTML 代码 -->
                             <div class="custom-select">
-                                <p>请选择技术栈 V</p>
+                                <p>请选择技术栈 ▼</p>
                                 <ul>
                                     <li>HTML</li>
                                     <li>CSS</li>
@@ -462,18 +564,22 @@
                         </div>
                         <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
                     </div>
-                    <div>
-                        <label>任务开始时间</label>
-                        <input type="text" id="startTimeInput" class="timeInput" placeholder="(模糊时间即可)">
+
+                    <div class="timeSet">
+                        <div>任务开始时间</div>
+                        <input type="text" id="startTimeInput" class="timeInput" placeholder="(模糊时间即可)"></input>
                     </div>
-                    <div>
-                        <label>任务结束时间</label>
-                        <input type="text" id="endTimeInput" class="timeInput" placeholder="(模糊时间即可)">
+
+                    <div class="timeSet">
+                        <div>任务结束时间</div>
+                        <input type="text" id="endTimeInput" class="timeInput" placeholder="(模糊时间即可)"></input>
                     </div>
-                    <div>
-                        <label>联系方式</label>
+
+                    <div class="contactSet">
+                        <div>联系方式</div>
                         <input type="text" id="contactInput" class="contactInput" placeholder="(请注明WX/QQ/TEL)">
                     </div>
+
                     <div>
                         <label></label>
                         <textarea id="contentInput" class="contentInput" placeholder="请输入帖子详细内容"></textarea>
@@ -542,12 +648,9 @@
             //显示框显示选项
             let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
 
-            let type = [];
-            type = selectedOptionsType;
-            let direction = [] ;
-            direction = selectedOptionsDirection;
-            let tag = [] ;
-            tag= selectedOptionsTag;
+            let type = selectedOptionsType;
+            let direction = selectedOptionsDirection;
+            let tag = selectedOptionsTag;
 
             let start_time; let end_time;
             let contact; let content;
@@ -569,7 +672,7 @@
                 content = document.getElementById('contentInput').value;
             });
 
-            /*原代码*/
+            /*提交按钮时执行的函数*/
             document.getElementById('create-form').addEventListener('submit', function (event) {
                 event.preventDefault(); // 阻止表单默认提交行为
                 //判断是否填写完整
@@ -577,11 +680,11 @@
                     alert('请选择招募任务类型')
                     return;
                 }
-                if(direction == null){
+                if(direction.length == 0){
                     alert('请选择需求方向')
                     return;
                 }
-                if(tag == null){
+                if(tag.length == 0){
                     alert('请选择技术栈')
                     return;
                 }
@@ -601,13 +704,6 @@
                     alert('请填写详细内容')
                     return;
                 }
-                //发布时间兼上次更新时间
-                //let now = new Date(); // 获取当前时间
-                //let year = now.getFullYear(); // 获取年份
-                //let month = now.getMonth() + 1; // 获取月份（注意：月份范围是 0 到 11，需要加1）
-                //let day = now.getDate(); // 获取日期
-                // 格式化年月日
-                //let update_date = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
 
                 let data = {//数据大整合
                     type: type,
@@ -617,9 +713,8 @@
                     end_time: end_time,
                     contact: contact,
                     content: content,
-                    //update_date: update_date
                 };
-
+                console.log(data);
                 // 将数据转换为 JSON 格式
                 let jsonData = JSON.stringify(data);
                 console.log(jsonData); // 将数据传递给服务器
@@ -641,6 +736,7 @@
                     });*/
                 let sessionData = localStorage.getItem('sessionData');
                 let sessionId = localStorage.getItem('sessionId');
+                console.log(sessionId);
                 $.ajax({
                     type: "POST",
                     url: "http://116.62.103.210:8080/createArticle",
@@ -655,6 +751,9 @@
                     success: function (data) {
                         console.log(data)
                         alert(data.message)
+                        if (data.code == 0){//如果发布成功就跳转到详情界面
+                            window.location.href = `http://116.62.103.210/detail.html?id=${data.result.article_id}`;
+                        }
                     },
                     error: function (xhr, status, error) {
                         console.error(error)
@@ -675,20 +774,6 @@
                 console.log(end_time);
                 console.log(contact);
                 console.log(content);
-
-                let data = {//数据大整合
-                    type: type,
-                    direction: direction,
-                    tag: tag,
-                    start_time: start_time,
-                    end_time: end_time,
-                    contact: contact,
-                    content: content,
-                };
-
-                // 将数据转换为 JSON 格式
-                let jsonData = JSON.stringify(data);
-                console.log(jsonData); 
 
             });
         </script>
