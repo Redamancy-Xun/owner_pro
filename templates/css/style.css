@@ -17,11 +17,12 @@
     font-weight: bold;
 }
 
-.header .nav{
+.header .nav {
     float: left;
     width: 400px;
     position: relative;
 }
+
 .header .nav ul li {
     float: left;
     margin-left: 32px;
@@ -41,10 +42,11 @@
 }
 
 
-.header .search{
+.header .search {
     float: left;
     position: relative;
 }
+
 .header .search .kw {
     float: left;
     height: 30px;
@@ -105,7 +107,7 @@
     font-size: 15px;
 }
 
-.main_title{
+.main_title {
     font-size: 18px;
     line-height: 40px;
     font-weight: bold;
@@ -115,7 +117,7 @@
 
 .left_content {
     float: left;
-    width: 850px;
+    width: 100%;
     margin: 75px 0 0 0;
     overflow: hidden;
 }
@@ -191,7 +193,8 @@
     font-size: 13px;
     color: #999999;
 }
-.peo_desc .base_comment em{
+
+.peo_desc .base_comment em {
     background: #52aee1;
     color: #fff;
     font-size: 13px;
@@ -207,7 +210,8 @@
     color: #2255B2;
     margin-top: 15px;
 }
-.peo_desc .title_comment em{
+
+.peo_desc .title_comment em {
     background: #52aee1;
     color: #fff;
     font-size: 13px;
@@ -216,7 +220,8 @@
     margin-right: 6px;
     font-weight: normal;
 }
-.peo_desc .title_comment em.top{
+
+.peo_desc .title_comment em.top {
     background: #f60;
 }
 
@@ -240,11 +245,18 @@
 }
 
 
-.comment{
-    padding: 25px 0 15px 0;
+.comment {
+    margin-left: 15%;
+    margin-bottom: 3px;
+    padding: 25px 15px 15px 15px;
     border-bottom: 1px dashed #eee;
     overflow: hidden;
+    background-image: linear-gradient(to right, rgb(217, 229, 250), #fff);
+    border-radius: 20px;
+    border: 2px solid darkgray;
+    width: 70%;
 }
+
 .comment .peo_desc a:hover {
     text-decoration: underline;
     color: #698EBF;
@@ -272,6 +284,10 @@
     color: #698EBF;
 }
 
+body {
+    background-image: linear-gradient(to right, rgb(225, 234, 249), #fff);
+}
+
 .comment_content .content_area .show_all:hover {
     background-color: #DAEDF5;
 }
@@ -283,7 +299,8 @@
     color: #333;
     line-height: 1.7;
 }
-.ellipsis3{
+
+.ellipsis3 {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
@@ -300,14 +317,17 @@
     line-height: 1.7;
     border-top: 1px solid #eee;
 }
-.content_detail a{
+
+.content_detail a {
     color: #698EBF;
     text-decoration: none;
 }
-.content_detail a:hover{
+
+.content_detail a:hover {
     text-decoration: underline;
 }
-.content_detail img{
+
+.content_detail img {
     display: block;
     margin: 5px 0;
     max-width: 90%;
@@ -543,10 +563,11 @@
     text-decoration: underline;
 }
 
-.live .live_title{
+.live .live_title {
     line-height: 26px;
     overflow: hidden;
 }
+
 .live .live_title .live_item_name {
     float: left;
     font-size: 15px;
@@ -573,6 +594,7 @@
     float: left;
     margin: 10px 0 10px 10px;
 }
+
 .live .live_item .live_artical:hover {
     color: #698EBF;
 }
@@ -601,7 +623,7 @@
 }
 
 
-.loadmore{
+.loadmore {
     cursor: pointer;
     background: #ced7e5;
     border-radius: 4px;
@@ -611,4 +633,83 @@
     margin: 20px 0 20px 0;
     color: #8491a5;
     font-size: 15px;
+}
+
+.custom-select {
+    position: relative;
+    font-family: Arial;
+}
+
+.custom-select select {
+    display: none;
+}
+
+.custom-select select:focus {
+    background-color: #409EFF;
+}
+
+.custom-select p {
+    padding: 10px;
+    background-color: #8dd3f9;
+    display: inline-block;
+    width: 240px;
+    /* 修改样式 */
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    border-radius: 2px;
+    /* 添加圆角矩形样式 */
+}
+
+.custom-select ul {
+    display: none;
+    position: absolute;
+    background-color: #8dd3f9;
+    width: 240px;
+    /* 修改样式 */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 1;
+    border-radius: 2px;
+    /* 添加圆角矩形样式 */
+}
+
+.custom-select ul li {
+    display: block;
+    padding: 10px 30px;
+    /* 添加右侧间距以留出位置放置打勾图标 */
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    /* 为打勾图标创建相对定位的参考容器 */
+}
+
+.custom-select ul li:hover {
+    color: #ffffff;
+    background-color: #579af2;
+}
+
+/* 添加打勾图标样式 */
+.custom-select ul li.selected::after {
+    content: '✔';
+    /* 使用Unicode字符作为打勾图标 */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translate(0, -50%);
+    color: #ffffff;
+}
+
+/*显示框代码*/
+.selectcontainer {
+    display: flex;
+    align-items: center;
+}
+
+.selectDisplay {
+    margin-left: 10px;
 }
