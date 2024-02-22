@@ -1,3 +1,93 @@
+//头像获取
+let headProtrait = localStorage.getItem('sessionData.headprotrait');
+if (headProtrait) {
+    let img = document.getElementsByClassName('logo');
+    img.src = 'http://116.62.103.210/image/' + headProtrait;
+}
+let role = localStorage.getItem('sessionData.role');
+
+let userName = localStorage.getItem('sessionData.username');
+let Name = document.querySelector('.name');
+if (userName) {
+    Name.innerHTML = userName;
+}
+//筛选组件对应逻辑
+let selectedDisplayType = document.getElementById('selectDisplayType');
+let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
+let selectedDisplayTag = document.getElementById('selectDisplayTag');
+
+function addSelectEventListener(customSelect, selectOptions, selectedOptions, selectedDisplay) {
+    customSelect.querySelector('p').addEventListener('click', function () {
+        this.nextElementSibling.style.display = 'block';
+    });
+
+    customSelect.addEventListener('mouseleave', function () {
+        this.querySelector('ul').style.display = 'none';
+    });
+
+    function updateSelectedOptionsDisplay() {
+        selectedDisplay.textContent = selectedOptions.join(", "); //使用逗号分隔已选中的选项
+    }
+
+    selectOptions.forEach(function (option) {
+        option.addEventListener('click', function () {
+            if (this.classList.contains('selected')) {
+                this.classList.remove('selected');
+                //从已选中选项数组中移除取消选中的选项
+                let index = selectedOptions.indexOf(this.textContent);
+                if (index > -1) {
+                    selectedOptions.splice(index, 1);
+                }
+            } else {
+                this.classList.add('selected');
+                //将选中的选项加入选项数组
+                selectedOptions.push(this.textContent);
+            }
+
+            updateSelectedOptionsDisplay(); //更新显示框内容
+
+        });
+    });
+}
+
+let customSelectType = document.getElementById("selectType");
+let selectOptionsType = customSelectType.querySelectorAll('li');
+let selectedOptionsType = [];
+addSelectEventListener(customSelectType, selectOptionsType, selectedOptionsType, selectedDisplayType);
+
+let customSelectDirection = document.getElementById("selectDirection");
+let selectOptionsDirection = customSelectDirection.querySelectorAll('li');
+let selectedOptionsDirection = [];
+addSelectEventListener(customSelectDirection, selectOptionsDirection, selectedOptionsDirection, selectedDisplayDirection);
+
+let customSelectTag = document.getElementById("selectTag");
+let selectOptionsTag = customSelectTag.querySelectorAll('li');
+let selectedOptionsTag = [];
+addSelectEventListener(customSelectTag, selectOptionsTag, selectedOptionsTag, selectedDisplayTag);
+
+
+//显示框显示选项
+let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
+
+let type = selectedOptionsType;
+let direction = selectedOptionsDirection;
+let tag = selectedOptionsTag;
+
+//上面三个变量存储对应值，只有筛选未完成就算了
+console.log(type);
+console.log(direction);
+console.log(tag);
+//需要在这里面补充发送请求的逻辑，建议把这里的js都移动到index里面，避免混淆;
+
+
+document.getElementById('create-form').addEventListener('submit', function (event) {
+    event.preventDefault(); //阻止表单默认提交行为
+
+})
+
+
+
+
 $index = {
     data: {
         page: 0,
@@ -27,9 +117,10 @@ $index = {
             url: 'article',
             data: {
                 pageSize: 10,
-                pageNum: that.data.page
-
-
+                pageNum: that.data.page,
+                ...(type.length > 0 && { type: type.slice(0, type.length).join(',') }),
+                ...(direction.length > 0 && { direction: direction.slice(0, direction.length).join(',') }),
+                ...(tag.length > 0 && { tag: tag.slice(0, tag.length).join(',') })
             },
             ok: function (res) {
                 // 渲染数据
@@ -73,7 +164,7 @@ $index = {
         html += '            <p><a href="./detail.html?id=' + info.article_id + '" class="show_all">查看详情</a></p>';
         if (role) {
             html += '<button class="delete-button" onclick="deletePost(this)"> < img src="./image/delete.jpeg" alt = "删除" > </button >'
-            html += ' <button button class="sticky-button"><img src="./image/up.jpeg" alt="置顶"</button>'
+            html += ' <button  class="sticky-button"><img src="./image/up.jpeg" alt="置顶"</button>'
         }
         function deletePost(button) {
             let post = button.closest('.comment')

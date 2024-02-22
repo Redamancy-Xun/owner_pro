@@ -1,123 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<style>
-    .custom-select {
-        position: relative;
-        font-family: Arial;
-    }
-
-    .custom-select select {
-        display: none;
-    }
-
-    .custom-select select:focus {
-        background-color: #409EFF;
-    }
-
-    .custom-select p {
-        padding: 10px;
-        background-color: #8dd3f9;
-        display: inline-block;
-        width: 240px;
-        height: 33px;
-        display: flex;
-        /* 启用Flexbox */
-        justify-content: center;
-        /* 水平居中 */
-        align-items: center;
-        /* 垂直居中 */
-        font-family: Arial, sans-serif;
-        /* 设置字体 */
-        font-size: 14px;
-        /* 设置字体粗细 */
-        font-weight: bold;
-        color: #000000;
-        /* 设置文字颜色 */
-        /* 修改样式 */
-        cursor: pointer;
-        position: relative;
-        z-index: 0;
-        text-align: center;
-        box-sizing: border-box;
-        margin: 0;
-        border-radius: 5px;
-        /* 添加圆角矩形样式 */
-    }
-
-    .custom-select ul {
-        display: none;
-        position: absolute;
-        background-color: #8dd3f9;
-        width: 240px;
-        font-family: Arial, sans-serif;
-        /* 设置字体 */
-        font-size: 14px;
-        /* 设置字体粗细 */
-        color: #000000;
-        /* 设置文字颜色 */
-        /* 修改样式 */
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        z-index: 1;
-        border-radius: 2px;
-        /* 添加圆角矩形样式 */
-    }
-
-    .custom-select ul li {
-        display: block;
-        padding: 10px 30px;
-        /* 添加右侧间距以留出位置放置打勾图标 */
-        text-align: center;
-        cursor: pointer;
-        position: relative;
-        /* 为打勾图标创建相对定位的参考容器 */
-    }
-
-    .custom-select ul li:hover {
-        color: #ffffff;
-        background-color: #579af2;
-    }
-
-    /* 添加打勾图标样式 */
-    .custom-select ul li.selected::after {
-        content: '✔';
-        /* 使用Unicode字符作为打勾图标 */
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translate(0, -50%);
-        color: #ffffff;
-    }
-
-    /*显示框代码*/
-    .selectcontainer {
-        display: flex;
-        align-items: center;
-    }
-
-    .selectDisplay {
-        width: 1000px;
-        height: 33px;
-        background-color: #ffffff;
-        border: 1px solid #000;
-        border-radius: 5px;
-        margin: 4px;
-        text-align: center;
-        font-family: Arial, Helvetica, sans-serif;
-        font-weight: bold;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #333;
-        margin-left: 5px;
-        display: flex;
-        /* 启用Flexbox */
-        justify-content: center;
-        /* 水平居中 */
-        align-items: center;
-        /* 垂直居中 */
-    }
-</style>
 
 <head>
     <meta charset="UTF-8">
@@ -136,7 +18,7 @@
                         <a class="link" href="./">首页</a>
                     </li>
                     <li>
-                        <a class="link" href="account.html">个人中心</a>
+                        <a class="link" href="accountnew.html">个人中心</a>
                     </li>
                 </ul>
             </div>
@@ -148,72 +30,64 @@
             </div>
         </div>
     </header>
-
     </div>
-    
-    <!-- 选择组件 -->
-
-    <!-- <div id="shaixuan">
-        <form action="http://116.62.103.210:8080/article" method="GET" name="发帖表单" id="create-form">
-            <div class="selectcontainer">
-                <div class="m-4" id="selectType">
-                    <div class="custom-select">
-                        <p>请选择招募任务类型 ▼</p>
-                        <ul>
-                            <li>双创</li>
-                            <li>外包</li>
-                            <li>大作业</li>
-                            <li>校级项目</li>
-                            <li>社团项目</li>
-                            <li>其他类型</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
-            </div>
-            <div class="selectcontainer">
-                <div class="m-4" id="selectDirection">
-                    <div class="custom-select">
-                        <p>请选择需求方向 ▼</p>
-                        <ul>
-                            <li>前端</li>
-                            <li>后端</li>
-                            <li>项目经理</li>
-                            <li>UI设计师</li>
-                            <li>其他需求方向</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
-            </div>
-            <div class="selectcontainer">
-                <div class="m-4" id="selectTag">
-                    <div class="custom-select">
-                        <p>请选择技术栈 ▼</p>
-                        <ul>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>JavaScript</li>
-                            <li>其他前端语言</li>
-                            <li>Java</li>
-                            <li>Python</li>
-                            <li>C/C++</li>
-                            <li>Go</li>
-                            <li>Ruby</li>
-                            <li>其他后端语言</li>
-                        </ul>
-                    </div>
-                </div>
-                <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
-            </div>
-            <input type="submit" class="btn" id="submit" value="筛选">
-        </form>
-    </div> -->
-
-
-    <!-- 原先的内容 -->
     <div class="main">
-
+        <div id="shaixuan">
+            <form action="http://116.62.103.210:8080/article" method="GET" name="发帖表单" id="create-form">
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectType">
+                        <div class="custom-select">
+                            <p>请选择招募任务类型 ▼</p>
+                            <ul>
+                                <li>双创</li>
+                                <li>外包</li>
+                                <li>大作业</li>
+                                <li>校级项目</li>
+                                <li>社团项目</li>
+                                <li>其他类型</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
+                </div>
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectDirection">
+                        <div class="custom-select">
+                            <p>请选择需求方向 ▼</p>
+                            <ul>
+                                <li>前端</li>
+                                <li>后端</li>
+                                <li>项目经理</li>
+                                <li>UI设计师</li>
+                                <li>其他需求方向</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
+                </div>
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectTag">
+                        <div class="custom-select">
+                            <p>请选择技术栈 ▼</p>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>其他前端语言</li>
+                                <li>Java</li>
+                                <li>Python</li>
+                                <li>C/C++</li>
+                                <li>Go</li>
+                                <li>Ruby</li>
+                                <li>其他后端语言</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
+                </div>
+                <input type="submit" class="btn" id="submit" value="筛选">
+            </form>
+        </div>
 
         <div class="left_content">
 
@@ -246,87 +120,7 @@
         <script src="./js/jquery.min.js"></script>
         <script src="./js/common.js"></script>
         <script src="./js/index.js"></script>
-        <script>
-            let headProtrait = localStorage.getItem('sessionData.headprotrait');
-            if (headProtrait) {
-                let img = document.getElementsByClassName('logo');
-                img.src = 'http://116.62.103.210/image/' + headProtrait;
-            }
-            let role = localStorage.getItem('sessionData.role');
-        </script>
-        <script>
 
-            //组件对应逻辑
-            // let selectedDisplayType = document.getElementById('selectDisplayType');
-            // let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
-            // let selectedDisplayTag = document.getElementById('selectDisplayTag');
-
-            // function addSelectEventListener(customSelect, selectOptions, selectedOptions, selectedDisplay) {
-            //     customSelect.querySelector('p').addEventListener('click', function () {
-            //         this.nextElementSibling.style.display = 'block';
-            //     });
-
-            //     customSelect.addEventListener('mouseleave', function () {
-            //         this.querySelector('ul').style.display = 'none';
-            //     });
-
-            //     function updateSelectedOptionsDisplay() {
-            //         selectedDisplay.textContent = selectedOptions.join(", "); // 使用逗号分隔已选中的选项
-            //     }
-
-            //     selectOptions.forEach(function (option) {
-            //         option.addEventListener('click', function () {
-            //             if (this.classList.contains('selected')) {
-            //                 this.classList.remove('selected');
-            //                 // 从已选中选项数组中移除取消选中的选项
-            //                 let index = selectedOptions.indexOf(this.textContent);
-            //                 if (index > -1) {
-            //                     selectedOptions.splice(index, 1);
-            //                 }
-            //             } else {
-            //                 this.classList.add('selected');
-            //                 // 将选中的选项加入选项数组
-            //                 selectedOptions.push(this.textContent);
-            //             }
-
-            //             updateSelectedOptionsDisplay(); // 更新显示框内容
-
-            //         });
-            //     });
-            // }
-
-            // let customSelectType = document.getElementById("selectType");
-            // let selectOptionsType = customSelectType.querySelectorAll('li');
-            // let selectedOptionsType = [];
-            // addSelectEventListener(customSelectType, selectOptionsType, selectedOptionsType, selectedDisplayType);
-
-            // let customSelectDirection = document.getElementById("selectDirection");
-            // let selectOptionsDirection = customSelectDirection.querySelectorAll('li');
-            // let selectedOptionsDirection = [];
-            // addSelectEventListener(customSelectDirection, selectOptionsDirection, selectedOptionsDirection, selectedDisplayDirection);
-
-            // let customSelectTag = document.getElementById("selectTag");
-            // let selectOptionsTag = customSelectTag.querySelectorAll('li');
-            // let selectedOptionsTag = [];
-            // addSelectEventListener(customSelectTag, selectOptionsTag, selectedOptionsTag, selectedDisplayTag);
-
-
-            // //显示框显示选项
-            // let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
-
-            // let type = selectedOptionsType;
-            // let direction = selectedOptionsDirection;
-            // let tag = selectedOptionsTag;
-
-            //上面三个变量存储对应值，只有筛选未完成就算了
-
-            // 需要在这里面补充发送请求的逻辑，建议把这里的js都移动到index里面，避免混淆;
-
-            // document.getElementById('create-form').addEventListener('submit', function (event) {
-            //     event.preventDefault(); // 阻止表单默认提交行为
-                
-            // })
-        </script>
 </body>
 
 </html>
