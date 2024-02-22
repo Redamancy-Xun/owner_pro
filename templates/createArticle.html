@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博远-帖子发布页</title>
+    <script src="./js/jquery.min.js"></script>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        background-color: rgb(245, 246, 254);
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .header {
+        height: 5.22%;
+        width: 100%;
+        margin: auto;
+        background: linear-gradient(to right, #b9d2fb, #f6f9ff);
+        border-bottom: #9b9b9b solid 1px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+        height: 100%;
+        padding: 0 0.98%;
+        float: left;
+        margin-left: 19.6%;
+        font-size: 18px;
+        color: #52aee1;
+        line-height: 53px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .logo img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .nav {
+        float: left;
+        height: 100%;
+        padding: 0 0.98%;
+        margin-left: 0.32%;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .nav ul li {
+        float: left;
+        padding: 2 2px;
+    }
+
+    .nav ul li a {
+        display: block;
+        height: 53px;
+        width: 100%;
+        padding: 0 15px;
+        margin-left: 2px;
+        margin-right: 2px;
+        line-height: 53px;
+        font-size: 18px;
+        color: #000;
+        text-decoration: none;
+    }
+
+    .nav ul li a:hover {
+        padding: 0 13px;
+        margin-left: 2px;
+        margin-right: 2px;
+        font-size: 20px;
+        color: #0055ff;
+        border-bottom: 2px solid #0055ff;
+    }
+
+    .user {
+        float: left;
+        height: 100%;
+        width: 2.45%;
+        padding: 20 0px;
+        margin-left: 33.33%;
+        line-height: 100%;
+        font-size: 16px;
+        background-color: #fff;
+        box-shadow: 0 0 3px rgb(255, 255, 255);
+    }
+
+    .user img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .user-name {
+        float: left;
+        height: 100%;
+        padding-top: 0.98%;
+        margin-left: 1%;
+        line-height: 100%;
+        font-size: 16px;
+        color: #4e4e4e;
+    }
+
+    .create-wrapper {
+        background-color: #fff;
+        width: 60%;
+        height: 850px;
+        border-radius: 15px;
+        padding: 0 40px;
+        margin-top: 1.5%;
+        margin-left: 18%;
+        box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+    }
+
+    .header2 {
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 60px;
+    }
+
+    .form-wrapper {
+        width: 100%;
+        height: 80%;
+        margin-top: 1%;
+    }
+
+    .select-wrapper {
+        padding-top: 1%;
+        margin-bottom: 1%;
+        background: linear-gradient(to bottom, #b9d2fb, #f6f9ff);
+        box-shadow: 0 0 2px #b7b7b7;
+    }
+
+    .select-wrapper input {
+        margin-bottom: 1%;
+        margin-left: 1.5%;
+        margin-right: 0%;
+    }
+
+    #start_time {
+        display: inline-block;
+        width: 15%;
+        margin-bottom: 2%;
+        margin-right: 2%;
+        border: 0;
+        padding: 1px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    #end_time {
+        display: inline-block;
+        width: 15%;
+        margin-bottom: 2%;
+        margin-right: 2%;
+        border: 0;
+        padding: 1px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    #contact {
+        display: inline-block;
+        width: 15%;
+        margin-bottom: 1%;
+        margin-right: 2%;
+        border: 0;
+        padding: 1px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    #content {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.5%;
+        padding: 1px;
+        border-radius: 5px;
+        text-align: start;
+        font-size: 17px;
+        font-family: "Microsoft YaHei";
+        outline: none;
+    }
+
+    #submit {
+        text-align: center;
+        padding: 10px;
+        margin-left: 29%;
+        width: 40%;
+        margin-top: 1%;
+        background-color: rgb(110, 195, 249);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        border: none;
+        outline: none;
+    }
+
+    #submit:hover {
+        background-color: rgb(42, 168, 253);
+        cursor: pointer;
+    }
+
+    /* CSS 代码 */
+    .custom-select {
+        position: relative;
+        font-family: Arial;
+    }
+
+    .custom-select select {
+        display: none;
+    }
+
+    .custom-select select:focus {
+        background-color: #409EFF;
+    }
+
+    .custom-select p {
+        padding: 10px;
+        background-color: #8dd3f9;
+        display: inline-block;
+        width: 240px;
+        height: 33px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
+        font-family: Arial, sans-serif; /* 设置字体 */  
+        font-size: 14px; /* 设置字体粗细 */ 
+        font-weight: bold; 
+        color: #000000; /* 设置文字颜色 */  
+        /* 修改样式 */
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        text-align: center;
+        box-sizing: border-box;
+        margin: 0;
+        border-radius: 5px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .custom-select ul {
+        display: none;
+        position: absolute;
+        background-color: #8dd3f9;
+        width: 240px;
+        font-family: Arial, sans-serif; /* 设置字体 */  
+        font-size: 14px; /* 设置字体粗细 */  
+        color: #000000; /* 设置文字颜色 */
+        /* 修改样式 */
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        z-index: 1;
+        border-radius: 2px;
+        /* 添加圆角矩形样式 */
+    }
+
+    .custom-select ul li {
+        display: block;
+        padding: 10px 30px;
+        /* 添加右侧间距以留出位置放置打勾图标 */
+        text-align: center;
+        cursor: pointer;
+        position: relative;
+        /* 为打勾图标创建相对定位的参考容器 */
+    }
+
+    .custom-select ul li:hover {
+        color: #ffffff;
+        background-color: #579af2;
+    }
+
+    /* 添加打勾图标样式 */
+    .custom-select ul li.selected::after {
+        content: '✔';
+        /* 使用Unicode字符作为打勾图标 */
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translate(0, -50%);
+        color: #ffffff;
+    }
+
+    /*显示框代码*/
+    .selectcontainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .selectDisplay {
+        width: 1000px;
+        height: 33px;
+        background-color: #ffffff;
+        border: 1px solid #000;
+        border-radius: 5px;
+        margin: 4px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        margin-left: 5px;
+        display: flex; /* 启用Flexbox */  
+        justify-content: center; /* 水平居中 */  
+        align-items: center; /* 垂直居中 */  
+    }
+
+    /*时间获取部分*/
+    .timeInput {
+        color: white;
+        background-color: #8dd3f9;
+        border: none;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    input.timeInput {
+        width: 200px;
+        height: 30px;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+    /*联系方式部分*/
+    .contactInput {
+        color: white;
+        background-color: #8dd3f9;
+        border: none;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    input.contactInput {
+        width: 200px;
+        height: 30px;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 14px;
+    }
+
+    /*详细内容部分*/
+    .contentInput {
+        color: white;
+        background-color: #8dd3f9;
+        border: #8dd3f9;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    textarea.contentInput {
+        width: 300px;
+        height: 200px;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 14px;
+        margin-bottom: 10px;
+        resize: none;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header"><!--导航栏-->
+            <div class="logo">
+                <h2>博远信息技术社</h2>
+            </div>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="account.html">个人中心</a></li>
+                </ul>
+            </div>
+            <div class="user">
+                <img src="user.png" alt="">
+            </div>
+            <div class="user-name">用户名</div>
+        </div>
+
+        <div class="create-wrapper">
+            <div class="header2">
+                <h1>发布帖子</h1>
+            </div>
+            <button id="printButton">打印选项</button>
+            <div class="form-wrapper">
+                <form action="http://116.62.103.210:8080/createArticle" method="post" name="发帖表单" id="create-form">
+                    <div class="selectcontainer">
+                        <div class="m-4" id="selectType">
+                            <!-- HTML 代码 -->
+                            <div class="custom-select">
+                                <p>请选择招募任务类型 V</p>
+                                <ul>
+                                    <li>双创</li>
+                                    <li>外包</li>
+                                    <li>大作业</li>
+                                    <li>校级项目</li>
+                                    <li>社团项目</li>
+                                    <li>其他类型</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
+                    </div>
+                    <div class="selectcontainer">
+                        <div class="m-4" id="selectDirection">
+                            <!-- HTML 代码 -->
+                            <div class="custom-select">
+                                <p>请选择需求方向 V</p>
+                                <ul>
+                                    <li>前端</li>
+                                    <li>后端</li>
+                                    <li>项目经理</li>
+                                    <li>UI设计师</li>
+                                    <li>其他需求方向</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
+                    </div>
+                    <div class="selectcontainer">
+                        <div class="m-4" id="selectTag">
+                            <!-- HTML 代码 -->
+                            <div class="custom-select">
+                                <p>请选择技术栈 V</p>
+                                <ul>
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                    <li>其他前端语言</li>
+                                    <li>Java</li>
+                                    <li>Python</li>
+                                    <li>C/C++</li>
+                                    <li>Go</li>
+                                    <li>Ruby</li>
+                                    <li>其他后端语言</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
+                    </div>
+                    <div>
+                        <label>任务开始时间</label>
+                        <input type="text" id="startTimeInput" class="timeInput" placeholder="(模糊时间即可)">
+                    </div>
+                    <div>
+                        <label>任务结束时间</label>
+                        <input type="text" id="endTimeInput" class="timeInput" placeholder="(模糊时间即可)">
+                    </div>
+                    <div>
+                        <label>联系方式</label>
+                        <input type="text" id="contactInput" class="contactInput" placeholder="(请注明WX/QQ/TEL)">
+                    </div>
+                    <div>
+                        <label></label>
+                        <textarea id="contentInput" class="contentInput" placeholder="请输入帖子详细内容"></textarea>
+                    </div>
+
+                    <input type="submit" class="btn" id="submit" value="发布帖子">
+                </form>
+            </div>
+        </div>
+
+        <script>
+            let selectedDisplayType = document.getElementById('selectDisplayType');
+            let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
+            let selectedDisplayTag = document.getElementById('selectDisplayTag');
+
+            function addSelectEventListener(customSelect, selectOptions, selectedOptions, selectedDisplay) {
+                customSelect.querySelector('p').addEventListener('click', function () {
+                    this.nextElementSibling.style.display = 'block';
+                });
+
+                customSelect.addEventListener('mouseleave', function () {
+                    this.querySelector('ul').style.display = 'none';
+                });
+
+                function updateSelectedOptionsDisplay() {
+                    selectedDisplay.textContent = selectedOptions.join(", "); // 使用逗号分隔已选中的选项
+                }
+
+                selectOptions.forEach(function (option) {
+                    option.addEventListener('click', function () {
+                        if (this.classList.contains('selected')) {
+                            this.classList.remove('selected');
+                            // 从已选中选项数组中移除取消选中的选项
+                            let index = selectedOptions.indexOf(this.textContent);
+                            if (index > -1) {
+                                selectedOptions.splice(index, 1);
+                            }
+                        } else {
+                            this.classList.add('selected');
+                            // 将选中的选项加入选项数组
+                            selectedOptions.push(this.textContent);
+                        }
+
+                        updateSelectedOptionsDisplay(); // 更新显示框内容
+
+                    });
+                });
+            }
+
+            let customSelectType = document.getElementById("selectType");
+            let selectOptionsType = customSelectType.querySelectorAll('li');
+            let selectedOptionsType = [];
+            addSelectEventListener(customSelectType, selectOptionsType, selectedOptionsType, selectedDisplayType);
+
+            let customSelectDirection = document.getElementById("selectDirection");
+            let selectOptionsDirection = customSelectDirection.querySelectorAll('li');
+            let selectedOptionsDirection = [];
+            addSelectEventListener(customSelectDirection, selectOptionsDirection, selectedOptionsDirection, selectedDisplayDirection);
+
+            let customSelectTag = document.getElementById("selectTag");
+            let selectOptionsTag = customSelectTag.querySelectorAll('li');
+            let selectedOptionsTag = [];
+            addSelectEventListener(customSelectTag, selectOptionsTag, selectedOptionsTag, selectedDisplayTag);
+
+
+            //显示框显示选项
+            let selectedOptionsDisplay = document.getElementById('selectedOptionsDisplay');
+
+            let type = [];
+            type = selectedOptionsType;
+            let direction = [] ;
+            direction = selectedOptionsDirection;
+            let tag = [] ;
+            tag= selectedOptionsTag;
+
+            let start_time; let end_time;
+            let contact; let content;
+
+            //开始时间获取
+            document.getElementById('startTimeInput').addEventListener('input', function () {
+                start_time = document.getElementById('startTimeInput').value;
+            });
+            //结束时间获取
+            document.getElementById('endTimeInput').addEventListener('input', function () {
+                end_time = document.getElementById('endTimeInput').value;
+            });
+            //联系方式获取
+            document.getElementById('contactInput').addEventListener('input', function () {
+                contact = document.getElementById('contactInput').value;
+            });
+            //详细内容获取
+            document.getElementById("contentInput").addEventListener('input', function () {
+                content = document.getElementById('contentInput').value;
+            });
+
+            /*原代码*/
+            document.getElementById('create-form').addEventListener('submit', function (event) {
+                event.preventDefault(); // 阻止表单默认提交行为
+                //判断是否填写完整
+                if(type.length == 0){
+                    alert('请选择招募任务类型')
+                    return;
+                }
+                if(direction == null){
+                    alert('请选择需求方向')
+                    return;
+                }
+                if(tag == null){
+                    alert('请选择技术栈')
+                    return;
+                }
+                if(start_time == null){
+                    alert('请填写开始时间')
+                    return;
+                }
+                if(end_time == null){
+                    alert('请填写结束时间')
+                    return;
+                }
+                if(contact == null){
+                    alert('请填写联系方式')
+                    return;
+                }
+                if(content == null){
+                    alert('请填写详细内容')
+                    return;
+                }
+                //发布时间兼上次更新时间
+                //let now = new Date(); // 获取当前时间
+                //let year = now.getFullYear(); // 获取年份
+                //let month = now.getMonth() + 1; // 获取月份（注意：月份范围是 0 到 11，需要加1）
+                //let day = now.getDate(); // 获取日期
+                // 格式化年月日
+                //let update_date = year + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
+
+                let data = {//数据大整合
+                    type: type,
+                    direction: direction,
+                    tag: tag,
+                    start_time: start_time,
+                    end_time: end_time,
+                    contact: contact,
+                    content: content,
+                    //update_date: update_date
+                };
+
+                // 将数据转换为 JSON 格式
+                let jsonData = JSON.stringify(data);
+                console.log(jsonData); // 将数据传递给服务器
+                /*fetch('http://116.62.103.210:8080/createArticle', {
+                    method: 'POST',
+                    body: jsonData
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert(data.message)
+                            // 请求成功处理
+                        } else {
+                            throw new Error('Network response was not ok.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error)
+                        alert('出错啦！请稍后再试。')
+                    });*/
+                let sessionData = localStorage.getItem('sessionData');
+                let sessionId = localStorage.getItem('sessionId');
+                $.ajax({
+                    type: "POST",
+                    url: "http://116.62.103.210:8080/createArticle",
+                    headers:{
+                        Sessionid:sessionId
+                    },
+                    data: jsonData,
+                    dataType: "json",
+                    contentType: 'application/json',
+                    crossDomain: true,
+                    xhrFields: { withCredentials: true },
+                    success: function (data) {
+                        console.log(data)
+                        alert(data.message)
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error)
+                        alert('出错啦！请稍后再试。')
+                    }
+                })
+                // 在这里可以继续其他操作，例如显示成功消息或重定向到其他页面
+            })
+
+
+            // 添加按钮点击事件，打印选项信息至控制台
+            const printButton = document.getElementById('printButton');
+            printButton.addEventListener('click', () => {
+                console.log(type);
+                console.log(direction);
+                console.log(tag);
+                console.log(start_time);
+                console.log(end_time);
+                console.log(contact);
+                console.log(content);
+
+                let data = {//数据大整合
+                    type: type,
+                    direction: direction,
+                    tag: tag,
+                    start_time: start_time,
+                    end_time: end_time,
+                    contact: contact,
+                    content: content,
+                };
+
+                // 将数据转换为 JSON 格式
+                let jsonData = JSON.stringify(data);
+                console.log(jsonData); 
+
+            });
+        </script>
+</body>
+
+</html>
