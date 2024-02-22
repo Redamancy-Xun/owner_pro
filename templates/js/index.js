@@ -76,29 +76,59 @@ $index = {
         }
         function deletePost(button) {
             let post = button.closest('.comment')
-            post.remove();
-        }
-        $('.sticky-button').on('click', function () {
-            // 根据当前的 top 值决定要发送的请求体内容
-            let currentTopValue = info.top;
-            const newTopValue = currentTopValue === 0 ? 1 : 0;
-
-            // 发送改变top值的请求
             $.ajax({
-                url: 'http://116.62.103.210:8080/      ',
-                type: 'POST',
+                url: 'http://116.62.103.210:8080/deleteArticle/${info.article_id}',
+                type: 'GET',
                 contentType: 'application/json',
-                data: JSON.stringify({ top: newTopValue }),
+                data: info.article_id,
                 success: function () {
-                    // 请求成功后更新当前 top 值
-                    currentTopValue = newTopValue;
                     // 请求成功后刷新页面
                     location.reload();
                 },
                 error: function () {
-                    console.error('置顶请求出错');
+                    console.error('删除请求出错');
                 }
             });
+        }
+        $('.sticky-button').on('click', function () {
+            let currentTopValue = info.top;
+            const newTopValue = currentTopValue === 0 ? 1 : 0;
+            if (newTopValue === 1) {
+                $.ajax({
+                    url: 'http://116.62.103.210:8080/topArticle/${info.article_id}',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    data: info.article_id,
+                    success: function () {
+                        // 请求成功后更新当前 top 值
+                        currentTopValue = newTopValue;
+                        // 请求成功后刷新页面
+                        location.reload();
+                    },
+                    error: function () {
+                        console.error('置顶请求出错');
+                    }
+                });
+            }
+            if (newTopValue === 0) {
+                $.ajax({
+                    url: 'http://116.62.103.210:8080/untopArticle/${info.article_id}',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    data: info.article_id,
+                    success: function () {
+                        // 请求成功后更新当前 top 值
+                        currentTopValue = newTopValue;
+                        // 请求成功后刷新页面
+                        location.reload();
+                    },
+                    error: function () {
+                        console.error('置顶请求出错');
+                    }
+                });
+            }
+            // 发送改变top值的请求
+
         });
         html += '        </div>';
         /*html += '        <div class="content_bottom">';
