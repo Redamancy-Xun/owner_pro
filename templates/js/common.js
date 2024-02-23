@@ -3,14 +3,14 @@ $common = {
         site: 'http://116.62.103.210:8080/',
         relogin: false
     },
-    init: function(){
+    init: function () {
         //this.userLogin();
     },
-    userLogin: function(cb){
+    userLogin: function (cb) {
         this.getHttp({
             url: 'login?username=123456&password=123456',
             type: 'post',
-            ok: function(res){
+            ok: function (res) {
                 if (res.code == 0) { // 判断状态码是否为0
                     var cookies = document.cookie;
                     console.log(cookies)
@@ -21,7 +21,7 @@ $common = {
             }
         });
     },
-    getHttp: function(obj){
+    getHttp: function (obj) {
         var that = this;
         $.ajax({
             type: obj.type || 'post',
@@ -34,9 +34,9 @@ $common = {
             success: function (data) { // 获取数据成功
                 if (data.code == 0) { // 判断状态码是否为0
                     typeof obj.ok == 'function' && obj.ok(data); // 执行回调方法，并返回数据
-                } else if(!that.data.relogin && data.code == 1){
+                } else if (!that.data.relogin && data.code == 1) {
                     that.data.relogin = true;
-                    that.userLogin(function(){
+                    that.userLogin(function () {
                         that.getHttp(obj);
                     });
                 } else {
@@ -48,7 +48,7 @@ $common = {
             }
         });
     },
-    getQuery: function(name) {
+    getQuery: function (name) {
         var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
         var r = window.location.search.substr(1).match(reg);
         if (r != null) {
