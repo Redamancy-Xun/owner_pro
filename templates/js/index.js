@@ -6,11 +6,25 @@ let sessionData = JSON.parse(sessionDataString);
 let headPortraitData = sessionData.headportrait;
 let usernameData = sessionData.username;
 //选中导航栏头像和用户名
+<<<<<<< HEAD
 let headportraitDiv = document.getElementsByClassName('logo')
 let usernameDiv = document.getElementByClassName('name')
 headportraitDiv.src = 'http://116.62.103.210:8080/image/' + headPortraitData;
 usernameDiv.innerHTML = usernameData;
 
+=======
+let headportraitDiv = document.getElementByClass('logo')
+let usernameDiv = document.getElementById('username1')
+headportraitDiv.src = headPortraitData;
+usernameDiv.innerHTML = usernameData;
+//头像获取
+let a = JSON.parse(localStorage.getItem('sessionData'));
+let headPortrait = a.headportrait;
+if (headPortrait) {
+    let img = document.getElementsByClassName('logo');
+    img.src = 'http://116.62.103.210/image/' + headPortrait;
+}
+>>>>>>> bd298d702700d6f71fc87442332113a25f95e778
 let role = localStorage.getItem('sessionData.role');
 
 let userName = localStorage.getItem('sessionData.username');
