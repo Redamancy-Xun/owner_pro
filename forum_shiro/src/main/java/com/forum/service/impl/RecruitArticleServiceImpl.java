@@ -51,12 +51,21 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
         List<RecruitArticle> articlesList = recruitArticleMapper.getRecruitArticleByUserId(user_id);
         if (articlesList == null)
             throw new MyException(EnumExceptionType.ARTICLE_ID_NOT_EXIST);
-        List<ShowArticleResponse> articleResponse = new ArrayList<>();
-        for (RecruitArticle article : articlesList) {
-            articleResponse.add(new ShowArticleResponse(article));
-        }
 
-        return new Page<>(new PageInfo<>(articleResponse));
+        Page<RecruitArticle> originalPage = new Page<>(new PageInfo<>(articlesList));
+        Page<ShowArticleResponse> Page = new Page<>();
+        Page.setPageSize(originalPage.getPageSize());
+        Page.setPageNum(originalPage.getPageNum());
+        Page.setPages(originalPage.getPages());
+        Page.setTotal(originalPage.getTotal());
+
+        List<ShowArticleResponse> articleResponses = new ArrayList<>();
+        for (RecruitArticle article : originalPage.getItems()) {
+            articleResponses.add(new ShowArticleResponse(article));
+        }
+        Page.setItems(articleResponses);
+
+        return Page;
     }
 
     //根据admin_id获取articles
