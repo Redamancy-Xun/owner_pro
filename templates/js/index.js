@@ -1,9 +1,21 @@
+// 从 localStorage 中获取 sessionData 字符串
+let sessionDataString = localStorage.getItem('sessionData');
+// 将 JSON 字符串解析为对象
+let sessionData = JSON.parse(sessionDataString);
+// 读取 headportrait和username 数据
+let headPortraitData = sessionData.headportrait;
+let usernameData = sessionData.username;
+//选中导航栏头像和用户名
+let headportraitDiv = document.getElementByClass('logo')
+let usernameDiv = document.getElementById('username1')
+headportraitDiv.src = headPortraitData;
+usernameDiv.innerHTML = usernameData;
 //头像获取
 let a = JSON.parse(localStorage.getItem('sessionData'));
-let headProtrait = a.headprotrait;
-if (headProtrait) {
+let headPortrait = a.headportrait;
+if (headPortrait) {
     let img = document.getElementsByClassName('logo');
-    img.src = 'http://116.62.103.210/image/' + headProtrait;
+    img.src = 'http://116.62.103.210/image/' + headPortrait;
 }
 let role = localStorage.getItem('sessionData.role');
 
@@ -85,11 +97,13 @@ let tag = selectedOptionsTag;
 
 
 $('#submit').on('click', function () {
+    $index.data.page = 0;
+    $index.data.list.empty();
     $index.loadList();
-    that.data.page = 0;
     console.log(type);
     console.log(direction);
     console.log(tag);
+    $index.data.list.empty();
 })
 
 $('#delete').on('click', function () {
