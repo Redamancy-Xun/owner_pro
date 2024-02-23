@@ -321,20 +321,63 @@
 
     .lastp {
         float: left;
-        margin-top: 2%;
-        margin-left: 3%;
+        margin-top: 0%;
+        margin-left: 10%;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(110, 195, 249); /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249); /* 深蓝色边框 */
+        border-radius: 50%; /* 圆形按钮 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff; /* 白色文字 */
+        font-size: 14px; /* 文字大小 */
+        cursor: pointer;
     }
 
     .nextp {
         float: left;
-        margin-top: 2%;
-        margin-left: 40%;
+        margin-top: 0%;
+        margin-left: 20%;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(110, 195, 249); /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249); /* 深蓝色边框 */
+        border-radius: 50%; /* 圆形按钮 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff; /* 白色文字 */
+        font-size: 14px; /* 文字大小 */
+        cursor: pointer;
+    }
+
+    .nextp:hover {
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
+    }
+
+    .nextp:active {
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
+    }
+
+    .lastp:hover {
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
+    }
+
+    .lastp:active {
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
     }
 
     .page {
         float: right;
         margin-top: 2%;
         margin-right: 0%;
+        cursor: pointer;
     }
 </style>
 
@@ -396,8 +439,8 @@
                 <div class="article" id="article3">
                     没有更多帖子了哦
                 </div>
-                <button class="lastp" id="lastp">上一页</button>
-                <button class="nextp" id="nextp">下一页</button>
+                <button class="lastp" id="lastp">🢀</button>
+                <button class="nextp" id="nextp">🢂</button>
                 <div class="page" id="page">第1/1页</div>
             </div>
         </div>
