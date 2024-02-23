@@ -312,14 +312,14 @@
                 </ul>
             </div>
             <div class="user">
-                <img src="portrait.jpg" alt="" id="samllheadportrait">
+                <img src="http://116.62.103.210/image/default.jpg" alt="" id="smallheadportrait">
             </div>
             <div class="user-name" id="username1">用户名</div>
         </div>
 
         <div class="smallhead"><!--头像用户名签名-->
-            <div class="headportrait"><img src="portrait.jpg" alt="" id="headportrait"></div>
-            <div class="username" id="username2">向服务器查询用户名</div><br>
+            <div class="headportrait"><img src="http://116.62.103.210/image/default.jpg" alt="" id="headportrait"></div>
+            <div class="username" id="username2">暂时没有个性签名</div><br>
         </div>
 
         <div class="account-wrapper">
@@ -397,8 +397,8 @@
                     let email = document.getElementById('email');
                     let birthday = document.getElementById('birthday');
                     //展示个人信息
-                    headportrait.src = `http://116.62.103.210:8080/${data.result[0].headportrait}`
-                    smallheadportrait.src = `http://116.62.103.210:8080/${data.result[0].headportrait}`
+                    headportrait.src = `http://116.62.103.210/${data.result[0].headportrait}`
+                    smallheadportrait.src = `http://116.62.103.210/${data.result[0].headportrait}`
                     headusername.innerHTML = data.result[0].username
                     topusername.innerHTML = data.result[0].username
                     username.value = data.result[0].username

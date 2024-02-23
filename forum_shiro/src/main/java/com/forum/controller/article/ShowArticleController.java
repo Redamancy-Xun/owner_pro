@@ -1,5 +1,7 @@
 package com.forum.controller.article;
 
+import com.alibaba.fastjson.JSON;
+import com.forum.controller.request.ShowArticleRequest;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.entity.RecruitArticle;
 import com.forum.exception.MyException;
@@ -12,10 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class ShowArticleController {
     private RecruitArticleServiceImpl articleService;
 
     //根据指定排序条件获取帖子列表
-    @GetMapping("/article")
+    @PostMapping("/article")
     @ApiOperation("展示帖子")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "type",value = "类型",required = false,paramType = "query",dataType = "List<String>"),
@@ -38,13 +37,15 @@ public class ShowArticleController {
             @ApiImplicitParam(name = "pageSize",value = "每页显示数量(不小于0)",required = true,paramType = "query",dataType = "Integer"),
             @ApiImplicitParam(name = "pageNum", value = "页数(不小于0)", required = true, paramType = "query", dataType = "Integer")
     })
-    public Result defaultGetRecruitArticle(@RequestParam(value = "type", required = false)List<String> type,
-                                           @RequestParam(value = "direction", required = false)List<String> direction,
-                                           @RequestParam(value = "tag", required = false)List<String> tag,
-                                           @RequestParam(value = "finish", required = false)Integer finish,
-                                           @RequestParam("pageSize")Integer pageSize,
-                                           @RequestParam("pageNum")Integer pageNum){
+    public Result defaultGetRecruitArticle(@RequestBody ShowArticleRequest request){
         //参数校验
+        Integer pageNum = request.getPageNum();
+        Integer pageSize = request.getPageSize();
+        List<String> type = request.getType();
+        List<String> direction = request.getDirection();
+        List<String> tag = request .getTag();
+        Integer finish = null;
+
         if (pageNum == null || pageNum < 1){
             pageNum = 1;
         }

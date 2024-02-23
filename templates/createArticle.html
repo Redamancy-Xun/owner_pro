@@ -211,7 +211,7 @@
         margin-left: 29%;
         width: 40%;
         margin-top: 1%;
-        background-color: rgb(110, 195, 249);
+        background-color: #77aafd;
         color: rgb(255, 255, 255);
         font-size: 18px;
         border: none;
@@ -219,7 +219,7 @@
     }
 
     #submit:hover {
-        background-color: rgb(42, 168, 253);
+        background-color: #3e84f6;
         cursor: pointer;
     }
 
@@ -239,7 +239,7 @@
 
     .custom-select p {
         padding: 10px;
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -264,7 +264,7 @@
     .custom-select ul {
         display: none;
         position: absolute;
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         width: 240px;
         font-family: Arial, sans-serif; /* 设置字体 */  
         font-size: 14px; /* 设置字体粗细 */  
@@ -308,6 +308,7 @@
     .selectcontainer {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .selectDisplay {
@@ -333,10 +334,11 @@
     .timeSet {
         display: flex;
         margin-top: 7px;
+        justify-content: center; 
     }
 
     .timeSet div {
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -398,10 +400,11 @@
     .contactSet {
         display: flex;
         margin-top: 7px;
+        justify-content: center; 
     }
 
     .contactSet div {
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -462,9 +465,13 @@
     /*详细内容部分*/
     .contentInput {
         color: rgb(0, 0, 0);
-        background-color: #e5f8ff;
-        border: 2px solid #8dd3f9;
+        background-color: #f8fbff;
+        border: 2px solid #78a5ff;
         display: flex;
+    }
+    .contentSet{
+        display: flex;
+        justify-content: center; 
     }
 
     textarea.contentInput {
@@ -580,7 +587,7 @@
                         <input type="text" id="contactInput" class="contactInput" placeholder="(请注明WX/QQ/TEL)">
                     </div>
 
-                    <div>
+                    <div class="contentSet">
                         <label></label>
                         <textarea id="contentInput" class="contentInput" placeholder="请输入帖子详细内容"></textarea>
                     </div>
