@@ -45,7 +45,7 @@
     margin-left: 19.6%;
     font-size: 18px;
     color: #52aee1;
-    line-height: 53px;
+    line-height: 40px;
     text-decoration: none;
     font-weight: bold;
  }
@@ -72,7 +72,7 @@
     padding: 0 15px;
     margin-left: 2px;
     margin-right: 2px;
-    line-height: 53px;
+    line-height: 40px;
     font-size: 18px;
     color: #000;
     text-decoration: none;
@@ -88,7 +88,7 @@
 
 .user{
     float: left;
-    height: 100%;
+    height: 95%;
     width: 2.45%;
     padding: 20 0px;
     margin-left: 33.33%;
@@ -113,7 +113,7 @@
 
 
 .smallhead{
-    height: 200px;
+    height: 20%;
     width: 50%;
     margin-left: 25%;
     margin-top: 5px;
@@ -124,7 +124,7 @@
     float: left;
     height: 80%;
     width: 15.7%;
-    margin-top: 20px;
+    margin-top: 1%;
     margin-left: 2%;
     box-shadow: 0 0 15px rgb(255, 255, 255);
  }
@@ -142,7 +142,8 @@
     font-weight: bold;
     text-align: left;
     line-height: 60px;
-    margin-top: 30px;
+    margin-top: 2%;
+    margin-left: 1%;
  }
  .signature{
     float: left;
@@ -156,7 +157,7 @@
      float: left;
      background-color: #fff;
      width: 25%;
-     height: 700px;
+     height: 70%;
      border-radius: 10px;
      padding: 0 50px;
      margin-left: 25%;
@@ -167,18 +168,18 @@
  .header2 {
      float: left;
      margin-left: 38%;
-     font-size: 28px;
+     font-size: 25px;
      font-weight: bold;
      text-align: center;
-     line-height: 60px;
+     line-height: 40px;
  }
  .change-btn{
     float: left;
-    margin-top: 3%;
-    margin-left: 20%;
-    width: 20%;
-    padding: 5px;
-    font-size: 17px;
+    margin-top: 2%;
+    margin-left: 10%;
+    width: 19%;
+    padding: 2px;
+    font-size: 14px;
     border-radius: 3px;
     color: #0e7fff;
     border-color: #0e7fff;
@@ -198,7 +199,7 @@
      border: 0;
      padding: 10px;
      border-bottom: 1px solid rgb(128, 125, 125);
-     font-size: 15px;
+     font-size: 14px;
      outline: none;
  }
  .input-item:placeholder {
@@ -218,11 +219,14 @@
      font-size: 15px;
      outline: none;
  }
+#feedbackMessage{
+    color: red;
+}
  .btn {
      text-align: center;
      padding: 10px;
      width: 100%;
-     margin-top: 20px;
+     margin-top: 5px;
      background-color: rgb(110, 195, 249);
      color: rgb(255, 255, 255);
      font-size: 18px;
@@ -238,7 +242,7 @@
      float: left;
      background-color: #fff;
      width: 17.2%;
-     height: 700px;
+     height: 70%;
      border-radius: 10px;
      padding: 0 10px;
      margin-left: 1%;
@@ -247,12 +251,12 @@
  }
 .create-btn{
     background-color: #ffffffea;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left:20%;
     width: 60%;
-    height: 50px;
+    height: 5%;
     color: #0e7fff;
-    font-size: 17px;
+    font-size: 15px;
     border-radius: 3px;
     border-color: #0e7fff;
     outline: none;
@@ -262,7 +266,7 @@
  }
  .article-wrapper{
     width: 94%;
-    height: 500px;
+    height: 85%;
     border-radius: 5px;
     margin-top: 10px;
     margin-left: 3%;
@@ -275,21 +279,22 @@
     border-radius: 5px;
     margin-top: 5%;
     background-image: linear-gradient(to bottom, rgb(210, 225, 252), rgb(239, 243, 250));
+    font-size: 13px;
  }
  .lastp{
     float: left;
-    margin-top: 10%;
-    margin-left: 5%;
+    margin-top: 5%;
+    margin-left: 3%;
  }
  .nextp{
     float: left;
-    margin-top: 10%;
-    margin-left: 50%;
+    margin-top: 5%;
+    margin-left: 40%;
  }
  .page{
     float:right;
-    margin-top: 10%;
-    margin-right: 5%;
+    margin-top: 5%;
+    margin-right: 0%;
  }
 </style>
 
@@ -302,18 +307,18 @@
 
             <div class="nav">
                 <ul>
-                    <li><a href="首页.html">首页</a></li>
+                    <li><a href="index.html">首页</a></li>
                     <li><a href="account.html">个人中心</a></li>
                 </ul>
             </div>
             <div class="user">
-                <img src="user.png" alt="">
+                <img src="http://116.62.103.210/image/default.jpg" alt="" id="smallheadportrait">
             </div>
             <div class="user-name" id="username1">用户名</div>
         </div>
 
         <div class="smallhead"><!--头像用户名签名-->
-            <div class="headportrait"><img src="user.png" alt=""></div>
+            <div class="headportrait"><img src="http://116.62.103.210/image/default.jpg" alt="" id="headportrait"></div>
             <div class="username" id="username2">向服务器查询用户名</div><br>
         </div>
 
@@ -323,34 +328,33 @@
                 <form action="http://116.62.103.210:8080/update" method="post" name="更新个人信息表单" id="update-form">
                     <div class="yhm">用户名：</div>
                     <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item" value="向服务器查询用户名" disabled>
-                    密码：<input type="password" id="password" name="password" placeholder="密码（6~20）位" class="input-item" value="向服务器查询密码" disabled>
-                    确认密码（修改用）：<input type="password" id="password2" name="password2" placeholder="密码（6~20）位" class="input-item" value="向服务器查询密码" disabled>
+                    密码：<div class="xuehaoxingmin" id="password" name="password">········</div>
                     学号：<div class="xuehaoxingmin" id="studentid">向服务器查询学号</div>
                     姓名：<div class="xuehaoxingmin" id="studentname">向服务器查询姓名</div>
                     邮箱（选填）：<input type="text" id="email" name="email" placeholder="邮箱" class="input-item" value="向服务器查询邮箱" disabled>
                     生日（选填）：<input type="date" id="birthday" name="birthday" placeholder="生日" class="input-item" value="向服务器查询生日" disabled>
+                    <div id="feedbackMessage"></div>
                     <input type="submit" class="btn" id="submit" value="提交修改" > 
                 </form>
             </div>
-            <div id="feedbackMessage"></div>
         </div>
 
         <div class="create-wrapper"><!--创作中心板块-->
             <div class="header2">创作中心</div>
-            <button class="create-btn">发布帖子</button>
+            <button class="create-btn" onclick="createArticle()">发布帖子</button>
             <div class="article-wrapper">
-                <div class="article" id="article1">
+                <div class="article" id="article1" onclick="detailArticle1()">
                     没有更多帖子了哦
                 </div>
-                <div class="article" id="article2">
+                <div class="article" id="article2" onclick="detailArticle2()">
                     没有更多帖子了哦
                 </div>
-                <div class="article" id="article3">
+                <div class="article" id="article3" onclick="detailArticle3()">
                     没有更多帖子了哦
                 </div>
                 <button class="lastp" id="lastp">上一页</button>
                 <button class="nextp" id="nextp">下一页</button>
-                <div class="page">页/码</div>
+                <div class="page" id="page">第1/1页</div>
             </div>
         </div>
     </div>
@@ -360,9 +364,8 @@
 
         let pageSize = 3;
         let pageNum = 1;
-
-
-        function creatcentre() {//获取个人信息，以及创作中心请求展示帖子
+        let pages
+        function createcentre() {//获取个人信息，以及创作中心请求展示帖子
             // 获取缓存数据
             let sessionData = localStorage.getItem('sessionData');
             let sessionId = localStorage.getItem('sessionId');
@@ -375,7 +378,7 @@
                 },
                 data: {
                     pageSize: 3,
-                    pageNum: 1,
+                    pageNum: pageNum,
                 },
                 dataType: "json",
                 contentType: 'application/json',
@@ -383,57 +386,121 @@
                 xhrFields: { withCredentials: true },
                 success: function (data) {
                     console.log(data)
+                    sessionStorage.setItem('pages', data.result[1].pages);//总页数缓存
+                    let headportrait = document.getElementById('headportrait');
+                    let smallheadportrait = document.getElementById('smallheadportrait');
+                    let headusername = document.getElementById('username2');
+                    let topusername = document.getElementById('username1');
                     let username = document.getElementById('username');
-                    let password = document.getElementById('password');
                     let studentid = document.getElementById('studentid');
                     let studentname = document.getElementById('studentname');
                     let email = document.getElementById('email');
                     let birthday = document.getElementById('birthday');
                     //展示个人信息
+                    if (data.result[0].headportrait != null){
+                        headportrait.src = `http://116.62.103.210/image/${data.result[0].headportrait}`
+                        smallheadportrait.src = `http://116.62.103.210/image/${data.result[0].headportrait}`
+                    }
+                    else {
+                        headportrait.src = "http://116.62.103.210/image/default.jpg"
+                        smallheadportrait.src = "http://116.62.103.210/image/default.jpg"
+                    }
+                    headusername.innerHTML = data.result[0].username
+                    topusername.innerHTML = data.result[0].username
                     username.value = data.result[0].username
-                    password.value = data.result[0].password
-                    studentid.value = data.result[0].studentid
-                    studentname.value = data.result[0].studentname
+                    studentid.innerHTML = data.result[0].studentid
+                    studentname.innerHTML = data.result[0].studentname
                     email.value = data.result[0].email
                     birthday.value = data.result[0].birthday
 
-		    let firstData, secondData, thirdData;
+		            let firstData, secondData, thirdData;
                     //分别提取items中的三组帖子的数据
-		    if (data.result[1].items[0]!=null)
+		            if (data.result[1].items[0]!=null)
                     	firstData = data.result[1].items[0];
+                        sessionStorage.setItem('firstid', firstData.article_id);
                     if (data.result[1].items[1]!=null)
-		    	secondData = data.result[1].items[1];
-		    if (data.result[1].items[2]!=null)
+		    	        secondData = data.result[1].items[1];
+                        sessionStorage.setItem('secondid', secondData.article_id);
+		            if (data.result[1].items[2]!=null)
                     	thirdData = data.result[1].items[2];
+                        sessionStorage.setItem('thirdid', thirdData.article_id);
                     //分别选取三个帖子的展示框
                     let firstDiv = document.getElementById('article1');
                     let secondDiv = document.getElementById('article2');
                     let thirdDiv = document.getElementById('article3');
                     //在各自展示框中显示帖子数据
-                    firstDiv.innerHTML = `
-                                <p class="zhuti">${firstData.content}</p>
-                                <p>开始时间: ${firstData.start_time}  截止时间: ${firstData.end_time}</p>
-                                <p>任务类型：${firstData.type}  需求方向：${firstData.direction}  技术栈：${firstData.tag}</p>
-                                <p>联系方式：${firstData.contact}</p>
-                                <p>完成状态：${firstData.finish}</p>
-                                <p>上次更新时间：${firstData.update_date}</p>
-                                `;
-                    secondDiv.innerHTML = `
-                                <p class="zhuti">${secondData.content}</p>
-                                <p>开始时间: ${secondData.start_time}  截止时间: ${secondData.end_time}</p>
-                                <p>任务类型：${secondData.type}  需求方向：${secondData.direction}  技术栈：${secondData.tag}</p>
-                                <p>联系方式：${secondData.contact}</p>
-                                <p>完成状态：${secondData.finish}</p>
-                                <p>上次更新时间：${secondData.update_date}</p>
-                                `;
-                    thirdDiv.innerHTML = `
-                                <p class="zhuti">${thirdData.content}</p>
-                                <p>开始时间: ${thirdData.start_time}  截止时间: ${thirdData.end_time}</p>
-                                <p>任务类型：${thirdData.type}  需求方向：${thirdData.direction}  技术栈：${thirdData.tag}</p>
-                                <p>联系方式：${thirdData.contact}</p>
-                                <p>完成状态：${thirdData.finish}</p>
-                                <p>上次更新时间：${thirdData.update_date}</p>
-                                `;
+                    if (data.result[1].items[0]!=null){
+                        var firstupdateDate = firstData.update_date.slice(0, 10); // 截取年月日部分
+                        firstDiv.innerHTML = `
+                                    <p class="zhuti">${firstData.content}</p>
+                                    <p>开始时间: ${firstData.start_time}  截止时间: ${firstData.end_time}</p>
+                                    <p>任务类型：${firstData.type}  需求方向：${firstData.direction}  技术栈：${firstData.tag}</p>
+                                    <p>联系方式：${firstData.contact}</p>
+                                    <div id="finish1">完成状态：${firstData.finish}</div>
+                                    <p>上次更新时间：${firstupdateDate}</p>
+                                    <button id="update1" onclick="updateArticle1()">修改</button>
+                                    `;
+                        //设置第一个帖子的已完成/未完成标识
+                        let firstfinish = document.getElementById('finish1');
+                        if (firstData.finish == 0){
+                            firstfinish.innerHTML = "未完成";
+                            firstfinish.style.color = "#ff0000";
+                            firstfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (firstData.finish == 1){
+                            firstfinish.innerHTML = "已完成";
+                            firstfinish.style.color = "#0055ff";
+                            firstfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    if (data.result[1].items[1]!=null) { 
+                        var secondupdateDate = secondData.update_date.slice(0, 10); // 截取年月日部分          
+                        secondDiv.innerHTML = `
+                                    <p class="zhuti">${secondData.content}</p>
+                                    <p>开始时间: ${secondData.start_time}  截止时间: ${secondData.end_time}</p>
+                                    <p>任务类型：${secondData.type}  需求方向：${secondData.direction}  技术栈：${secondData.tag}</p>
+                                    <p>联系方式：${secondData.contact}</p>
+                                    <div id = "finish2">完成状态：${secondData.finish}</div>
+                                    <p>上次更新时间：${secondupdateDate}</p>
+                                    <button id="update2" onclick="updateArticle2()">修改</button>
+                                    `;
+                        let secondfinish = document.getElementById('finish2');//设置第二个帖子的已完成/未完成标识
+                        if (secondData.finish == 0){
+                            secondfinish.innerHTML = "未完成";
+                            secondfinish.style.color = "#ff0000";
+                            secondfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (secondData.finish == 1){
+                            secondfinish.innerHTML = "已完成";
+                            secondfinish.style.color = "#0055ff";
+                            secondfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    if (data.result[1].items[2]!=null){
+                        var thirdupdateDate = thirdData.update_date.slice(0, 10); // 截取年月日部分
+                        thirdDiv.innerHTML = `
+                                    <p class="zhuti">${thirdData.content}</p>
+                                    <p>开始时间: ${thirdData.start_time}  截止时间: ${thirdData.end_time}</p>
+                                    <p>任务类型：${thirdData.type}  需求方向：${thirdData.direction}  技术栈：${thirdData.tag}</p>
+                                    <p>联系方式：${thirdData.contact}</p>
+                                    <div id = "finish3">完成状态：${thirdData.finish}</div>
+                                    <p>上次更新时间：${thirdupdateDate}</p>
+                                    <button id="update3" onclick="updateArticle3()">修改</button>
+                                    `;
+                        let thirdfinish = document.getElementById('finish3');//设置第三个帖子的已完成/未完成标识
+                        if (thirdData.finish == 0){
+                            thirdfinish.innerHTML = "未完成";
+                            thirdfinish.style.color = "#ff0000";
+                            thirdfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (thirdData.finish == 1){
+                            thirdfinish.innerHTML = "已完成";
+                            thirdfinish.style.color = "#0055ff";
+                            thirdfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    let page = document.getElementById('page');//显示当前页码和总页数
+                    page.innerHTML = `第${data.result[1].pageNum}/${data.result[1].pages}页`;
                 },
                 error: function (error) {
                     console.error(error)
@@ -446,26 +513,56 @@
 
         // 在页面加载完毕时执行函数
         window.onload = function () {
-            creatcentre();
+            createcentre();
         };
         // 当上一页按钮被点击时再次执行函数
         document.getElementById('lastp').addEventListener('click', function () {
             pageNum--;
             if (pageNum < 1) {//页码数不小于1
+                alert('到头啦。');
                 pageNum = 1;
             }
-            creatcentre();
+            createcentre();
         });
         // 当下一页按钮被点击时再次执行函数
         document.getElementById('nextp').addEventListener('click', function () {
             pageNum++;
-            if (pageNum > total) {//页码数不能超过页面总数
-                pageNum = total;
+            let pages = sessionStorage.getItem('pages');//提取缓存中的总页数
+            if (pageNum > pages) {//页码数不能超过页面总数
+                alert('到头啦。');
+                pageNum = pages;
             }
-            creatcentre();
+            createcentre();
         });
 
-        function toggleInput() {//切换表单可否填写的按钮 “我要修改”/“保存修改”
+        function detailArticle1(){//跳转到第一个帖子的详情页
+            let id1 = sessionStorage.getItem('firstid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id1}`
+        }
+        function detailArticle2(){//跳转到第二个帖子的详情页
+            let id2 = sessionStorage.getItem('secondid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id2}`
+        }
+        function detailArticle3(){//跳转到第三个帖子的详情页
+            let id3 = sessionStorage.getItem('thirdid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id3}`
+        }
+
+        function updateArticle1(){//跳转到第一个帖子的修改页
+            let id1 = sessionStorage.getItem('firstid');
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id1}`
+        }
+        function updateArticle2(){//跳转到第二个帖子的修改页
+            let id2 = sessionStorage.getItem('secondid');
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id2}`
+        }
+        function updateArticle3(){//跳转到第三个帖子的修改页
+            let id3 = sessionStorage.getItem('thirdid');
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id3}`
+        }
+
+        //切换表单可否填写的按钮 “我要修改”/“保存修改”
+        function toggleInput() {
             let username = document.getElementById("username");
             if (username.disabled) {
                 username.disabled = false;
@@ -527,6 +624,7 @@
             else {
                 usernameInput.style.borderColor = "black"
                 usernameInput.style.backgroundColor = "white";
+                document.getElementById('feedbackMessage').innerText = ' '
             }
 
             let passwordInput = document.getElementById('password')
@@ -540,6 +638,7 @@
             else {
                 passwordInput.style.borderColor = "black"
                 passwordInput.style.backgroundColor = "white";
+                document.getElementById('feedbackMessage').innerText = ' '
             }
 
             let passwordInput2 = document.getElementById('password2')
@@ -557,6 +656,7 @@
                 passwordInput.style.backgroundColor = "white";
                 passwordInput2.style.borderColor = "black"
                 passwordInput2.style.backgroundColor = "white";
+                document.getElementById('feedbackMessage').innerText = ' '
             }
 
 
@@ -574,7 +674,8 @@
                             alert('出错啦！请稍后再试。')
                         })
                 })*/
-
+            let sessionData = localStorage.getItem('sessionData');
+            let sessionId = localStorage.getItem('sessionId');
             $.ajax({
                 type: "POST",
                 url: "http://116.62.103.210:8080/update",
@@ -596,6 +697,9 @@
                 }
             })
         })
+        function createArticle(){
+            window.location.href = "createArticle.html"
+        }
     </script>
 </body>
 </html>

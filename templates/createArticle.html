@@ -239,7 +239,7 @@
 
     .custom-select p {
         padding: 10px;
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -308,6 +308,7 @@
     .selectcontainer {
         display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     .selectDisplay {
@@ -333,10 +334,11 @@
     .timeSet {
         display: flex;
         margin-top: 7px;
+        justify-content: center; 
     }
 
     .timeSet div {
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -398,10 +400,11 @@
     .contactSet {
         display: flex;
         margin-top: 7px;
+        justify-content: center; 
     }
 
     .contactSet div {
-        background-color: #8dd3f9;
+        background-color: #b9d2fb;
         display: inline-block;
         width: 240px;
         height: 33px;
@@ -462,9 +465,13 @@
     /*详细内容部分*/
     .contentInput {
         color: rgb(0, 0, 0);
-        background-color: #e5f8ff;
-        border: 2px solid #8dd3f9;
+        background-color: #f8fbff;
+        border: 2px solid #78a5ff;
         display: flex;
+    }
+    .contentSet{
+        display: flex;
+        justify-content: center; 
     }
 
     textarea.contentInput {
@@ -507,7 +514,6 @@
             <div class="header2">
                 <h1>发布帖子</h1>
             </div>
-            <button id="printButton">打印选项</button>
             <div class="form-wrapper">
                 <form action="http://116.62.103.210:8080/createArticle" method="post" name="发帖表单" id="create-form">
                     <div class="selectcontainer">
@@ -580,7 +586,7 @@
                         <input type="text" id="contactInput" class="contactInput" placeholder="(请注明WX/QQ/TEL)">
                     </div>
 
-                    <div>
+                    <div class="contentSet">
                         <label></label>
                         <textarea id="contentInput" class="contentInput" placeholder="请输入帖子详细内容"></textarea>
                     </div>
