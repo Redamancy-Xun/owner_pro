@@ -1,3 +1,16 @@
+// 从 localStorage 中获取 sessionData 字符串
+let sessionDataString = localStorage.getItem('sessionData');
+// 将 JSON 字符串解析为对象
+let sessionData = JSON.parse(sessionDataString);
+// 读取 headportrait和username 数据
+let headPortraitData = sessionData.headportrait;
+let usernameData = sessionData.username;
+//选中导航栏头像和用户名
+let headportraitDiv = document.getElementsByClassName('logo')[0];
+let usernameDiv = document.getElementsByClassName('name')[0];
+headportraitDiv.src = 'http://116.62.103.210/image/' + headPortraitData;
+usernameDiv.innerHTML = usernameData;
+let role = localStorage.getItem('sessionData.role');
 $index = {
     data: {
         id: 0,

@@ -1,16 +1,17 @@
-//头像获取
-let headProtrait = localStorage.getItem('sessionData.headprotrait');
-if (headProtrait) {
-    let img = document.getElementsByClassName('logo');
-    img.src = 'http://116.62.103.210/image/' + headProtrait;
-}
+// 从 localStorage 中获取 sessionData 字符串
+let sessionDataString = localStorage.getItem('sessionData');
+// 将 JSON 字符串解析为对象
+let sessionData = JSON.parse(sessionDataString);
+// 读取 headportrait和username 数据
+let headPortraitData = sessionData.headportrait;
+let usernameData = sessionData.username;
+//选中导航栏头像和用户名
+let headportraitDiv = document.getElementsByClassName('logo')[0];
+let usernameDiv = document.getElementsByClassName('name')[0];
+headportraitDiv.src = 'http://116.62.103.210/image/' + headPortraitData;
+usernameDiv.innerHTML = usernameData;
 let role = localStorage.getItem('sessionData.role');
 
-let userName = localStorage.getItem('sessionData.username');
-let Name = document.querySelector('.name');
-if (userName) {
-    Name.innerHTML = userName;
-}
 //筛选组件对应逻辑
 let selectedDisplayType = document.getElementById('selectDisplayType');
 let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
@@ -80,17 +81,28 @@ let tag = selectedOptionsTag;
 //需要在这里面补充发送请求的逻辑，建议把这里的js都移动到index里面，避免混淆;
 
 
-document.getElementById('create-form').addEventListener('submit', function (event) {
-    event.preventDefault(); //阻止表单默认提交行为
 
+
+
+$('#submit').on('click', function () {
+    $index.data.page = 0;
+    $index.data.list.empty();
     $index.loadList();
-
     console.log(type);
     console.log(direction);
     console.log(tag);
+    $index.data.list.empty();
 })
 
-
+$('#delete').on('click', function () {
+    selectedOptionsType = []; // 清空类型选项数组
+    selectedOptionsDirection = []; // 清空方向选项数组
+    selectedOptionsTag = []; // 清空标签选项数组
+    selectedDisplayType.textContent = ''; // 清空类型显示框内容
+    selectedDisplayDirection.textContent = ''; // 清空方向显示框内容
+    selectedDisplayTag.textContent = ''; // 清空标签显示框内容
+    location.reload();
+})
 
 
 $index = {
@@ -117,14 +129,14 @@ $index = {
         var that = this;
         that.data.page++;
         that.data.more.html('加载中...');
-        let a={
+        let a = {
             pageSize: 10,
             pageNum: that.data.page,
             ...(type.length > 0 && { type: type }),
             ...(direction.length > 0 && { direction: direction }),
             ...(tag.length > 0 && { tag: tag })
         }
-        jsondata=JSON.stringify(a);
+        jsondata = JSON.stringify(a);
         // 获取列表数据
         $common.getHttp({
             url: 'article',
@@ -172,10 +184,10 @@ $index = {
         html += '            <p><em>联系方式：</em>' + info.contact + '</p>';
         html += '            <p><a href="./detail.html?id=' + info.article_id + '" class="show_all">查看详情</a></p>';
         if (role) {
-            html += '<button class="delete-button" onclick="deletePost(this)"> < img src="./image/delete.jpeg" alt = "删除" > </button >'
-            html += ' <button  class="sticky-button"><img src="./image/up.jpeg" alt="置顶"</button>'
+            html += '<input type="button" class="delete-button" value="删除" style="background-image: url(./image/delete.jpeg); background-size: cover; width: 20px; height: 20px;">';
+            html += '<input type="button" class="sticky-button" value="置顶" style="background-image: url(./image/up.jpeg); background-size: cover; width: 20px; height: 20px;">';
         }
-        function deletePost(button) {
+        $('.delete-button').on('click', function () {
             let post = button.closest('.comment')
             $.ajax({
                 url: 'http://116.62.103.210:8080/deleteArticle/${info.article_id}',
@@ -190,7 +202,8 @@ $index = {
                     console.error('删除请求出错');
                 }
             });
-        }
+        });
+
         $('.sticky-button').on('click', function () {
             let currentTopValue = info.top;
             const newTopValue = currentTopValue === 0 ? 1 : 0;
@@ -232,19 +245,6 @@ $index = {
 
         });
         html += '        </div>';
-        /*html += '        <div class="content_bottom">';
-        html += '            <ul>';
-        html += '                <li class="content_item">';
-        html += '                    <a href="#"> <i class="sprite sprite-love"></i>喜欢</a>';
-        html += '                </li>';
-        html += '                <li class="content_item">';
-        html += '                    <a href="#"> <i class="sprite sprite-share"></i>分享</a>';
-        html += '                </li>';
-        html += '                <li class="content_item">';
-        html += '                    <a href="#"> <i class="sprite sprite-mark"></i>收藏</a>';
-        html += '                </li>';
-        html += '            </ul>';
-        html += '        </div>';*/
         html += '    </div>';
         html += '</div>';
         return html;

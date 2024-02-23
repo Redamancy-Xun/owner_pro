@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博远-帖子发布页</title>
+    <title>博远-帖子更新页</title>
     <script src="./js/jquery.min.js"></script>
 </head>
 
@@ -31,95 +31,86 @@
         list-style: none;
     }
 
-    .header {
-        height: 5.22%;
-        width: 100%;
-        margin: auto;
-        background: linear-gradient(to right, #b9d2fb, #f6f9ff);
-        border-bottom: #9b9b9b solid 1px;
-        box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
-    }
+    .header{
+    height: 5.22%;
+    width: 100%;
+    margin: auto;
+    background: linear-gradient(to right, #b9d2fb, #f6f9ff);
+    border-bottom: #9b9b9b solid 1px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+ }
+ .logo{
+    height: 100%;
+    padding: 0 0.98%;
+    float: left;
+    margin-left: 19.6%;
+    font-size: 17px;
+    color: #52aee1;
+    line-height: 40px;
+    text-decoration: none;
+    font-weight: bold;
+ }
+ .logo img{
+    max-width: 100%;
+    max-height: 100%;
+ }
+.nav{
+    float: left;
+    height: 100%;
+    padding: 0 0.98%;
+    margin-left: 0.32%;
+    font-size: 20px;
+    text-align: center;
+}
+.nav ul li{
+    float: left;
+    padding: 2 2px;
+}
+.nav ul li a{
+    display: block;
+    height: 95%;
+    width: 100%;
+    padding: 0 15px;
+    margin-left: 2px;
+    margin-right: 2px;
+    line-height: 40px;
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+}
+.nav ul li a:hover{
+    padding: 0 13px;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 20px;
+    color: #0055ff;
+    border-bottom: 2px solid #0055ff;
+}
 
-    .logo {
-        height: 100%;
-        padding: 0 0.98%;
-        float: left;
-        margin-left: 19.6%;
-        font-size: 18px;
-        color: #52aee1;
-        line-height: 53px;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .logo img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .nav {
-        float: left;
-        height: 100%;
-        padding: 0 0.98%;
-        margin-left: 0.32%;
-        font-size: 20px;
-        text-align: center;
-    }
-
-    .nav ul li {
-        float: left;
-        padding: 2 2px;
-    }
-
-    .nav ul li a {
-        display: block;
-        height: 53px;
-        width: 100%;
-        padding: 0 15px;
-        margin-left: 2px;
-        margin-right: 2px;
-        line-height: 53px;
-        font-size: 18px;
-        color: #000;
-        text-decoration: none;
-    }
-
-    .nav ul li a:hover {
-        padding: 0 13px;
-        margin-left: 2px;
-        margin-right: 2px;
-        font-size: 20px;
-        color: #0055ff;
-        border-bottom: 2px solid #0055ff;
-    }
-
-    .user {
-        float: left;
-        height: 100%;
-        width: 2.45%;
-        padding: 20 0px;
-        margin-left: 33.33%;
-        line-height: 100%;
-        font-size: 16px;
-        background-color: #fff;
-        box-shadow: 0 0 3px rgb(255, 255, 255);
-    }
-
-    .user img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-
-    .user-name {
-        float: left;
-        height: 100%;
-        padding-top: 0.98%;
-        margin-left: 1%;
-        line-height: 100%;
-        font-size: 16px;
-        color: #4e4e4e;
-    }
-
+.user{
+    float: left;
+    height: 95%;
+    width: 2.45%;
+    padding: 20 0px;
+    margin-left: 33.33%;
+    line-height: 100%;
+    font-size: 16px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgb(255, 255, 255);
+}
+.user img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.user-name{
+    float: left;
+    height: 100%;
+    padding-top: 0.98%;
+    margin-left: 1%;
+    line-height: 100%;
+    font-size: 16px;
+    color: #4e4e4e;
+}
     .create-wrapper {
         background-color: #fff;
         width: 60%;
@@ -243,13 +234,19 @@
         display: inline-block;
         width: 240px;
         height: 33px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
-        font-family: Arial, sans-serif; /* 设置字体 */  
-        font-size: 14px; /* 设置字体粗细 */ 
-        font-weight: bold; 
-        color: #000000; /* 设置文字颜色 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        font-weight: bold;
+        color: #000000;
+        /* 设置文字颜色 */
         /* 修改样式 */
         cursor: pointer;
         position: relative;
@@ -266,9 +263,12 @@
         position: absolute;
         background-color: #b9d2fb;
         width: 240px;
-        font-family: Arial, sans-serif; /* 设置字体 */  
-        font-size: 14px; /* 设置字体粗细 */  
-        color: #000000; /* 设置文字颜色 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        color: #000000;
+        /* 设置文字颜色 */
         /* 修改样式 */
         padding: 0;
         margin: 0;
@@ -325,16 +325,19 @@
         line-height: 1.5;
         color: #333;
         margin-left: 5px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
     }
 
     /*时间获取部分*/
     .timeSet {
         display: flex;
         margin-top: 7px;
-        justify-content: center; 
+        justify-content: center;
     }
 
     .timeSet div {
@@ -342,13 +345,19 @@
         display: inline-block;
         width: 240px;
         height: 33px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
-        font-family: Arial, sans-serif; /* 设置字体 */  
-        font-size: 14px; /* 设置字体粗细 */ 
-        font-weight: bold; 
-        color: #000000; /* 设置文字颜色 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        font-weight: bold;
+        color: #000000;
+        /* 设置文字颜色 */
         /* 修改样式 */
         position: relative;
         z-index: 0;
@@ -371,10 +380,13 @@
         line-height: 1.5;
         color: #333;
         margin-left: 5px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
- 
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+
     }
 
     input.timeInput {
@@ -391,16 +403,19 @@
         line-height: 1.5;
         color: #333;
         margin-left: 5px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
     }
 
     /*联系方式部分*/
     .contactSet {
         display: flex;
         margin-top: 7px;
-        justify-content: center; 
+        justify-content: center;
     }
 
     .contactSet div {
@@ -408,19 +423,25 @@
         display: inline-block;
         width: 240px;
         height: 33px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
-        font-family: Arial, sans-serif; /* 设置字体 */  
-        font-size: 14px; /* 设置字体粗细 */ 
-        font-weight: bold; 
-        color: #000000; /* 设置文字颜色 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+        font-family: Arial, sans-serif;
+        /* 设置字体 */
+        font-size: 14px;
+        /* 设置字体粗细 */
+        font-weight: bold;
+        color: #000000;
+        /* 设置文字颜色 */
         /* 修改样式 */
         position: relative;
         z-index: 0;
         text-align: center;
         box-sizing: border-box;
-        border-radius: 5px;
+        
         /* 添加圆角矩形样式 */
     }
 
@@ -437,10 +458,13 @@
         line-height: 1.5;
         color: #333;
         margin-left: 5px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */ 
- 
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
+
     }
 
     input.contactInput {
@@ -457,9 +481,12 @@
         line-height: 1.5;
         color: #333;
         margin-left: 5px;
-        display: flex; /* 启用Flexbox */  
-        justify-content: center; /* 水平居中 */  
-        align-items: center; /* 垂直居中 */  
+        display: flex;
+        /* 启用Flexbox */
+        justify-content: center;
+        /* 水平居中 */
+        align-items: center;
+        /* 垂直居中 */
     }
 
     /*详细内容部分*/
@@ -469,9 +496,10 @@
         border: 2px solid #78a5ff;
         display: flex;
     }
-    .contentSet{
+
+    .contentSet {
         display: flex;
-        justify-content: center; 
+        justify-content: center;
     }
 
     textarea.contentInput {
@@ -490,7 +518,28 @@
 
         display: flex;
     }
+
+    /*完成按钮*/
+    #finish-btn {
+        border: 2px solid #ff0000;
+        /* 设置边框为红色实线 */
+        color: #ff0000;
+        /* 设置文字颜色为红色 */
+        padding: 5px 10px;
+        /* 设置内边距 */
+        text-transform: uppercase;
+        /* 将文字转换为大写 */
+        font-weight: bold;
+        /* 设置字体加粗 */
+        background-color: #ffffff;
+        margin-left: 81%;
+        border-radius: 5px;
+    }
+    #finish-btn:hover{
+        cursor: pointer;
+    }
 </style>
+
 <body>
     <div class="container">
         <div class="header"><!--导航栏-->
@@ -510,12 +559,14 @@
             <div class="user-name">用户名</div>
         </div>
 
+
         <div class="create-wrapper">
             <div class="header2">
-                <h1>发布帖子</h1>
+                <h1>修改帖子</h1>
             </div>
+            <button id="finish-btn" onclick="toggleFinish()">招募未完成</button>
             <div class="form-wrapper">
-                <form action="http://116.62.103.210:8080/createArticle" method="post" name="发帖表单" id="create-form">
+                <form action="http://116.62.103.210:8080/updateArticle" method="post" name="发帖表单" id="create-form">
                     <div class="selectcontainer">
                         <div class="m-4" id="selectType">
                             <!-- HTML 代码 -->
@@ -597,6 +648,36 @@
         </div>
 
         <script>
+            // 从 localStorage 中获取 sessionData 字符串
+        let sessionDataString = localStorage.getItem('sessionData');
+            // 将 JSON 字符串解析为对象
+            let sessionData = JSON.parse(sessionDataString);
+            // 读取 headportrait和username 数据
+            let headPortraitData = sessionData.headportrait;
+            let usernameData = sessionData.username;
+            //选中导航栏头像和用户名
+            let headportraitDiv = document.getElementById('samllheadportrait')
+            let usernameDiv = document.getElementById('username1')
+            headportraitDiv.src = headPortraitData;
+            usernameDiv.innerHTML = usernameData;
+            
+            function toggleFinish() {//切换完成状态
+            let finishbtn = document.getElementById("finish-btn");
+            let finish = sessionStorage.getItem('sessionFinish');
+            if (finish == 0){
+                finish = 1;
+                document.getElementById("finish-btn").innerHTML = "招募已完成";
+                finishbtn.style.color = "#0055ff";
+                finishbtn.style.borderColor = "#0055ff";
+            }
+            else {
+                finish = 0;
+                document.getElementById("finish-btn").innerHTML = "招募未完成";
+                finishbtn.style.color = "#ff0000";
+                finishbtn.style.borderColor = "#ff0000";
+            }
+        }
+
             let selectedDisplayType = document.getElementById('selectDisplayType');
             let selectedDisplayDirection = document.getElementById('selectDisplayDirection');
             let selectedDisplayTag = document.getElementById('selectDisplayTag');
@@ -682,31 +763,31 @@
             document.getElementById('create-form').addEventListener('submit', function (event) {
                 event.preventDefault(); // 阻止表单默认提交行为
                 //判断是否填写完整
-                if(type.length == 0){
+                if (type.length == 0) {
                     alert('请选择招募任务类型')
                     return;
                 }
-                if(direction.length == 0){
+                if (direction.length == 0) {
                     alert('请选择需求方向')
                     return;
                 }
-                if(tag.length == 0){
+                if (tag.length == 0) {
                     alert('请选择技术栈')
                     return;
                 }
-                if(start_time == null){
+                if (start_time == null) {
                     alert('请填写开始时间')
                     return;
                 }
-                if(end_time == null){
+                if (end_time == null) {
                     alert('请填写结束时间')
                     return;
                 }
-                if(contact == null){
+                if (contact == null) {
                     alert('请填写联系方式')
                     return;
                 }
-                if(content == null){
+                if (content == null) {
                     alert('请填写详细内容')
                     return;
                 }
@@ -746,8 +827,8 @@
                 $.ajax({
                     type: "POST",
                     url: "http://116.62.103.210:8080/createArticle",
-                    headers:{
-                        Sessionid:sessionId
+                    headers: {
+                        Sessionid: sessionId
                     },
                     data: jsonData,
                     dataType: "json",
@@ -757,7 +838,7 @@
                     success: function (data) {
                         console.log(data)
                         alert(data.message)
-                        if (data.code == 0){//如果发布成功就跳转到详情界面
+                        if (data.code == 0) {//如果发布成功就跳转到详情界面
                             window.location.href = `http://116.62.103.210/detail.html?id=${data.result.article_id}`;
                         }
                     },
@@ -771,7 +852,7 @@
 
 
             // 添加按钮点击事件，打印选项信息至控制台
-            const printButton = document.getElementById('printButton');
+            const printButton = document.getElementById('finish-btn');
             printButton.addEventListener('click', () => {
                 console.log(type);
                 console.log(direction);

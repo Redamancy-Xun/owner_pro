@@ -3,6 +3,7 @@ package com.forum.controller.user;
 import com.forum.common.EnumExceptionType;
 import com.forum.common.Result;
 import com.forum.controller.request.UpdateUserMessageRequest;
+import com.forum.controller.request.UpdateUserRequest;
 import com.forum.controller.response.GetUserResponse;
 import com.forum.dto.SessionData;
 import com.forum.service.impl.AdminServiceImpl;
@@ -13,10 +14,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -44,18 +47,22 @@ public class UpdateUserController {
             @ApiImplicitParam(name = "email", value = "邮箱(可选)", paramType = "query", dataType = "String"),
             @ApiImplicitParam(name = "headportrait", value = "头像(可选)", paramType = "query", dataType = "String")
     })
-    public Result update(@RequestParam(value = "username", required = false) @Validated String username,
-                         @RequestParam(value = "birthday", required = false) @Validated Date birthday,
-                         @RequestParam(value = "email", required = false) @Validated String email,
-                         @RequestParam(value = "headportrait", required = false) @Validated String headportrait){
+    public Result update(@RequestBody UpdateUserRequest request){
 
         SessionData sessionData = sessionUtil.getSessionData();
         Integer user_id = sessionData.getId();
 
+        String username = request.getUsername();
+        String email = request.getEmail();
+        Date birthday = request.getBirthday();
+
         UpdateUserMessageRequest updateUserMessageRequest = new UpdateUserMessageRequest();
         updateUserMessageRequest.setId(user_id);
         if (username != null && userService.checkUsernameLength(username)) {
-            if (userService.getUserByUsername(username) != null || adminService.getAdminByUsername(username) != null) {
+            if (username.equals(userService.getUserById(user_id).getUsername())){
+                updateUserMessageRequest.setUsername(username);
+            }
+            else if (userService.getUserByUsername(username) != null || adminService.getAdminByUsername(username) != null) {
                 return Result.result(EnumExceptionType.USER_ALREADY_EXIST_BUT_CAN_UPGRADE);
             }
             updateUserMessageRequest.setUsername(username);
@@ -63,11 +70,8 @@ public class UpdateUserController {
         if (birthday != null) {
             updateUserMessageRequest.setBirthday(birthday);
         }
-        if (email != null && userService.checkEmailForm(email)) {
+        if (email != null) {
             updateUserMessageRequest.setEmail(email);
-        }
-        if (headportrait != null) {
-            updateUserMessageRequest.setHeadportrait(headportrait);
         }
         userService.updateUserInfoById(updateUserMessageRequest);
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>博远-登录</title>
+    <title>博远-登录页</title>
 </head>
 <style>
     * {
@@ -22,7 +22,7 @@
 
     .container {
         height: 100%;
-        background-image: linear-gradient(to right, rgb(199, 218, 250), #fff);
+        background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
         position: relative;
     }
 
@@ -147,7 +147,7 @@
                         console.log(data);
                         if (data.code == 0) {
                             localStorage.setItem('sessionId', data.result.sessionId);
-                            localStorage.setItem('sessionData', JSON.stringify(data.result.SessionData));
+                            localStorage.setItem('sessionData', JSON.stringify(data.result.sessionData));
                             console.log('LoginResponse 对象已存储在 SessionStorage 中');
                             // 获取之前存储在 sessionStorage 中的 sessionId
                             let sessionId = localStorage.getItem('sessionId');

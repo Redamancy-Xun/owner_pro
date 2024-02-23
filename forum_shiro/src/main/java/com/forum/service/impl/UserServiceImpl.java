@@ -89,14 +89,15 @@ public class UserServiceImpl implements UserService {
         String username = updateUserMessageRequest.getUsername();
         Date birthday = updateUserMessageRequest.getBirthday();
         String headportrait = updateUserMessageRequest.getHeadportrait();
-
+        String email = updateUserMessageRequest.getEmail();
         if (username != null)
             userMapper.updateUserUsername(username, id);
         if (birthday != null)
             userMapper.updateUserBirthday(birthday, id);
         if (headportrait != null)
             userMapper.updateUserHeadportrait(headportrait, id);
-
+        if (email!=null)
+            userMapper.updateUserEmail(email,id);
     }
 
     //根据用户id找到用户，并更新用户密码

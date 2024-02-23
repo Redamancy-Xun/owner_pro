@@ -23,9 +23,22 @@
      font-style: italic;
  }
 
+ #delete {
+     border-radius: 5px;
+     background-color: #c6e3fa;
+     border-color: #fff;
+     border: 2px;
+     width: 75px;
+     height: 40px;
+     font-weight: 600;
+     font-size: large;
+     font-style: italic;
+     text-align: center;
+ }
+
  .custom-select p {
      padding: 10px;
-     background-color: #8dd3f9;
+     background-color: #b9d2fb;
      display: inline-block;
      width: 240px;
      height: 33px;
@@ -56,7 +69,7 @@
  .custom-select ul {
      display: none;
      position: absolute;
-     background-color: #8dd3f9;
+     background-color: #b9d2fb;
      width: 240px;
      font-family: Arial, sans-serif;
      /* 设置字体 */
@@ -106,7 +119,7 @@
  }
 
  .selectDisplay {
-     width: 1000px;
+     width: 600px;
      height: 33px;
      background-color: #ffffff;
      border: 1px solid #000;
@@ -784,7 +797,7 @@
      padding: 10px;
      background-color: #8dd3f9;
      display: inline-block;
-     width: 240px;
+     width: 180px;
      /* 修改样式 */
      cursor: pointer;
      position: relative;
@@ -800,7 +813,7 @@
      display: none;
      position: absolute;
      background-color: #8dd3f9;
-     width: 240px;
+     width: 180px;
      /* 修改样式 */
      padding: 0;
      margin: 0;
@@ -844,4 +857,5 @@
 
  .selectDisplay {
      margin-left: 10px;
+     width: 300px;
  }
