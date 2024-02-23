@@ -24,7 +24,7 @@ $common = {
     getHttp: function(obj){
         var that = this;
         $.ajax({
-            type: obj.type || 'get',
+            type: obj.type || 'post',
             url: this.data.site + obj.url,
             data: obj.data || {},
             dataType: 'json',

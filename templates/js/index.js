@@ -74,15 +74,20 @@ let direction = selectedOptionsDirection;
 let tag = selectedOptionsTag;
 
 //上面三个变量存储对应值，只有筛选未完成就算了
-console.log(type);
-console.log(direction);
-console.log(tag);
+// console.log(type);
+// console.log(direction);
+// console.log(tag);
 //需要在这里面补充发送请求的逻辑，建议把这里的js都移动到index里面，避免混淆;
 
 
 document.getElementById('create-form').addEventListener('submit', function (event) {
     event.preventDefault(); //阻止表单默认提交行为
 
+    $index.loadList();
+
+    console.log(type);
+    console.log(direction);
+    console.log(tag);
 })
 
 
@@ -112,16 +117,18 @@ $index = {
         var that = this;
         that.data.page++;
         that.data.more.html('加载中...');
+        let a={
+            pageSize: 10,
+            pageNum: that.data.page,
+            ...(type.length > 0 && { type: type }),
+            ...(direction.length > 0 && { direction: direction }),
+            ...(tag.length > 0 && { tag: tag })
+        }
+        jsondata=JSON.stringify(a);
         // 获取列表数据
         $common.getHttp({
             url: 'article',
-            data: {
-                pageSize: 10,
-                pageNum: that.data.page,
-                ...(type.length > 0 && { type: type.slice(0, type.length).join(',') }),
-                ...(direction.length > 0 && { direction: direction.slice(0, direction.length).join(',') }),
-                ...(tag.length > 0 && { tag: tag.slice(0, tag.length).join(',') })
-            },
+            data: jsondata,
             ok: function (res) {
                 // 渲染数据
                 that.listShow(res.result.items);
@@ -131,6 +138,8 @@ $index = {
                 } else {
                     that.data.more.html('加载更多&gt;&gt;');
                 }
+
+                console.log(res);
             }
         });
     },
