@@ -859,3 +859,15 @@
      margin-left: 10px;
      width: 300px;
  }
+
+ .finishe {
+    font-style: italic; /* 设置斜体 */
+}
+
+.completed {
+    color: rgb(171, 171, 171); /* 已完成的颜色为绿色 */
+}
+
+.not-completed {
+    color: rgb(9, 156, 167); /* 未完成的颜色为红色 */
+}

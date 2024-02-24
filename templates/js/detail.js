@@ -45,7 +45,7 @@ $index = {
         html += '        <div class="peo_desc">';
         html += '            <ul>';
         html += '                <li class="base_comment"><em>' + info.type.join('</em><em>') + '</em><span>' + info.update_date.slice(0,10) + '</span></li>';
-        html += '                <li class="title_comment">' + (info.top ? '<em class="top">置顶</em>' : '') + '<em class="finishe">' + (info.finishe ? '已' : '未') + '完成</em>' + info.direction.join(' • ') + ' • ' + info.tag.join(' • ') + '</li>';
+        html += '                <li class="title_comment">' + (info.top ? '<em class="top">置顶</em>' : '') + '<em class="finishe ' + (info.finish ? 'completed' : 'not-completed') + '">' + (info.finish ? '已' : '未') + '完成</em>' + info.direction.join(' • ') + ' • ' + info.tag.join(' • ') + '</li>';
         html += '            </ul>';
         html += '        </div>';
         html += '    </div>';

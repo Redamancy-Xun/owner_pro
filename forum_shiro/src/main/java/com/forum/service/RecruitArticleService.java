@@ -4,7 +4,9 @@ import com.forum.common.Page;
 import com.forum.controller.request.UpdateArticleMessageRequest;
 import com.forum.controller.response.ShowArticleResponse;
 import com.forum.entity.RecruitArticle;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -46,5 +48,7 @@ public interface RecruitArticleService {
     //默认获取帖子
     Page<ShowArticleResponse> defaultGetRecruitArticle(Integer pageSize, Integer pageNum, List<String> type,
                                                        List<String> direction, List<String> tag, Integer finish);
+
+    boolean downloadArticle() throws IOException;
 
 }

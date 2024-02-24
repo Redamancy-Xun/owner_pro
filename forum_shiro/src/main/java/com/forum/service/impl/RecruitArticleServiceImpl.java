@@ -3,11 +3,14 @@ package com.forum.service.impl;
 import com.forum.common.Page;
 import com.forum.common.EnumExceptionType;
 import com.forum.controller.request.UpdateArticleMessageRequest;
+import com.forum.controller.response.DownloadArticleResponse;
 import com.forum.controller.response.ShowArticleResponse;
+import com.forum.dto.Excel;
 import com.forum.entity.RecruitArticle;
 import com.forum.exception.MyException;
 import com.forum.mapper.RecruitArticleMapper;
 import com.forum.service.RecruitArticleService;
+import com.forum.util.ExcelUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 
 @Service
@@ -24,6 +28,9 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
 
     @Autowired
     private RecruitArticleMapper recruitArticleMapper;
+
+    @Autowired
+    private ExcelUtil excelUtil;
 
     public RecruitArticleServiceImpl(){
         log.info("call new RecruitArticleServiceImpl");
@@ -185,6 +192,17 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
         return responsePage;
     }
 
+    @Override
+    public boolean downloadArticle() throws IOException {
+        List<RecruitArticle> articleList = recruitArticleMapper.defaultGetRecruitArticle();
+        List<Object[]> objects = new ArrayList<>();
+        for (RecruitArticle recruitArticle : articleList) {
+            objects.add(new DownloadArticleResponse(recruitArticle).toList());
+        }
+        Excel excel = new Excel(objects);
+        return excelUtil.exportRecruitArticle(excel);
+
+    }
 
 
 }
