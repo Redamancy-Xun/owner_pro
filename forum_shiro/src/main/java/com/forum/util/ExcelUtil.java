@@ -36,9 +36,9 @@ public class ExcelUtil {
         }
 
         //写入数据
-        for (int i=0;i<excel.getDataList().size();i++){
+        for (int i = 0 ;i < excel.getDataList().size() ; i++){
             Object[] objects = excel.getDataList().get(i);
-            HSSFRow row =sheet.createRow(i+1);
+            HSSFRow row =sheet.createRow(i + 1);
 
             row.setHeight((short) (25 * 20));//设置高度
 
