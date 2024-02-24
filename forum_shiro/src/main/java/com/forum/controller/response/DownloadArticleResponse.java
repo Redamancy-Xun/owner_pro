@@ -69,8 +69,8 @@ public class DownloadArticleResponse {
         this.top = article.getTop() == 0 ? "未置顶" : "已置顶";
     }
 
-    public Object[]  toList(){
-            return new Object[]{this.article_id, this.id,this.update_date,this.type,this.type,this.direction,this.tag,this.content,this.start_time,this.end_time,this.contact,this.finish,this.top};
-
+    public Object[] toList(){
+            return new Object[] {this.article_id, this.id, this.update_date, this.type, this.type, this.direction,
+                    this.tag, this.content, this.start_time, this.end_time, this.contact, this.finish, this.top};
         }
 }

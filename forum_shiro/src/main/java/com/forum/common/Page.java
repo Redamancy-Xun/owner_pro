@@ -35,7 +35,7 @@ public class Page<T> {
         this.items = pageInfo.getList();
     }
 
-    public Page(PageParam pageParam, Long total, int pages, List<T> list){
+    public Page(PageParam pageParam, Long total, int pages, List<T> list) {
         this.pageNum = pageParam.getPageNum();
         this.pageSize = pageParam.getPageSize();
         this.total = total;

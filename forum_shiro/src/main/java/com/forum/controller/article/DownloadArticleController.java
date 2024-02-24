@@ -29,6 +29,4 @@ public class DownloadArticleController {
         else
             return Result.fail("下载失败，请重试");
     }
-
-
 }

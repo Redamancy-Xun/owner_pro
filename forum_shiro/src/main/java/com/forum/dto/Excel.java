@@ -22,7 +22,7 @@ public class Excel {
 
     private List<String> rowName;   //列名
 
-    private List<Object[]> dataList = new ArrayList<>();    //数据内容
+    private List<Object[]> dataList;    //数据内容
 
     public Excel(List<Object[]> responses){
         List<String> nameList = new ArrayList<>();
@@ -40,12 +40,10 @@ public class Excel {
         nameList.add("完成状态");
         nameList.add("置顶状态");
 
-        this.fileName="博远招募帖子";
-        this.sheetName="博远招募帖子";
-        this.rowName=nameList;
+        this.fileName = "博远招募帖子";
+        this.sheetName = "博远招募帖子";
+        this.rowName = nameList;
 
-        this.dataList=responses;
+        this.dataList = responses;
     }
-
-
 }

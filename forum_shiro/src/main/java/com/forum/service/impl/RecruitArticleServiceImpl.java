@@ -201,7 +201,6 @@ public class RecruitArticleServiceImpl implements RecruitArticleService {
         }
         Excel excel = new Excel(objects);
         return excelUtil.exportRecruitArticle(excel);
-
     }
 
 
