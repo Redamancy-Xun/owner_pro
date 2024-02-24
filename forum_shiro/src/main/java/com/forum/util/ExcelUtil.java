@@ -60,7 +60,7 @@ public class ExcelUtil {
             String encodedFileName = URLEncoder.encode(fileName, "UTF-8");
             String headStr = "attachment; filename=\"" + encodedFileName + "\"";
             //设置 Content-Type 为 “APPLICATION/OCTET-STREAM”，告诉浏览器这是一个二进制流文件，需要下载保存
-            response.setContentType("APPLICATION/OCTET-STREAM");
+            response.setContentType("application/vnd.ms-excel");
             //设置 Content-Disposition 头部，指示浏览器如何处理响应的内容，提示浏览器以附件形式下载文件，并指定下载时的文件名
             response.setHeader("Content-Disposition", headStr);
             //获取 HttpServletResponse 的输出流，并将 Excel 文件内容写入到输出流中，客户端浏览器就能获取到完整的 Excel 文件内容
