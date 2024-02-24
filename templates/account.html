@@ -325,19 +325,14 @@
         margin-left: 10%;
         width: 30px;
         height: 30px;
-        background-color: rgb(110, 195, 249);
-        /* 蓝色 */
-        border: 1px solid rgb(110, 195, 249);
-        /* 深蓝色边框 */
-        border-radius: 50%;
-        /* 圆形按钮 */
+        background-color: rgb(110, 195, 249); /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249); /* 深蓝色边框 */
+        border-radius: 50%; /* 圆形按钮 */
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #ffffff;
-        /* 白色文字 */
-        font-size: 14px;
-        /* 文字大小 */
+        color: #ffffff; /* 白色文字 */
+        font-size: 14px; /* 文字大小 */
         cursor: pointer;
     }
 
@@ -347,54 +342,42 @@
         margin-left: 20%;
         width: 30px;
         height: 30px;
-        background-color: rgb(110, 195, 249);
-        /* 蓝色 */
-        border: 1px solid rgb(110, 195, 249);
-        /* 深蓝色边框 */
-        border-radius: 50%;
-        /* 圆形按钮 */
+        background-color: rgb(110, 195, 249); /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249); /* 深蓝色边框 */
+        border-radius: 50%; /* 圆形按钮 */
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #ffffff;
-        /* 白色文字 */
-        font-size: 14px;
-        /* 文字大小 */
+        color: #ffffff; /* 白色文字 */
+        font-size: 14px; /* 文字大小 */
         cursor: pointer;
     }
 
     .nextp:hover {
-        background-color: rgb(42, 168, 253);
-        /* 蓝色 */
-        border: 1px solid rgb(42, 168, 253);
-        /* 深蓝色边框 */
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
     }
 
     .nextp:active {
-        background-color: rgb(42, 168, 253);
-        /* 蓝色 */
-        border: 1px solid rgb(42, 168, 253);
-        /* 深蓝色边框 */
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
     }
 
     .lastp:hover {
-        background-color: rgb(42, 168, 253);
-        /* 蓝色 */
-        border: 1px solid rgb(42, 168, 253);
-        /* 深蓝色边框 */
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
     }
 
     .lastp:active {
-        background-color: rgb(42, 168, 253);
-        /* 蓝色 */
-        border: 1px solid rgb(42, 168, 253);
-        /* 深蓝色边框 */
+        background-color: rgb(42, 168, 253); /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253); /* 深蓝色边框 */
     }
 
     .page {
         float: right;
         margin-top: 2%;
         margin-right: 0%;
+        cursor: pointer;
     }
 </style>
 
@@ -515,7 +498,7 @@
                     studentid.innerHTML = data.result[0].studentid
                     studentname.innerHTML = data.result[0].studentname
                     email.value = data.result[0].email
-                    birthday.value = data.result[0].birthday.slice(0, 10)
+                    birthday.value = data.result[0].birthday.slice(0,10)
 
                     let firstData, secondData, thirdData;
                     //分别提取items中的三组帖子的数据
@@ -537,7 +520,7 @@
                         var firstupdateDate = firstData.update_date.slice(0, 10); // 截取年月日部分
                         firstDiv.innerHTML = `
                                     <div class="firsttiao"  onclick="detailArticle1()">
-                                    <p class="zhuti">${firstData.content.slice(0, 12) + '...'}</p>
+                                    <p class="zhuti">${firstData.content.slice(0,12)+'...'}</p>
                                     <p>开始: ${firstData.start_time}  截止: ${firstData.end_time}</p>
                                     <p>类型：${firstData.type}  需求：${firstData.direction}  技术栈：${firstData.tag}</p>
                                     <p>联系方式：${firstData.contact}</p>
@@ -568,7 +551,7 @@
                         var secondupdateDate = secondData.update_date.slice(0, 10); // 截取年月日部分          
                         secondDiv.innerHTML = `
                                     <div class="secondtiao"  onclick="detailArticle2()">
-                                    <p class="zhuti">${secondData.content.slice(0, 12) + '...'}</p>
+                                    <p class="zhuti">${secondData.content.slice(0,12)+'...'}</p>
                                     <p>开始: ${secondData.start_time}  截止: ${secondData.end_time}</p>
                                     <p>类型：${secondData.type}  需求：${secondData.direction}  技术栈：${secondData.tag}</p>
                                     <p>联系方式：${secondData.contact}</p>
@@ -599,7 +582,7 @@
                         var thirdupdateDate = thirdData.update_date.slice(0, 10); // 截取年月日部分
                         thirdDiv.innerHTML = `
                                     <div class="thirdtiao"  onclick="detailArticle3()">
-                                    <p class="zhuti">${thirdData.content.slice(0, 12) + '...'}</p>
+                                    <p class="zhuti">${thirdData.content.slice(0,12)+'...'}</p>
                                     <p>开始: ${thirdData.start_time}  截止: ${thirdData.end_time}</p>
                                     <p>类型:${thirdData.type}  需求：${thirdData.direction}  技术栈：${thirdData.tag}</p>
                                     <p>联系方式：${thirdData.contact}</p>                                   
@@ -677,17 +660,14 @@
 
         function updateArticle1() {//跳转到第一个帖子的修改页
             let id1 = sessionStorage.getItem('firstid');
-            localStorage.setItem('updateid', id1);
             window.location.href = `http://116.62.103.210/updateArticle.html?id=${id1}`
         }
         function updateArticle2() {//跳转到第二个帖子的修改页
             let id2 = sessionStorage.getItem('secondid');
-            localStorage.setItem('updateid', id2);
             window.location.href = `http://116.62.103.210/updateArticle.html?id=${id2}`
         }
         function updateArticle3() {//跳转到第三个帖子的修改页
             let id3 = sessionStorage.getItem('thirdid');
-            localStorage.setItem('updateid', id3);
             window.location.href = `http://116.62.103.210/updateArticle.html?id=${id3}`
         }
 
@@ -803,11 +783,11 @@
             var email = form.querySelector('#email').value; // 获取邮箱值
             var birthday = form.querySelector('#birthday').value; // 获取生日值
             let data = {
-                ...(name != null && { username: name }),
-                ...(email != null && { email: email }),
-                ...(birthday != null && { birthday: birthday })
+                ...(name!=null && {username:name}),
+                ...(email!=null && {email:email}),
+                ...(birthday!=null && {birthday:birthday})
             }
-            jsondata = JSON.stringify(data);
+            jsondata=JSON.stringify(data);
             $.ajax({
                 type: "POST",
                 url: "http://116.62.103.210:8080/update",
