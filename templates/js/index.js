@@ -187,8 +187,8 @@ let $index = {
         html += '            <p><em>联系方式：</em>' + info.contact + '</p>';
         html += '            <p><a href="./detail.html?id=' + info.article_id + '" class="show_all">查看详情</a></p>';
         if (role) {
-            html += '<button class="delete-button"  id =' + info.article_id + '>' + '</button>';
-            html += '<button class="sticky-button" id =' + info.article_id + ' data-top = '+info.top+' >' + '</button>';
+            html += '<button class="delete-button" id =' + info.article_id + ' style="background: url(\'./image/delete.jpeg\'); background-size: cover; width: 20px; height: 20px;"></button>'
+            html += '<button class="sticky-button" id =' + info.article_id + ' style="background: url(\'./image/up.jpeg\'); background-size: cover; width: 20px; height: 20px;" data-top=' + info.top + '></button>';
         }
         html += '        </div>';
         html += '    </div>';
