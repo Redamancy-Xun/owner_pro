@@ -105,7 +105,7 @@ $('#delete').on('click', function () {
 })
 
 
-$index = {
+let $index = {
     data: {
         page: 0,
         over: false,
@@ -162,6 +162,9 @@ $index = {
             html += this.listItem(list[i]);
         }
         this.data.list.append(html);
+        // 绑定事件
+        this.bindDeleteButtons();
+        this.bindTopButtons();
     },
     listItem: function (info) {
         // 显示数据页面
@@ -172,7 +175,7 @@ $index = {
         html += '        <div class="peo_desc">';
         html += '            <ul>';
         html += '                <li class="base_comment"><em>' + info.type.join('</em><em>') + '</em><span>' + info.update_date.substring(0, 10) + '</span></li>';
-        html += '                <li class="title_comment">' + (info.top ? '<em class="top">置顶</em>' : '') +'<em class="finishe ' + (info.finish ? 'completed' : 'not-completed') + '">' + (info.finish ? '已' : '未') + '完成</em>' + info.direction.join(' • ') + ' • ' + info.tag.join(' • ') + '</li>';
+        html += '                <li class="title_comment">' + (info.top ? '<em class="top">置顶</em>' : '') + '<em class="finishe">' + (info.finishe ? '已' : '未') + '完成</em>' + info.direction.join(' • ') + ' • ' + info.tag.join(' • ') + '</li>';
         html += '            </ul>';
         html += '        </div>';
         html += '    </div>';
@@ -184,71 +187,138 @@ $index = {
         html += '            <p><em>联系方式：</em>' + info.contact + '</p>';
         html += '            <p><a href="./detail.html?id=' + info.article_id + '" class="show_all">查看详情</a></p>';
         if (role) {
-            html += '<input type="button" class="delete-button" value="删除" style="background-image: url(./image/delete.jpeg); background-size: cover; width: 20px; height: 20px;">';
-            html += '<input type="button" class="sticky-button" value="置顶" style="background-image: url(./image/up.jpeg); background-size: cover; width: 20px; height: 20px;">';
+            html += '<button class="delete-button"  id =' + info.article_id + '>' + '</button>';
+            html += '<button class="sticky-button" id =' + info.article_id + ' data-top = '+info.top+' >' + '</button>';
         }
-        $('.delete-button').on('click', function () {
-            let post = button.closest('.comment')
-            $.ajax({
-                url: 'http://116.62.103.210:8080/deleteArticle/${info.article_id}',
-                type: 'GET',
-                contentType: 'application/json',
-                data: info.article_id,
-                success: function () {
-                    // 请求成功后刷新页面
-                    location.reload();
-                },
-                error: function () {
-                    console.error('删除请求出错');
-                }
-            });
-        });
-
-        $('.sticky-button').on('click', function () {
-            let currentTopValue = info.top;
-            const newTopValue = currentTopValue === 0 ? 1 : 0;
-            if (newTopValue === 1) {
-                $.ajax({
-                    url: 'http://116.62.103.210:8080/topArticle/${info.article_id}',
-                    type: 'GET',
-                    contentType: 'application/json',
-                    data: info.article_id,
-                    success: function () {
-                        // 请求成功后更新当前 top 值
-                        currentTopValue = newTopValue;
-                        // 请求成功后刷新页面
-                        location.reload();
-                    },
-                    error: function () {
-                        console.error('置顶请求出错');
-                    }
-                });
-            }
-            if (newTopValue === 0) {
-                $.ajax({
-                    url: 'http://116.62.103.210:8080/untopArticle/${info.article_id}',
-                    type: 'GET',
-                    contentType: 'application/json',
-                    data: info.article_id,
-                    success: function () {
-                        // 请求成功后更新当前 top 值
-                        currentTopValue = newTopValue;
-                        // 请求成功后刷新页面
-                        location.reload();
-                    },
-                    error: function () {
-                        console.error('置顶请求出错');
-                    }
-                });
-            }
-            // 发送改变top值的请求
-
-        });
         html += '        </div>';
         html += '    </div>';
         html += '</div>';
         return html;
-    }
+    },
 
+    bindDeleteButtons: function () {
+        var that = this;
+        let deleteButtons = Array.from(document.getElementsByClassName('delete-button'));
+        deleteButtons.forEach(deleteButton => {
+            deleteButton.addEventListener('click', function () {
+                console.log('点击删除按钮');
+                $.ajax({
+                    headers :{
+                        Sessionid :localStorage.getItem('sessionId'),
+                    },
+                    url: 'http://116.62.103.210:8080/deleteArticle/' + deleteButton.id,
+                    type: 'GET',
+                    contentType: 'application/json',
+                    success: function () {
+                        // 请求成功后刷新页面
+                        location.reload();
+                    },
+                    error: function () {
+                        console.error('删除请求出错');
+                    }
+                });
+            });
+        });
+    },
+
+    bindTopButtons: function () {
+        var that = this;
+        let topButtons = Array.from(document.getElementsByClassName('sticky-button'));
+        topButtons.forEach(topButton => {
+            topButton.addEventListener('click', function () {
+                console.log('点击置顶按钮');
+                let currentTopValue = topButton.dataset.top; // 获取当前的置顶状态
+                console.log(currentTopValue);
+                if (currentTopValue === "0") {
+                    $.ajax({
+                        headers: {
+                            Sessionid: localStorage.getItem('sessionId'),
+                        },
+                        url: 'http://116.62.103.210:8080/topArticle/' + topButton.id,
+                        type: 'GET',
+                        contentType: 'application/json',
+                        success: function () {
+                            // 请求成功后刷新页面
+                            location.reload();
+                        },
+                        error: function () {
+                            console.error('置顶请求出错');
+                        }
+                    });
+                } else if (currentTopValue === "1") {
+                    $.ajax({
+                        headers: {
+                            Sessionid: localStorage.getItem('sessionId'),
+                        },
+                        url: 'http://116.62.103.210:8080/untopArticle/' + topButton.id,
+                        type: 'GET',
+                        contentType: 'application/json',
+                        success: function () {
+                            // 请求成功后刷新页面
+                            location.reload();
+                        },
+                        error: function () {
+                            console.error('取消置顶请求出错');
+                        }
+                    });
+                }
+            });
+        });
+    }
 };
+
 $index.init();
+// $('.delete-button').forEach().on('click', function () {
+//     let post = button.closest('.comment')
+//     $.ajax({
+//         url: 'http://116.62.103.210:8080/deleteArticle/${info.article_id}',
+//         type: 'GET',
+//         contentType: 'application/json',
+//         success: function () {
+//             // 请求成功后刷新页面
+//             location.reload();
+//         },
+//         error: function () {
+//             console.error('删除请求出错');
+//         }
+//     });
+// });
+
+// $('.sticky-button').on('click', function () {
+    //     let currentTopValue = info.top;
+    //     const newTopValue = currentTopValue === 0 ? 1 : 0;
+    //     if (newTopValue === 1) {
+        //         $.ajax({
+            //             url: 'http://116.62.103.210:8080/topArticle/${info.article_id}',
+            //             type: 'GET',
+            //             contentType: 'application/json',
+            //             success: function () {
+                //                 // 请求成功后更新当前 top 值
+                //                 currentTopValue = newTopValue;
+                //                 // 请求成功后刷新页面
+                //                 location.reload();
+                //             },
+                //             error: function () {
+                    //                 console.error('置顶请求出错');
+                    //             }
+                    //         });
+                    //     }
+                    //     if (newTopValue === 0) {
+                        //         $.ajax({
+                            //             url: 'http://116.62.103.210:8080/untopArticle/${info.article_id}',
+                            //             type: 'GET',
+                            //             contentType: 'application/json',
+                            //             success: function () {
+                                //                 // 请求成功后更新当前 top 值
+                                //                 currentTopValue = newTopValue;
+                                //                 // 请求成功后刷新页面
+                                //                 location.reload();
+                                //             },
+                                //             error: function () {
+                                    //                 console.error('置顶请求出错');
+                                    //             }
+                                    //         });
+                                    //     }
+                                    //     // 发送改变top值的请求
+                                    
+                                    // });
