@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>博远-首页</title>
+    <link rel="stylesheet" type="text/css" href="./css/common.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="main top">
+            <h2 class="title">博远信息技术社</h2>
+            <div class="nav">
+                <ul>
+                    <li>
+                        <a class="link" href="./">首页</a>
+                    </li>
+                    <li>
+                        <a class="link" href="account.html">个人中心</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="user">
+
+                <p class="name">当前用户</p>
+                <img class="logo" src="http://116.62.103.210/image/default.jpg"/>
+
+            </div>
+        </div>
+    </header>
+    </div>
+    <div class="main">
+        <div id="shaixuan">
+            <form action="http://116.62.103.210:8080/article" method="GET" name="发帖表单" id="create-form">
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectType">
+                        <div class="custom-select">
+                            <p>请选择招募任务类型 ▼</p>
+                            <ul>
+                                <li>双创</li>
+                                <li>外包</li>
+                                <li>大作业</li>
+                                <li>校级项目</li>
+                                <li>社团项目</li>
+                                <li>其他类型</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayType" class="selectDisplay">请选择招募任务类型</div>
+                </div>
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectDirection">
+                        <div class="custom-select">
+                            <p>请选择需求方向 ▼</p>
+                            <ul>
+                                <li>前端</li>
+                                <li>后端</li>
+                                <li>项目经理</li>
+                                <li>UI设计师</li>
+                                <li>其他需求方向</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayDirection" class="selectDisplay">请选择需求方向</div>
+                </div>
+                <div class="selectcontainer">
+                    <div class="m-4" id="selectTag">
+                        <div class="custom-select">
+                            <p>请选择技术栈 ▼</p>
+                            <ul>
+                                <li>HTML</li>
+                                <li>CSS</li>
+                                <li>JavaScript</li>
+                                <li>其他前端语言</li>
+                                <li>Java</li>
+                                <li>Python</li>
+                                <li>C/C++</li>
+                                <li>Go</li>
+                                <li>Ruby</li>
+                                <li>其他后端语言</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="selectDisplayTag" class="selectDisplay">请选择技术栈</div>
+                </div>
+                <input type="button" class="btn" id="submit" value="筛选">
+                <input type="button" class="btn" id="delete" value="删除">
+
+            </form>
+        </div>
+
+        <div class="left_content">
+
+
+            <div class="new">
+                <div class="update">
+
+                    <i class="sprite sprite-new"></i>
+                    <div class="text_update">最新招募</div>
+
+                    <div class="divder"></div>
+
+                </div>
+                <div id="indexList"></div>
+                <div class="loadmore">加载中...</div>
+            </div>
+            <div class="right_content">
+                <!-- <div class="about_me">
+                    <ul>
+                        <li><a href="#" target="_blank"><i class="sprite sprite-mark"></i>我的收藏</a></li>
+                        <li><a href="#" target="_blank"><i class="sprite sprite-guanzhu"></i>我的组队</a></li>
+                    </ul>
+                    <div class="divder_another">
+                    </div>
+                </div> -->
+
+
+            </div>
+        </div>
+        <script src="./js/jquery.min.js"></script>
+        <script src="./js/common.js"></script>
+        <script src="./js/index.js"></script>
+
+</body>
+
+</html>

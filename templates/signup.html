@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博远-注册页</title>
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        background-image: linear-gradient(to right, rgb(186, 209, 250), #fff);
+    }
+
+    .signup-wrapper {
+        background-color: #fff;
+        width: 358px;
+        height: 700px;
+        border-radius: 15px;
+        padding: 0 50px;
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .header1 {
+        height: 70px;
+        font-family: Microsoft YaHei;
+        color: #52B4E3;
+        line-height: 100px;
+        text-align-last: left;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .header2 {
+        font-size: 38px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 80px;
+    }
+
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 15px;
+        outline: none;
+    }
+
+    .input-item:placeholder {
+        text-transform: uppercase;
+    }
+
+    .btn {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 30px;
+        background-color: rgb(110, 195, 249);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+    }
+
+    .btn:hover {
+        background-color: rgb(42, 168, 253);
+    }
+
+    .msg {
+        text-align: center;
+        line-height: 85px;
+    }
+
+    #feedbackMessage {
+        color: red;
+        font-size: 15px;
+        font-weight: 500;
+
+        top: 71%;
+    }
+
+    a {
+        text-decoration-line: none;
+        color: #6b96eb;
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <div class="signup-wrapper">
+            <div class="header1">博远信息技术社</div>
+            <div class="header2">注册</div>
+            <div class="form-wrapper">
+                <form action="http://localhost:8080/signup" method="post" name="注册表单" id="signup-form">
+                    <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item">
+                    <input type="password" id="password" name="password" placeholder="密码（6~20）位" class="input-item">
+                    <input type="password" id="password2" name="password2" placeholder="再次输入密码" class="input-item">
+                    <input type="text" id="studentid" name="studentid" placeholder="学号" class="input-item">
+                    <input type="text" id="studentname" name="studentname" placeholder="姓名" class="input-item">
+                    <input type="submit" class="btn" value="注册">
+                </form>
+            </div>
+            <div id="feedbackMessage"></div>
+            <div class="msg">
+                已有账号?
+                <a href="login.html">登录</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault()//阻止默认提交
+            //获取各参数信息
+            let username = document.getElementById('username').value
+            let password = document.getElementById('password').value
+            let password2 = document.getElementById('password2').value
+            let studentid = document.getElementById('studentid').value
+            let studentname = document.getElementById('studentname').value
+
+            console.log(username, password)//控制台查看
+
+            //判断长度(暂定)
+            let usernameInput = document.getElementById('username')
+            if (username.length < 2 || username.length > 20) {
+                console.log('用户名长度需为2~20位')
+                usernameInput.style.borderColor = "red"
+                usernameInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·用户名长度需为2~20位'
+                return//阻止代码进行
+            }
+            else {
+                usernameInput.style.borderColor = "black"
+                usernameInput.style.backgroundColor = "white";
+            }
+
+            let passwordInput = document.getElementById('password')
+            if (password.length < 6 || password.length > 20) {
+                console.log('密码长度需为6~20位')
+                passwordInput.style.borderColor = "red"
+                passwordInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·密码长度需为6~20位'
+                return//阻止代码进行
+            }
+            else {
+                passwordInput.style.borderColor = "black"
+                passwordInput.style.backgroundColor = "white";
+            }
+
+            let passwordInput2 = document.getElementById('password2')
+            if (password != password2) {
+                console.log('请确认两次密码输入一致')
+                passwordInput.style.borderColor = "red"
+                passwordInput.style.backgroundColor = "pink";
+                passwordInput2.style.borderColor = "red"
+                passwordInput2.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·请确认两次密码输入一致'
+                return//阻止代码进行
+            }
+            else {
+                passwordInput.style.borderColor = "black"
+                passwordInput.style.backgroundColor = "white";
+                passwordInput2.style.borderColor = "black"
+                passwordInput2.style.backgroundColor = "white";
+            }
+
+            let studentidInput = document.getElementById('studentid')
+            if (studentid.length != 11) {
+                console.log('请确认学号是否正确')
+                studentidInput.style.borderColor = "red"
+                studentidInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·请确认学号是否正确'
+                return//阻止代码进行
+            }
+            else {
+                studentidInput.style.borderColor = "black"
+                studentidInput.style.backgroundColor = "white";
+            }
+
+            let studentnameInput = document.getElementById('studentname')
+            if (studentname.length < 1) {
+                console.log('姓名不可为空')
+                studentnameInput.style.borderColor = "red"
+                studentnameInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·姓名不可为空'
+                return//阻止代码进行
+            }
+            else {
+                studentnameInput.style.borderColor = "black"
+                studentnameInput.style.backgroundColor = "white";
+            }
+
+            fetch('http://116.62.103.210:8080/signup', {
+                method: 'POST',
+                body: new FormData(document.getElementById('signup-form'))
+            }) // 后端接口地址
+                .then(response => response.json())//转换json数据
+                .then(data => {
+                    console.log(data)// 打印 JSON 数据
+                    alert(data.message)//打印message内容
+                    if (data.code == 0) {//如果登录成功就跳转到登录界面
+                        window.location.href = "login.html"
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                    alert('出错啦！请稍后再试。')
+                })
+        })
+    </script>
+</body>
+
+</html>

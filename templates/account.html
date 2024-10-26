@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博远-个人信息页</title>
+    <script src="./js/jquery.min.js"></script>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        height: 100%;
+    }
+
+    .container {
+        height: 100%;
+        background-color: rgb(245, 246, 254);
+    }
+
+    li {
+        list-style: none;
+    }
+
+    .header {
+        height: 5.22%;
+        width: 100%;
+        margin: auto;
+        background: linear-gradient(to right, #b9d2fb, #f6f9ff);
+        border-bottom: #9b9b9b solid 1px;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo {
+        height: 100%;
+        padding: 0 0.98%;
+        float: left;
+        margin-left: 19.6%;
+        font-size: 17px;
+        color: #52aee1;
+        line-height: 40px;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 28px;
+    }
+
+    .logo img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 28px;
+    }
+
+    .nav {
+        float: left;
+        height: 100%;
+        padding: 0 0.98%;
+        margin-left: 0.32%;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .nav ul li {
+        float: left;
+        padding: 2 2px;
+    }
+
+    .nav ul li a {
+        display: block;
+        height: 95%;
+        width: 100%;
+        padding: 0 15px;
+        margin-left: 2px;
+        margin-right: 2px;
+        line-height: 40px;
+        font-size: 18px;
+        color: #000;
+        text-decoration: none;
+    }
+
+    .nav ul li a:hover {
+        padding: 0 13px;
+        margin-left: 2px;
+        margin-right: 2px;
+        font-size: 20px;
+        color: #0055ff;
+        border-bottom: 2px solid #0055ff;
+    }
+
+    .user {
+        float: left;
+        height: 95%;
+        width: 2.45%;
+        padding: 20 0px;
+        margin-left: 33.33%;
+        line-height: 100%;
+        font-size: 16px;
+        background-color: #fff;
+        box-shadow: 0 0 3px rgb(255, 255, 255);
+        border-radius: 28px;
+    }
+
+    .user img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .user-name {
+        float: left;
+        height: 100%;
+        padding-top: 0.98%;
+        margin-left: 1%;
+        line-height: 100%;
+        font-size: 16px;
+        color: #4e4e4e;
+    }
+
+    #smallheadportrait {
+        border-radius: 28px;
+    }
+
+    .smallhead {
+        height: 20%;
+        width: 50%;
+        margin-left: 25%;
+        margin-top: 5px;
+        background-image: linear-gradient(to bottom, rgb(195, 215, 250), rgb(249, 250, 252));
+        box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+    }
+
+    .headportrait {
+        float: left;
+        height: 80%;
+        width: 15.7%;
+        margin-top: 1%;
+        margin-left: 2%;
+        box-shadow: 0 0 15px rgb(255, 255, 255);
+    }
+
+    .headportrait img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .headportrait:hover {
+        cursor: pointer;
+    }
+
+    .username {
+        float: left;
+        width: 70%;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: left;
+        line-height: 60px;
+        margin-top: 2%;
+        margin-left: 1%;
+    }
+
+    .signature {
+        float: left;
+        width: 60%;
+        font-size: 16px;
+        text-align: left;
+        margin-top: 2px;
+    }
+
+    .account-wrapper {
+        float: left;
+        background-color: #fff;
+        width: 25%;
+        height: 70%;
+        border-radius: 10px;
+        padding: 0 50px;
+        margin-left: 25%;
+        margin-top: 10px;
+        box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+
+    }
+
+    .header2 {
+        float: left;
+        margin-left: 38%;
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+        line-height: 40px;
+    }
+
+    .change-btn {
+        float: left;
+        margin-top: 2%;
+        margin-left: 10%;
+        width: 19%;
+        padding: 2px;
+        font-size: 14px;
+        border-radius: 3px;
+        color: #0e7fff;
+        border-color: #0e7fff;
+        background-color: #fff;
+    }
+
+    .change-btn:hover {
+        cursor: pointer;
+        outline: none;
+    }
+
+    .yhm {
+        margin-top: 12%;
+    }
+
+    .input-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 0;
+        padding: 10px;
+        border-bottom: 1px solid rgb(128, 125, 125);
+        font-size: 14px;
+        outline: none;
+    }
+
+    .input-item:placeholder {
+        text-transform: uppercase;
+    }
+
+    input[disabled] {
+        background-color: #f4f4f4;
+        /* 设置禁用状态下的背景颜色 */
+        border: none;
+    }
+
+    .xuehaoxingmin {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 0;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 15px;
+        outline: none;
+    }
+
+    #feedbackMessage {
+        color: red;
+    }
+
+    .btn {
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+        margin-top: 5px;
+        background-color: rgb(110, 195, 249);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        border: none;
+        outline: none;
+    }
+
+    .btn:hover {
+        background-color: rgb(42, 168, 253);
+        cursor: pointer;
+    }
+
+    .create-wrapper {
+        float: left;
+        background-color: #fff;
+        width: 17.2%;
+        height: 70%;
+        border-radius: 10px;
+        padding: 0 10px;
+        margin-left: 1%;
+        margin-top: 10px;
+        box-shadow: 0 0 1.5px rgba(36, 36, 36, 0.5);
+    }
+
+    .create-btn {
+        background-color: #ffffffea;
+        margin-top: 3px;
+        margin-left: 20%;
+        width: 60%;
+        height: 5%;
+        color: #0e7fff;
+        font-size: 15px;
+        border-radius: 3px;
+        border-color: #0e7fff;
+        outline: none;
+    }
+
+    .create-btn:hover {
+        cursor: pointer;
+    }
+
+    .article-wrapper {
+        width: 94%;
+        height: 84%;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-left: 3%;
+        background-color: rgb(255, 255, 255);
+        font-size: 14px;
+    }
+
+    .article {
+        width: 100%;
+        height: 28%;
+        border-radius: 5px;
+        margin-top: 2%;
+        margin-bottom: 6%;
+        background-image: linear-gradient(to bottom, rgb(210, 225, 252), rgb(239, 243, 250));
+        font-size: 13px;
+    }
+
+    .lastp {
+        float: left;
+        margin-top: 0%;
+        margin-left: 10%;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(110, 195, 249);
+        /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249);
+        /* 深蓝色边框 */
+        border-radius: 50%;
+        /* 圆形按钮 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        /* 白色文字 */
+        font-size: 14px;
+        /* 文字大小 */
+        cursor: pointer;
+    }
+
+    .nextp {
+        float: left;
+        margin-top: 0%;
+        margin-left: 20%;
+        width: 30px;
+        height: 30px;
+        background-color: rgb(110, 195, 249);
+        /* 蓝色 */
+        border: 1px solid rgb(110, 195, 249);
+        /* 深蓝色边框 */
+        border-radius: 50%;
+        /* 圆形按钮 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        /* 白色文字 */
+        font-size: 14px;
+        /* 文字大小 */
+        cursor: pointer;
+    }
+
+    .nextp:hover {
+        background-color: rgb(42, 168, 253);
+        /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253);
+        /* 深蓝色边框 */
+    }
+
+    .nextp:active {
+        background-color: rgb(42, 168, 253);
+        /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253);
+        /* 深蓝色边框 */
+    }
+
+    .lastp:hover {
+        background-color: rgb(42, 168, 253);
+        /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253);
+        /* 深蓝色边框 */
+    }
+
+    .lastp:active {
+        background-color: rgb(42, 168, 253);
+        /* 蓝色 */
+        border: 1px solid rgb(42, 168, 253);
+        /* 深蓝色边框 */
+    }
+
+    .page {
+        float: right;
+        margin-top: 2%;
+        margin-right: 0%;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header"><!--导航栏-->
+            <div class="logo">
+                <h2>博远信息技术社</h2>
+            </div>
+
+            <div class="nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="account.html">个人中心</a></li>
+                </ul>
+            </div>
+            <div class="user">
+                <img src="http://116.62.103.210/image/default.jpg" alt="" id="smallheadportrait">
+            </div>
+            <div class="user-name" id="username1">用户名</div>
+        </div>
+
+        <div class="smallhead"><!--头像用户名签名-->
+            <div class="headportrait"><img src="http://116.62.103.210/image/default.jpg" alt="" id="headportrait"></div>
+            <div class="username" id="username2">向服务器查询用户名</div><br>
+        </div>
+
+        <div class="account-wrapper">
+            <div class="header2">个人信息</div><button type="button" onclick="toggleInput()" class="change-btn"
+                id="change-btn">我要修改</button>
+            <div class="form-wrapper"><!--展示个人信息并可以修改-->
+                <form action="http://116.62.103.210:8080/update" method="post" name="更新个人信息表单" id="update-form">
+                    <div class="yhm">用户名：</div>
+                    <input type="text" id="username" name="username" placeholder="用户名（2~20位）" class="input-item"
+                        value="向服务器查询用户名" disabled>
+                    密码：<div class="xuehaoxingmin" id="password" name="password">········</div>
+                    学号：<div class="xuehaoxingmin" id="studentid">向服务器查询学号</div>
+                    姓名：<div class="xuehaoxingmin" id="studentname">向服务器查询姓名</div>
+                    邮箱（选填）：<input type="text" id="email" name="email" placeholder="邮箱" class="input-item"
+                        value="向服务器查询邮箱" disabled>
+                    生日（选填）：<input type="date" id="birthday" name="birthday" placeholder="生日" class="input-item"
+                        value="向服务器查询生日" disabled>
+                    <div id="feedbackMessage"></div>
+                    <input type="submit" class="btn" id="submit" value="提交修改">
+                </form>
+            </div>
+        </div>
+
+        <div class="create-wrapper"><!--创作中心板块-->
+            <div class="header2">创作中心</div>
+            <button class="create-btn" onclick="createArticle()">发布帖子</button>
+            <div class="article-wrapper">
+                <div class="article" id="article1">
+                    没有更多帖子了哦
+                </div>
+                <div class="article" id="article2">
+                    没有更多帖子了哦
+                </div>
+                <div class="article" id="article3">
+                    没有更多帖子了哦
+                </div>
+                <button class="lastp" id="lastp">🢀</button>
+                <button class="nextp" id="nextp">🢂</button>
+                <div class="page" id="page">第1/1页</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //准备提交创作中心的页数和一页显示数
+
+        let pageSize = 3;
+        let pageNum = 1;
+        let pages
+        function createcentre() {//获取个人信息，以及创作中心请求展示帖子
+            // 获取缓存数据
+            let sessionData = localStorage.getItem('sessionData');
+            let sessionId = localStorage.getItem('sessionId');
+            console.log(sessionId);
+            $.ajax({
+                type: "GET",
+                url: "http://116.62.103.210:8080/userInfo",
+                headers: {
+                    Sessionid: sessionId
+                },
+                data: {
+                    pageSize: 3,
+                    pageNum: pageNum,
+                },
+                dataType: "json",
+                contentType: 'application/json',
+                crossDomain: true,
+                xhrFields: { withCredentials: true },
+                success: function (data) {
+                    console.log(data)
+                    sessionStorage.setItem('pages', data.result[1].pages);//总页数缓存
+                    let headportrait = document.getElementById('headportrait');
+                    let smallheadportrait = document.getElementById('smallheadportrait');
+                    let headusername = document.getElementById('username2');
+                    let topusername = document.getElementById('username1');
+                    let username = document.getElementById('username');
+                    let studentid = document.getElementById('studentid');
+                    let studentname = document.getElementById('studentname');
+                    let email = document.getElementById('email');
+                    let birthday = document.getElementById('birthday');
+                    //展示个人信息
+                    if (data.result[0].headportrait != null) {
+                        headportrait.src = `http://116.62.103.210/image/${data.result[0].headportrait}`
+                        smallheadportrait.src = `http://116.62.103.210/image/${data.result[0].headportrait}`
+                    }
+                    else {
+                        headportrait.src = "http://116.62.103.210/image/default.jpg"
+                        smallheadportrait.src = "http://116.62.103.210/image/default.jpg"
+                    }
+                    headusername.innerHTML = data.result[0].username
+                    topusername.innerHTML = data.result[0].username
+                    username.value = data.result[0].username
+                    studentid.innerHTML = data.result[0].studentid
+                    studentname.innerHTML = data.result[0].studentname
+                    email.value = data.result[0].email
+                    birthday.value = data.result[0].birthday.slice(0, 10)
+
+                    let firstData, secondData, thirdData;
+                    //分别提取items中的三组帖子的数据
+                    if (data.result[1].items[0] != null)
+                        firstData = data.result[1].items[0];
+                    sessionStorage.setItem('firstid', firstData.article_id);
+                    if (data.result[1].items[1] != null)
+                        secondData = data.result[1].items[1];
+                    sessionStorage.setItem('secondid', secondData.article_id);
+                    if (data.result[1].items[2] != null)
+                        thirdData = data.result[1].items[2];
+                    sessionStorage.setItem('thirdid', thirdData.article_id);
+                    //分别选取三个帖子的展示框
+                    let firstDiv = document.getElementById('article1');
+                    let secondDiv = document.getElementById('article2');
+                    let thirdDiv = document.getElementById('article3');
+                    //在各自展示框中显示帖子数据
+                    if (data.result[1].items[0] != null) {
+                        var firstupdateDate = firstData.update_date.slice(0, 10); // 截取年月日部分
+                        firstDiv.innerHTML = `
+                                    <div class="firsttiao"  onclick="detailArticle1()">
+                                    <p class="zhuti">${firstData.content.slice(0, 12) + '...'}</p>
+                                    <p>开始: ${firstData.start_time}  截止: ${firstData.end_time}</p>
+                                    <p>类型：${firstData.type}  需求：${firstData.direction}  技术栈：${firstData.tag}</p>
+                                    <p>联系方式：${firstData.contact}</p>
+                                    <p>更新：${firstupdateDate}</p>
+                                    <div id="finish1">完成状态：${firstData.finish}</div>
+                                    </div>
+                                    <button id="update1" onclick="updateArticle1()" style="cursor: pointer">修改</button>
+                                    `;
+                        document.getElementById('update1').style.color = "#0062ff";
+                        document.getElementById('update1').style.borderColor = "#0062ff";
+                        document.getElementById('update1').style.backgroundColor = "#f6f9ff";
+                        document.getElementById('update1').style.borderRadius = "4px";
+                        document.getElementById('update1').style.marginLeft = "80%";
+                        //设置第一个帖子的已完成/未完成标识
+                        let firstfinish = document.getElementById('finish1');
+                        if (firstData.finish == 0) {
+                            firstfinish.innerHTML = "未完成";
+                            firstfinish.style.color = "#ff0000";
+                            firstfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (firstData.finish == 1) {
+                            firstfinish.innerHTML = "已完成";
+                            firstfinish.style.color = "#0055ff";
+                            firstfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    if (data.result[1].items[1] != null) {
+                        var secondupdateDate = secondData.update_date.slice(0, 10); // 截取年月日部分          
+                        secondDiv.innerHTML = `
+                                    <div class="secondtiao"  onclick="detailArticle2()">
+                                    <p class="zhuti">${secondData.content.slice(0, 12) + '...'}</p>
+                                    <p>开始: ${secondData.start_time}  截止: ${secondData.end_time}</p>
+                                    <p>类型：${secondData.type}  需求：${secondData.direction}  技术栈：${secondData.tag}</p>
+                                    <p>联系方式：${secondData.contact}</p>
+                                    <p>更新：${secondupdateDate}</p>
+                                    <div id = "finish2">完成状态：${secondData.finish}</div>
+                                    </div>
+                                    <button id="update2" onclick="updateArticle2()" style="cursor: pointer">修改</button>
+
+                                    `;
+                        document.getElementById('update2').style.color = "#0062ff";
+                        document.getElementById('update2').style.borderColor = "#0062ff";
+                        document.getElementById('update2').style.backgroundColor = "#f6f9ff";
+                        document.getElementById('update2').style.borderRadius = "4px";
+                        document.getElementById('update2').style.marginLeft = "80%";
+                        let secondfinish = document.getElementById('finish2');//设置第二个帖子的已完成/未完成标识
+                        if (secondData.finish == 0) {
+                            secondfinish.innerHTML = "未完成";
+                            secondfinish.style.color = "#ff0000";
+                            secondfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (secondData.finish == 1) {
+                            secondfinish.innerHTML = "已完成";
+                            secondfinish.style.color = "#0055ff";
+                            secondfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    if (data.result[1].items[2] != null) {
+                        var thirdupdateDate = thirdData.update_date.slice(0, 10); // 截取年月日部分
+                        thirdDiv.innerHTML = `
+                                    <div class="thirdtiao"  onclick="detailArticle3()">
+                                    <p class="zhuti">${thirdData.content.slice(0, 12) + '...'}</p>
+                                    <p>开始: ${thirdData.start_time}  截止: ${thirdData.end_time}</p>
+                                    <p>类型:${thirdData.type}  需求：${thirdData.direction}  技术栈：${thirdData.tag}</p>
+                                    <p>联系方式：${thirdData.contact}</p>                                   
+                                    <p>更新：${thirdupdateDate}</p>
+                                    <div id = "finish3">完成状态：${thirdData.finish}</div>
+                                    </div>
+                                    <button class="updatebtn" id="update3" onclick="updateArticle3()" style="cursor: pointer">修改</button>
+                                    `;
+                        document.getElementById('update3').style.color = "#0062ff";//设置第三个修改按钮的样式
+                        document.getElementById('update3').style.borderColor = "#0062ff";
+                        document.getElementById('update3').style.backgroundColor = "#f6f9ff";
+                        document.getElementById('update3').style.borderRadius = "4px";
+                        document.getElementById('update3').style.marginLeft = "80%";
+
+                        let thirdfinish = document.getElementById('finish3');//设置第三个帖子的已完成/未完成标识
+                        if (thirdData.finish == 0) {
+                            thirdfinish.innerHTML = "未完成";
+                            thirdfinish.style.color = "#ff0000";
+                            thirdfinish.style.borderColor = "#ff0000";
+                        }
+                        else if (thirdData.finish == 1) {
+                            thirdfinish.innerHTML = "已完成";
+                            thirdfinish.style.color = "#0055ff";
+                            thirdfinish.style.borderColor = "#0055ff";
+                        }
+                    }
+                    let page = document.getElementById('page');//显示当前页码和总页数
+                    page.innerHTML = `第${data.result[1].pageNum}/${data.result[1].pages}页`;
+                },
+                error: function (error) {
+                    console.error(error)
+                }
+            });
+        }
+
+        //选取个人信息的各板块
+
+
+        // 在页面加载完毕时执行函数
+        window.onload = function () {
+            createcentre();
+        };
+        // 当上一页按钮被点击时再次执行函数
+        document.getElementById('lastp').addEventListener('click', function () {
+            pageNum--;
+            if (pageNum < 1) {//页码数不小于1
+                alert('到头啦。');
+                pageNum = 1;
+            }
+            createcentre();
+        });
+        // 当下一页按钮被点击时再次执行函数
+        document.getElementById('nextp').addEventListener('click', function () {
+            pageNum++;
+            let pages = sessionStorage.getItem('pages');//提取缓存中的总页数
+            if (pageNum > pages) {//页码数不能超过页面总数
+                alert('到头啦。');
+                pageNum = pages;
+            }
+            createcentre();
+        });
+
+        function detailArticle1() {//跳转到第一个帖子的详情页
+            let id1 = sessionStorage.getItem('firstid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id1}`
+        }
+        function detailArticle2() {//跳转到第二个帖子的详情页
+            let id2 = sessionStorage.getItem('secondid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id2}`
+        }
+        function detailArticle3() {//跳转到第三个帖子的详情页
+            let id3 = sessionStorage.getItem('thirdid');
+            window.location.href = `http://116.62.103.210/detail.html?id=${id3}`
+        }
+
+        function updateArticle1() {//跳转到第一个帖子的修改页
+            let id1 = sessionStorage.getItem('firstid');
+            localStorage.setItem('updateid', id1);
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id1}`
+        }
+        function updateArticle2() {//跳转到第二个帖子的修改页
+            let id2 = sessionStorage.getItem('secondid');
+            localStorage.setItem('updateid', id2);
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id2}`
+        }
+        function updateArticle3() {//跳转到第三个帖子的修改页
+            let id3 = sessionStorage.getItem('thirdid');
+            localStorage.setItem('updateid', id3);
+            window.location.href = `http://116.62.103.210/updateArticle.html?id=${id3}`
+        }
+
+        //切换表单可否填写的按钮 “我要修改”/“保存修改”
+        function toggleInput() {
+            let username = document.getElementById("username");
+            if (username.disabled) {
+                username.disabled = false;
+                document.getElementById("change-btn").innerHTML = "保存修改";
+                document.getElementById("change-btn").style.color = "#ff0000";
+                document.getElementById("change-btn").style.borderColor = "#ff0000";
+            } else {
+                username.disabled = true;
+                document.getElementById("change-btn").innerHTML = "我要修改";
+                document.getElementById("change-btn").style.color = "#0055ff";
+                document.getElementById("change-btn").style.borderColor = "#0055ff";
+            }
+            let email = document.getElementById("email");
+            if (email.disabled) {
+                email.disabled = false;
+            } else {
+                email.disabled = true;
+            }
+            let birthday = document.getElementById("birthday");
+            if (birthday.disabled) {
+                birthday.disabled = false;
+            } else {
+                birthday.disabled = true;
+            }
+            let submit = document.getElementById("submit");
+            if (submit.disabled) {
+                submit.disabled = false;
+            } else {
+                submit.disabled = true;
+            }
+        }
+
+        document.getElementById('update-form').addEventListener('submit', function (event) {//“提交修改” 按钮
+            event.preventDefault()//阻止默认提交
+            //获取各参数信息
+            let username = document.getElementById('username').value
+            let password = document.getElementById('password').value
+
+            console.log(username, password)//控制台查看
+
+            //判断长度(暂定)
+            let usernameInput = document.getElementById('username')
+            if (username.length < 2 || username.length > 20) {
+                console.log('用户名长度需为2~20位')
+                usernameInput.style.borderColor = "red"
+                usernameInput.style.backgroundColor = "pink";
+                document.getElementById('feedbackMessage').innerText = '·用户名长度需为2~20位'
+                return//阻止代码进行
+            }
+            else {
+                usernameInput.style.borderColor = "black"
+                usernameInput.style.backgroundColor = "white";
+                document.getElementById('feedbackMessage').innerText = ' '
+            }
+
+            // let passwordInput = document.getElementById('password')
+            // if (password.length < 6 || password.length > 20) {
+            //     console.log('密码长度需为6~20位')
+            //     passwordInput.style.borderColor = "red"
+            //     passwordInput.style.backgroundColor = "pink";
+            //     document.getElementById('feedbackMessage').innerText = '·密码长度需为6~20位'
+            //     return//阻止代码进行
+            // }
+            // else {
+            //     passwordInput.style.borderColor = "black"
+            //     passwordInput.style.backgroundColor = "white";
+            //     document.getElementById('feedbackMessage').innerText = ' '
+            // }
+
+            // let passwordInput2 = document.getElementById('password2')
+            // if (password != password2) {
+            //     console.log('请确认两次密码输入一致')
+            //     passwordInput.style.borderColor = "red"
+            //     passwordInput.style.backgroundColor = "pink";
+            //     passwordInput2.style.borderColor = "red"
+            //     passwordInput2.style.backgroundColor = "pink";
+            //     document.getElementById('feedbackMessage').innerText = '·请确认两次密码输入一致'
+            //     return//阻止代码进行
+            // }
+            // else {
+            //     passwordInput.style.borderColor = "black"
+            //     passwordInput.style.backgroundColor = "white";
+            //     passwordInput2.style.borderColor = "black"
+            //     passwordInput2.style.backgroundColor = "white";
+            //     document.getElementById('feedbackMessage').innerText = ' '
+            // }
+
+
+            /* fetch('http://116.62.103.210:8080/update', {
+                method: 'POST',
+            body: new FormData(document.getElementById('update-form'))
+                    }) // 后端接口地址
+                        .then(response => response.json())//转换json数据
+                        .then(data => {
+                console.log(data)// 打印 JSON 数据
+                            alert(data.message)//打印message内容
+                        })
+                        .catch(error => {
+                console.error('Error:', error)
+                            alert('出错啦！请稍后再试。')
+                        })
+                })*/
+            let sessionData = localStorage.getItem('sessionData');
+            let sessionId = localStorage.getItem('sessionId');
+
+            let form = document.getElementById('update-form');
+            var name = form.querySelector('#username').value; // 获取用户名值
+            var email = form.querySelector('#email').value; // 获取邮箱值
+            var birthday = form.querySelector('#birthday').value; // 获取生日值
+            let data = {
+                ...(name != null && { username: name }),
+                ...(email != null && { email: email }),
+                ...(birthday != null && { birthday: birthday })
+            }
+            jsondata = JSON.stringify(data);
+            $.ajax({
+                type: "POST",
+                url: "http://116.62.103.210:8080/update",
+                headers: {
+                    Sessionid: sessionId
+                },
+                data: jsondata,
+                dataType: "json",
+                contentType: 'application/json',
+                crossDomain: true,
+                xhrFields: { withCredentials: true },
+                success: function (data) {
+                    console.log(data)
+                    alert(data.message)
+                },
+                error: function (xhr, status, error) {
+                    console.error(error)
+                    alert('出错啦！请稍后再试。')
+                }
+            })
+        })
+        function createArticle() {
+            window.location.href = "createArticle.html"
+        }
+    </script>
+</body>
+
+</html>
